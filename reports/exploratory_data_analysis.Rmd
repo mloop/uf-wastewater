@@ -13,29 +13,21 @@ library(haven)
 library(Hmisc)
 
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
+
+water_gameday = filter(water, date == "2018-09-08")
 ```
 
 ```{r}
-describe(water) %>%
+describe(water_gameday) %>%
   html()
 ```
 
-Let's take a look at records with a non-missing value for concentration.
-
-```{r}
-water_nomissing <- water %>%
-  filter(is.na(concentration) == FALSE)
-
-water_nomissing %>%
-  describe() %>%
-  html()
-```
-
-```{r, fig.height=12, fig.width=7, fig.cap="Any cells that are blank have only 1 data point. The counts for morphine and trazodone dominate everything else, but maybe those are a lot of 'cutoff' values. ", warning = FALSE}
-water_nomissing %>%
-  ggplot(aes(x = concentration)) +
+```{r, fig.height=5, fig.width=3, fig.cap="Any cells that are blank have only 1 data point. The counts for morphine and trazodone dominate everything else, but maybe those are a lot of 'cutoff' values. ", warning = FALSE}
+water_gameday %>%
+  filter(date == "2018-09-08") %>%
+  ggplot(aes(x = concentration_simulated)) +
   geom_density() +
-  facet_grid(compound ~ date + location) +
+  facet_grid(compound ~ location) +
   ggthemes::theme_tufte() +
   theme(
     strip.text.y = element_text(angle = 360)
@@ -43,7 +35,7 @@ water_nomissing %>%
 ```
 
 ```{r, fig.height=12, fig.width=7, fig.cap="Any cells that are blank have only 1 data point. Concentrations equal to the cutoff value or values that are out of range have been removed.", warning = FALSE}
-water_nomissing %>%
+water_gameday %>%
   filter(!(cutoff == concentration), outofrange == "no") %>%
   ggplot(aes(x = log(concentration))) +
   geom_density() +
@@ -58,7 +50,7 @@ The distributions are so different as to be almost impossible to compare. Let's 
 \newpage
 
 ```{r, echo=FALSE, fig.width=5, fig.asp=0.6}
-water_nomissing %>%
+water_gameday %>%
   filter(!(cutoff == concentration), outofrange == "no") %>%
   mutate(date = as.character(date)) %>%
   group_by(compound, date, location) %>%
@@ -79,13 +71,13 @@ water_nomissing %>%
     x = "Compound",
     y = "Median concentration (q1, q3)",
     title = "Concentrations by location and date",
-    caption = paste0("Only among concentrations not equal to the cutoff and not out of range (n = ", water_nomissing %>% filter(!(cutoff == concentration), outofrange == "no") %>% nrow(), ")", sep = "")
+    caption = paste0("Only among concentrations not equal to the cutoff and not out of range (n = ", water_gameday %>% filter(!(cutoff == concentration), outofrange == "no") %>% nrow(), ")", sep = "")
   )
 ```
 
 How many of the non-missing concentrations are equal to the cutoff, by compound?
 ```{r}
-water_nomissing %>%
+water_gameday %>%
   group_by(compound) %>%
   mutate(below_cutoff = if_else(cutoff == concentration, 1, 0)) %>%
   summarise(
@@ -97,7 +89,7 @@ water_nomissing %>%
 
 Concentrations over time?
 ```{r}
-a <- water_nomissing %>%
+a <- water_gameday %>%
   filter(!(cutoff == concentration), outofrange == "no") %>%
   mutate(date = as.character(date)) %>%
   group_by(compound, date, location) %>%
@@ -110,50 +102,61 @@ a
 
 # Simulate values of concentration for observations below the limit of detection
 
+How many measurements are there per site?
 ```{r}
-set.seed(123)
-water_simulated <- water %>%
-  ungroup() %>%
-  mutate(observation = seq(1, nrow(water))) %>%
-  group_by(observation) %>%
-  mutate(
-    concentration_simulated = if_else(is.na(concentration), runif(1, 0, cutoff), concentration)
-    ) %>%
-  ungroup()
-
-water_simulated
-
-water_simulated_gameday <- filter(water_simulated, date == "2018-09-08")
-water_simulated_gameday
+water_gameday %>% count(location, compound) %>% group_by(location) %>% slice(1) %>% select(location, n) %>% kable()
 ```
 
-Let's fit models for each compound individually:
-```{r, fig.height=10, fig.width=5}
-library(arm)
-library(broom)
+We have a concentration for each of the compounds we were interested in for each of these samples taken.
 
-library(Hmisc)
-
-summaryM(concentration ~ compound, data = water_simulated_gameday) %>% plot()
-
-water_simulated_gameday %>%
+```{r}
+water_gameday %>%
   ggplot(aes(x = timestamp, y = concentration_simulated)) +
   geom_point() +
   geom_smooth() +
   facet_grid(compound ~ location, scales = "free_y")
+```
 
-fit <- water_simulated_gameday %>%
-  mutate(location = as.character(location),
-         scaled_timestamp = scale(timestamp)) %>%
+
+Let's fit models for each compound individually with the simulated values:
+```{r, fig.height=10, fig.width=5}
+library(arm)
+library(broom)
+library(Hmisc)
+library(cowplot)
+library(modelr)
+
+
+fit <- water_gameday %>%
+  mutate(location = factor(location)) %>%
   group_by(location) %>%
+  mutate(time_from_0_minutes = (timestamp - min(timestamp)) / 60) %>%
+  group_by(compound) %>%
   nest() %>%
   mutate(
-    model = map(data, ~lmer(concentration_simulated ~ (1 | compound) + scaled_timestamp, data = .)),
-    predictions = map(model, ~augment(.) %>% mutate(random = .mu - .fixed))
+    model = map(data, ~lm(concentration_simulated ~ location + time_from_0_minutes, data = .)),
+    simulated_coefficients = map(model, ~sim(., n.sims = 100)),
+    prediction_grid = map(data, ~data_grid(., time_from_0_minutes = seq_range(time_from_0_minutes, 20), location)),
+    #simulated_predictions = map2(simulated_coefficients, prediction_grid, ~for(s in 1:nrow(.x)){
+     # .x[s, ] %*% .y 
+    #}),
+    predictions = map2(model, prediction_grid, ~add_predictions(data = .y, model = .x)),
+    broom_predictions = map(model, ~augment(.)),
+    fitted_lines = map(predictions, ~ggplot(data = ., aes(x = time_from_0_minutes, y = pred, color = factor(location))) +
+                                      geom_path()),
+    r_p_plots = map(broom_predictions, ~ggplot(data = ., aes(x = .fitted, y = .resid, color = factor(location))) +
+                                      geom_point() + geom_smooth())
   )
 
-fit %>%
-  unnest(predictions)
+```
 
+Fitted lines:
+```{r, fig.width=15, fig.asp=0.8}
+plot_grid(plotlist = fit$fitted_lines, labels = fit$compound)
+```
+
+r/p plots:
+```{r, fig.width=15, fig.asp=0.8}
+plot_grid(plotlist = fit$r_p_plots, labels = fit$compound)
 ```
 
