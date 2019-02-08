@@ -1,0 +1,159 @@
+---
+output: 
+  tufte::tufte_html
+title: "Exploratory data analysis"
+author: "Matthew Shane Loop, PhD"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, echo=FALSE)
+library(skimr)
+library(tidyverse)
+library(haven)
+library(Hmisc)
+
+water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
+```
+
+```{r}
+describe(water) %>%
+  html()
+```
+
+Let's take a look at records with a non-missing value for concentration.
+
+```{r}
+water_nomissing <- water %>%
+  filter(is.na(concentration) == FALSE)
+
+water_nomissing %>%
+  describe() %>%
+  html()
+```
+
+```{r, fig.height=12, fig.width=7, fig.cap="Any cells that are blank have only 1 data point. The counts for morphine and trazodone dominate everything else, but maybe those are a lot of 'cutoff' values. ", warning = FALSE}
+water_nomissing %>%
+  ggplot(aes(x = concentration)) +
+  geom_density() +
+  facet_grid(compound ~ date + location) +
+  ggthemes::theme_tufte() +
+  theme(
+    strip.text.y = element_text(angle = 360)
+  )
+```
+
+```{r, fig.height=12, fig.width=7, fig.cap="Any cells that are blank have only 1 data point. Concentrations equal to the cutoff value or values that are out of range have been removed.", warning = FALSE}
+water_nomissing %>%
+  filter(!(cutoff == concentration), outofrange == "no") %>%
+  ggplot(aes(x = log(concentration))) +
+  geom_density() +
+  facet_grid(compound ~ date + location) +
+  ggthemes::theme_tufte() +
+  theme(
+    strip.text.y = element_text(angle = 360)
+  )
+```
+
+The distributions are so different as to be almost impossible to compare. Let's look at the median and 1st and 3rd quartiles.
+\newpage
+
+```{r, echo=FALSE, fig.width=5, fig.asp=0.6}
+water_nomissing %>%
+  filter(!(cutoff == concentration), outofrange == "no") %>%
+  mutate(date = as.character(date)) %>%
+  group_by(compound, date, location) %>%
+  summarise(
+    median = median(concentration),
+    q25 = quantile(concentration, probs = 0.25),
+    q75 = quantile(concentration, probs = 0.75)
+  ) %>%
+  mutate(`Median (q1, q3)` = paste0(median, " (", q25, ", ", q75, ")", sep = "")) %>%
+  ungroup() %>%
+  arrange(desc(`Median (q1, q3)`)) %>%
+  ggplot(aes(x = factor(compound) %>% fct_reorder(median), y = median)) +
+  geom_pointrange(aes(ymin = q25, ymax = q75, color = date), size = 0.2) +
+  ggthemes::theme_tufte() +
+  facet_wrap(~ location) +
+  coord_flip() +
+  labs(
+    x = "Compound",
+    y = "Median concentration (q1, q3)",
+    title = "Concentrations by location and date",
+    caption = paste0("Only among concentrations not equal to the cutoff and not out of range (n = ", water_nomissing %>% filter(!(cutoff == concentration), outofrange == "no") %>% nrow(), ")", sep = "")
+  )
+```
+
+How many of the non-missing concentrations are equal to the cutoff, by compound?
+```{r}
+water_nomissing %>%
+  group_by(compound) %>%
+  mutate(below_cutoff = if_else(cutoff == concentration, 1, 0)) %>%
+  summarise(
+    number_below_cutoff = sum(below_cutoff)
+  ) %>%
+  arrange(desc(number_below_cutoff)) %>%
+  kable(caption = "Not many at all. That's great!")
+```
+
+Concentrations over time?
+```{r}
+a <- water_nomissing %>%
+  filter(!(cutoff == concentration), outofrange == "no") %>%
+  mutate(date = as.character(date)) %>%
+  group_by(compound, date, location) %>%
+  nest() %>%
+  mutate(obs = map_dbl(data, ~nrow(.)))
+
+a
+```
+
+
+# Simulate values of concentration for observations below the limit of detection
+
+```{r}
+set.seed(123)
+water_simulated <- water %>%
+  ungroup() %>%
+  mutate(observation = seq(1, nrow(water))) %>%
+  group_by(observation) %>%
+  mutate(
+    concentration_simulated = if_else(is.na(concentration), runif(1, 0, cutoff), concentration)
+    ) %>%
+  ungroup()
+
+water_simulated
+
+water_simulated_gameday <- filter(water_simulated, date == "2018-09-08")
+water_simulated_gameday
+```
+
+Let's fit models for each compound individually:
+```{r, fig.height=10, fig.width=5}
+library(arm)
+library(broom)
+
+library(Hmisc)
+
+summaryM(concentration ~ compound, data = water_simulated_gameday) %>% plot()
+
+water_simulated_gameday %>%
+  ggplot(aes(x = timestamp, y = concentration_simulated)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(compound ~ location, scales = "free_y")
+
+fit <- water_simulated_gameday %>%
+  mutate(location = as.character(location),
+         scaled_timestamp = scale(timestamp)) %>%
+  group_by(location) %>%
+  nest() %>%
+  mutate(
+    model = map(data, ~lmer(concentration_simulated ~ (1 | compound) + scaled_timestamp, data = .)),
+    predictions = map(model, ~augment(.) %>% mutate(random = .mu - .fixed))
+  )
+
+fit %>%
+  unnest(predictions)
+
+```
+
