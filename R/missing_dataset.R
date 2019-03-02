@@ -35,10 +35,10 @@ list.files()
 library(data.table)
 library(tidyr)
 library(dplyr)
-library(reshape2)
+# library(reshape2)
 
 # **************************************************************************** #
-# ***************  TheBreastfeedingAndE_BILLING_DATA_2018-06-08_1318.csv                                              
+# ***************  UF_WasteWater_ResultsCleaned.csv                                              
 # **************************************************************************** # 
 
 #Read Data
@@ -48,3 +48,8 @@ waste.dat<- read.csv(data.file.path);
 
 # look at data
 head(waste.dat); str(waste.dat); names(waste.dat)
+
+# take a look at he data
+waste.dat %>%
+  group_by(Location) %>%
+  count(Time)
