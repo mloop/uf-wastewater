@@ -20,7 +20,7 @@ location="djlemas";location
 
 work.dir=paste("C:\\Users\\",location,"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\",sep="");work.dir
 data.dir=paste("C:\\Users\\",location,"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\",sep="");data.dir
-out.dir=paste("C:\\Users\\",location,"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\",sep="");out.dir
+out.dir=paste("C:\\Users\\",location,"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\results\\",sep="");out.dir
 
 # Set Working Directory
 setwd(work.dir)
@@ -32,10 +32,10 @@ list.files()
 
 # library(readxl)
 # install.packages(data.table)
-library(data.table)
+# library(data.table)
 library(tidyr)
 library(dplyr)
-# library(reshape2)
+library(tidyverse)
 
 # **************************************************************************** #
 # ***************  UF_WasteWater_ResultsCleaned.csv                                              
@@ -49,7 +49,34 @@ waste.dat<- read.csv(data.file.path);
 # look at data
 head(waste.dat); str(waste.dat); names(waste.dat)
 
-# take a look at he data
-waste.dat %>%
-  group_by(Location) %>%
-  count(Time)
+# format time
+waste.dat$Location=as.factor(waste.dat$Location)
+
+# format time
+unique(waste.dat$Time)
+levels(waste.dat$Time)
+
+# 11 time points
+waste.dat$Time = factor(waste.dat$Time,
+           levels = c("6:30:00 PM", 
+                      "7:00:00 PM", 
+                      "7:30:00 PM",
+                      "8:00:00 PM",
+                      "8:30:00 PM",
+                      "9:00:00 PM",
+                      "9:30:00 PM",
+                      "10:00:00 PM",
+                      "10:30:00 PM",
+                      "11:00:00 PM",
+                      "11:30:00 PM"))
+
+# take a look at the data
+time.by.location.count=waste.dat %>%
+  group_by(Time) %>%
+  count(Location)%>%
+  write_tsv(path = paste0(out.dir,"time_by_location.txt"))
+
+# missing 7:30 at location 1 (24 observations)
+# missing 8:00 at location 3 (24 observations)
+# missing 10:30 at location 3 (24 observations)
+# 
