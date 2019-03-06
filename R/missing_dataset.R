@@ -76,7 +76,7 @@ time.by.location.count=waste.dat %>%
   count(Location)%>%
   write_tsv(path = paste0(out.dir,"time_by_location.txt"))
 
-# missing 7:30 at location 1 (24 observations)
-# missing 8:00 at location 3 (24 observations)
-# missing 10:30 at location 3 (24 observations)
+# missing 7:30 at location 1 (24 observations): Added 3/6/2019 by DJL
+# missing 8:00 at location 3 (24 observations): Added 3/6/2019 by DJL
+# missing 10:30 at location 3 (24 observations): Still missing as of 3/6/2019
 # 
