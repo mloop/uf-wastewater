@@ -41,7 +41,10 @@ set.seed(123)
 # read data
 data.file.name="20190508_UFWW_Results_Comparison.xlsx";data.file.name
 data.file.path=paste0(data.dir,"",data.file.name);data.file.path
-water <- read_xlsx(data.file.path, sheet="analysis_data") %>% 
+water <- read_xlsx(data.file.path, sheet="analysis_data", 
+                   col_types=c("numeric","text","numeric","numeric",
+                               "numeric","text","numeric","numeric",
+                               "text","text","numeric","numeric","numeric")) %>% 
   mutate_if(is.character, funs(na_if(., "")))
 
 # **************************************************************************** #
@@ -49,15 +52,29 @@ water <- read_xlsx(data.file.path, sheet="analysis_data") %>%
 # **************************************************************************** #
 
 names(water)
+head(water)
 str(water)
 
 # factors
 water$location=as.factor(water$location)
 water$metabolite_number=as.factor(water$metabolite_number)
-
-# format time
 water$Location=as.factor(waste.dat$Location)
 
+# format time
+water$time=as.character(water$time)
+
+water$time = as.character(factor(time, 
+                      levels = c("6:30", 
+                                 "7:00", 
+                                 "7:30",
+                                 "8:00",
+                                 "8:30",
+                                 "9:00",
+                                 "9:30",
+                                 "10:00",
+                                 "10:30",
+                                 "11:00",
+                                 "11:30")))
 
 # Start here
 skim(water)
