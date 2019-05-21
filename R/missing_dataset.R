@@ -13,14 +13,11 @@
 # ***************                Directory Variables           *************** #
 # **************************************************************************** #
 
-# Computer
-location="djlemas";location
-
 # Directory Locations
 
-work.dir=paste("C:\\Users\\",location,"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\",sep="");work.dir
-data.dir=paste("C:\\Users\\",location,"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\",sep="");data.dir
-out.dir=paste("C:\\Users\\",location,"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\results\\",sep="");out.dir
+work.dir=paste0(Sys.getenv("USERPROFILE"),"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\");work.dir
+data.dir=paste0(Sys.getenv("USERPROFILE"),"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\");data.dir
+out.dir=paste0(Sys.getenv("USERPROFILE"),"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\results\\");out.dir
 
 # Set Working Directory
 setwd(work.dir)
@@ -38,11 +35,11 @@ library(dplyr)
 library(tidyverse)
 
 # **************************************************************************** #
-# ***************  UF_WasteWater_ResultsCleaned.csv                                              
+# ***************  UF_WasteWater_ResultsCleaned_V1.csv                                              
 # **************************************************************************** # 
 
 #Read Data
-data.file.name="UF_WasteWater_ResultsCleaned.csv";data.file.name
+data.file.name="UF_WasteWater_ResultsCleaned_V1.csv";data.file.name
 data.file.path=paste0(data.dir,"",data.file.name);data.file.path
 waste.dat<- read.csv(data.file.path);
 
@@ -69,6 +66,13 @@ waste.dat$Time = factor(waste.dat$Time,
                       "10:30:00 PM",
                       "11:00:00 PM",
                       "11:30:00 PM"))
+
+# what is flow rate/time stamp for each sampling time
+head(waste.dat)
+waste.dat%>%
+  group_by(Time)%>%
+  summarize(mean(TimeStamp),
+            mean(FlowRate))
 
 # take a look at the data
 time.by.location.count=waste.dat %>%
