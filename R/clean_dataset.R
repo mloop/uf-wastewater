@@ -82,6 +82,7 @@ water$time=as.factor(water$time)
 unique(water$time)
 
 water.df=water%>%
+  rename_all(funs(tolower(.)))%>%
   mutate(time = factor(time, levels = c("6_30_00 AM", "7_00_00 AM", 
                                             "7_30_00 AM", "8_00_00 AM",
                                             "8_30_00 AM", "9_00_00 AM",
@@ -102,12 +103,16 @@ water.df=water%>%
                       "11_30_00 AM"="11:30"))
 # check levels
 levels(water.df$time)
+names(water.df)
 
+# export
+# save(water.df, file=paste0(data.dir,"water.RData"))
 
 # **************************************************************************** #
 # ***************               cleaned                   ******* #
 # **************************************************************************** #
 
+# Dom: cant quite figure out what you got going below. 
 
 # Start here
 skim(water.df)
