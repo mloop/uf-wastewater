@@ -30,6 +30,8 @@ library(skimr)
 library(tidyverse)
 library(haven)
 library(readxl)
+library(openxlsx)
+library(xlsx)
 library(lubridate)
 
 # **************************************************************************** #
@@ -41,46 +43,82 @@ set.seed(123)
 # read data
 data.file.name="20190508_UFWW_Results_Comparison.xlsx";data.file.name
 data.file.path=paste0(data.dir,"",data.file.name);data.file.path
-water <- read_xlsx(data.file.path, sheet="analysis_data", 
-                   col_types=c("numeric","text","numeric","numeric",
-                               "numeric","text","numeric","numeric",
-                               "text","text","numeric","numeric","numeric")) %>% 
+
+water=read.xlsx2(data.file.path, sheetIndex=1, header=TRUE, colClasses="character")%>%
   mutate_if(is.character, funs(na_if(., "")))
 
 # **************************************************************************** #
-# ***************               format data                    *************** #
+# ***************               format data : ugly!!                   ******* #
 # **************************************************************************** #
 
 names(water)
 head(water)
 str(water)
 
+# character
+water$metabolite_number=as.character(water$metabolite_number)
+water$metabolite_name=as.character(water$metabolite_name)
+water$ULOQ_ng_mL=as.character(water$ULOQ_ng_mL)
+water$LLOQ_ng_mL=as.character(water$LLOQ_ng_mL)
+water$sample_id=as.character(water$sample_id)
+water$sample_id2=as.character(water$sample_id2)
+water$barcode=as.character(water$barcode)
+water$value=as.character(water$value)
+water$FlowRate=as.character(water$FlowRate)
+
+# numeric
+water$ULOQ_ng_mL=as.numeric(water$ULOQ_ng_mL)
+water$LLOQ_ng_mL=as.numeric(water$LLOQ_ng_mL)
+water$run=as.numeric(water$run)
+water$value=as.numeric(water$value)
+water$FlowRate=as.numeric(water$FlowRate)
+
+# check data
+head(water)
+str(water)
+
 # factors
-water$location=as.factor(water$location)
-water$metabolite_number=as.factor(water$metabolite_number)
-water$Location=as.factor(waste.dat$Location)
+water$time=as.factor(water$time)
+unique(water$time)
 
-# format time
-water$time=as.character(water$time)
+water.df=water%>%
+  rename_all(funs(tolower(.)))%>%
+  mutate(time = factor(time, levels = c("6_30_00 AM", "7_00_00 AM", 
+                                            "7_30_00 AM", "8_00_00 AM",
+                                            "8_30_00 AM", "9_00_00 AM",
+                                            "9_30_00 AM", "10_00_00 AM",
+                                            "10_30_00 AM", "11_00_00 AM",
+                                            "11_30_00 AM")),
+         time=recode(time, 
+                      "6_30_00 AM"="6:30", 
+                      "7_00_00 AM"="7:00", 
+                      "7_30_00 AM"="7:30", 
+                      "8_00_00 AM"="8:00",
+                      "8_30_00 AM"="8:30", 
+                      "9_00_00 AM"="9:00",
+                      "9_30_00 AM"="9:30", 
+                      "10_00_00 AM"="10:00",
+                      "10_30_00 AM"="10:30", 
+                      "11_00_00 AM"="11:00",
+                      "11_30_00 AM"="11:30"))
+# check levels
+levels(water.df$time)
+names(water.df)
 
-water$time = as.character(factor(time, 
-                      levels = c("6:30", 
-                                 "7:00", 
-                                 "7:30",
-                                 "8:00",
-                                 "8:30",
-                                 "9:00",
-                                 "9:30",
-                                 "10:00",
-                                 "10:30",
-                                 "11:00",
-                                 "11:30")))
+# export
+# save(water.df, file=paste0(data.dir,"water.RData"))
+
+# **************************************************************************** #
+# ***************               cleaned                   ******* #
+# **************************************************************************** #
+
+# Dom: cant quite figure out what you got going below. 
 
 # Start here
-skim(water)
+skim(water.df)
+names(water_cleaned)
 
-water_cleaned <- water %>%
-  rename(date_time = `Date&Time`) %>%
+water_cleaned <- water.df %>%
   rename_all(funs(tolower(.))) %>%
   select(-time) %>%
   mutate(date = as_date(date),
