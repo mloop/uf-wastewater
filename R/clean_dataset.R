@@ -47,6 +47,17 @@ data.file.path=paste0(data.dir,"",data.file.name);data.file.path
 water=read.xlsx2(data.file.path, sheetIndex=1, header=TRUE, colClasses="character")%>%
   mutate_if(is.character, funs(na_if(., "")))
 
+
+########################
+# Matthew code to read in data
+########################
+water <- read_excel("20190508_UFWW_Results_Comparison.xlsx") %>%
+  mutate(hr = hour(time) %>% as.character(),
+         min = minute(time) %>% as.character(),
+         min = if_else(min == "0", "00", min)) %>%
+  unite(time_pretty, c("hr", "min"), sep = ":")
+water
+
 # **************************************************************************** #
 # ***************               format data : ugly!!                   ******* #
 # **************************************************************************** #
@@ -112,23 +123,20 @@ names(water.df)
 # ***************               cleaned                   ******* #
 # **************************************************************************** #
 
-# Dom: cant quite figure out what you got going below. 
+# Dom: cant quite figure out what you got going below.
+
+# Matthew: Below was just indicating whether a value was out of range, and then simulating a value it was below the cutoff. This was just for the grant analysis, and we won't exactly do this in the real analysis.
 
 # Start here
-skim(water.df)
-names(water_cleaned)
 
-water_cleaned <- water.df %>%
+water_cleaned <- water %>%
   rename_all(funs(tolower(.))) %>%
   select(-time) %>%
-  mutate(date = as_date(date),
-         outofrange = if_else(outofrange == "+", "yes", outofrange),
-         outofrange = if_else(is.na(concentration) == FALSE & is.na(outofrange), "no", outofrange)) %>%
   mutate(observation = seq(1, nrow(water))) %>%
   group_by(observation) %>%
   mutate(
-    concentration_simulated = if_else(is.na(concentration), runif(1, 0, cutoff), concentration)
-  ) %>%
+    value_simulated = if_else(is.na(value), runif(1, 0, lloq_ng_ml), value)
+    ) %>%
   ungroup()
 
 water_cleaned %>%
