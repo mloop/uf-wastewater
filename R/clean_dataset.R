@@ -6,12 +6,13 @@ library(lubridate)
 
 set.seed(123)
 
-water <- read_xlsx("../data/20181031 UF Waste Water Results Cleaned.xlsx") %>% mutate_if(is.character, funs(na_if(., "")))
+water <- read_xlsx("../data/20190508_UFWW_Results_Comparison.xlsx",
+                   sheet = "analysis_data") %>% 
+  mutate_if(is.character, ~na_if(., ""))
 
 skim(water)
 
 water_cleaned <- water %>%
-  rename(date_time = `Date&Time`) %>%
   rename_all(funs(tolower(.))) %>%
   select(-time) %>%
   mutate(date = as_date(date),
@@ -24,5 +25,7 @@ water_cleaned <- water %>%
   ) %>%
   ungroup()
 
-water_cleaned %>%
-  write_tsv(path = "../data/water_cleaned.txt")
+#water_cleaned %>%
+ # write_tsv(path = "../data/water_cleaned.txt")
+water %>%
+   write_tsv(path = "../data/water_cleaned.txt")
