@@ -54,8 +54,10 @@ water=read.xlsx2(data.file.path, sheetIndex=1, header=TRUE, colClasses="characte
 water <- read_excel("20190508_UFWW_Results_Comparison.xlsx") %>%
   mutate(hr = hour(time) %>% as.character(),
          min = minute(time) %>% as.character(),
-         min = if_else(min == "0", "00", min)) %>%
-  unite(time_pretty, c("hr", "min"), sep = ":")
+         min = if_else(min == "0", "00", min),
+         value = as.numeric(value)) %>%
+  unite(time_pretty, c("hr", "min"), sep = ":") %>%
+  rename_all(~tolower(.))
 water
 
 # **************************************************************************** #
@@ -132,10 +134,8 @@ names(water.df)
 water_cleaned <- water %>%
   rename_all(funs(tolower(.))) %>%
   select(-time) %>%
-  mutate(observation = seq(1, nrow(water))) %>%
-  group_by(observation) %>%
   mutate(
-    value_simulated = if_else(is.na(value), runif(1, 0, lloq_ng_ml), value)
+    value_simulated = if_else(is.na(value), runif(1, 0, as.numeric(lloq_ng_ml)), value)
     ) %>%
   ungroup()
 
