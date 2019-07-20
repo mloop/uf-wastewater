@@ -25,9 +25,6 @@ list.files()
 # ***************                Library                       *************** #
 # **************************************************************************** #
 
-# library(readxl)
-# install.packages(data.table)
-# library(data.table)
 library(tidyr)
 library(dplyr)
 library(tidyverse)
