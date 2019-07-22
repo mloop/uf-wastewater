@@ -4,7 +4,6 @@
 # **************************************************************************** #
 
 # Author:      Matt Loop & Dominick Lemas
-
 # Date:        May 21, 2019 
 # IRB:
 # Description: identify missing data for UF waste water
@@ -48,6 +47,19 @@ data.file.path=paste0(data.dir,"",data.file.name);data.file.path
 water=read.xlsx2(data.file.path, sheetIndex=1, header=TRUE, colClasses="character")%>%
   mutate_if(is.character, funs(na_if(., "")))
 
+
+########################
+# Matthew code to read in data
+########################
+water <- read_excel("20190508_UFWW_Results_Comparison.xlsx") %>%
+  mutate(hr = hour(time) %>% as.character(),
+         min = minute(time) %>% as.character(),
+         min = if_else(min == "0", "00", min),
+         value = as.numeric(value)) %>%
+  unite(time_pretty, c("hr", "min"), sep = ":") %>%
+  rename_all(~tolower(.))
+water
+
 # **************************************************************************** #
 # ***************               format data : ugly!!                   ******* #
 # **************************************************************************** #
@@ -84,22 +96,22 @@ unique(water$time)
 
 water.df=water%>%
   rename_all(funs(tolower(.)))%>%
-  mutate(time = factor(time, levels = c("6_30_00 AM", "7_00_00 AM", 
+  mutate(time = factor(time, levels = c("6_30_00 AM", "7_00_00 AM",
                                             "7_30_00 AM", "8_00_00 AM",
                                             "8_30_00 AM", "9_00_00 AM",
                                             "9_30_00 AM", "10_00_00 AM",
                                             "10_30_00 AM", "11_00_00 AM",
                                             "11_30_00 AM")),
-         time=recode(time, 
-                      "6_30_00 AM"="6:30", 
-                      "7_00_00 AM"="7:00", 
-                      "7_30_00 AM"="7:30", 
+         time=recode(time,
+                      "6_30_00 AM"="6:30",
+                      "7_00_00 AM"="7:00",
+                      "7_30_00 AM"="7:30",
                       "8_00_00 AM"="8:00",
-                      "8_30_00 AM"="8:30", 
+                      "8_30_00 AM"="8:30",
                       "9_00_00 AM"="9:00",
-                      "9_30_00 AM"="9:30", 
+                      "9_30_00 AM"="9:30",
                       "10_00_00 AM"="10:00",
-                      "10_30_00 AM"="10:30", 
+                      "10_30_00 AM"="10:30",
                       "11_00_00 AM"="11:00",
                       "11_30_00 AM"="11:30"))
 # check levels
@@ -113,24 +125,21 @@ names(water.df)
 # ***************               cleaned                   ******* #
 # **************************************************************************** #
 
-# Dom: cant quite figure out what you got going below. 
+# Dom: cant quite figure out what you got going below.
+
+# Matthew: Below was just indicating whether a value was out of range, and then simulating a value it was below the cutoff. This was just for the grant analysis, and we won't exactly do this in the real analysis.
 
 # Start here
-skim(water.df)
-names(water_cleaned)
 
-water_cleaned <- water.df %>%
+water_cleaned <- water %>%
   rename_all(funs(tolower(.))) %>%
   select(-time) %>%
-  mutate(date = as_date(date),
-         outofrange = if_else(outofrange == "+", "yes", outofrange),
-         outofrange = if_else(is.na(concentration) == FALSE & is.na(outofrange), "no", outofrange)) %>%
-  mutate(observation = seq(1, nrow(water))) %>%
-  group_by(observation) %>%
   mutate(
-    concentration_simulated = if_else(is.na(concentration), runif(1, 0, cutoff), concentration)
-  ) %>%
+    value_simulated = if_else(is.na(value), runif(1, 0, as.numeric(lloq_ng_ml)), value)
+    ) %>%
   ungroup()
 
-water_cleaned %>%
-  write_tsv(path = "../data/water_cleaned.txt")
+#water_cleaned %>%
+ # write_tsv(path = "../data/water_cleaned.txt")
+water %>%
+   write_tsv(path = "../data/water_cleaned.txt")

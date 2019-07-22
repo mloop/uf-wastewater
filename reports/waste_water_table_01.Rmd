@@ -1,0 +1,169 @@
+---
+title: "UF Waste Water Analysis"
+author: "Dominick Lemas"
+date: "7/20/2019"
+output: 
+  html_document:
+    theme: spacelab 
+    highlight: tango
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+
+data.dir=paste0(Sys.getenv("USERPROFILE"),"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\");data.dir
+
+#Read Data
+data.file.name="water.RData";data.file.name
+data.file.path=paste0(data.dir,"",data.file.name);data.file.path
+load(data.file.path)
+water=water.df
+```
+
+
+```{r , message=FALSE, warning=FALSE, echo=FALSE}
+drugs=water %>%
+  select(metabolite_name, barcode, time, run, location, value) %>%
+  mutate(tmp=ifelse(value=="NA",0,1)) %>%
+  group_by(metabolite_name) %>%
+  tally(tmp) %>%
+  rename(value=n) %>%
+  filter(value >0) 
+
+```
+
+# Overview
+Wastewater samples were manually collected  during the football game between Florida and Kentucky on Saturday, September 8, 2018 (n = 80,651). Samples were collected near the Ben Hill Griffith Stadium at three discrete locations. Samples were collected at each site every 30 minutes beginning approximately an hour before kickoff until 30 minutes after the game.
+
+### Descriptive Stats
+
+Variables | Value
+------------- | -------------
+Total # of metabolites | `r sum(drugs$value)`
+Mean # of metabolites | `r round(mean(drugs$value),0)`
+
+### All Samples  
+
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 1: Adundance of metabolites in all samples across all time points."}
+
+
+data=drugs %>% arrange(value)
+
+# Set a number of 'empty bar'
+empty_bar=2
+
+# Add lines to the initial dataset
+to_add = matrix(NA, empty_bar, ncol(data))
+colnames(to_add) = colnames(data)
+data=rbind(data, to_add)
+data$id=seq(1, nrow(data))
+
+# Get the name and the y position of each label
+label_data=data
+number_of_bar=nrow(label_data)
+angle= 90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
+label_data$hjust<-ifelse( angle < -90, 1, 0)
+label_data$angle<-ifelse(angle < -90, angle+180, angle)
+
+# Make the plot
+p = ggplot(data, aes(x=as.factor(id), y=value)) +       # Note that id is a factor. If x is numeric, there is some space between the first bar
+  geom_bar(stat="identity", fill=alpha("green", 0.3)) +
+  ylim(-100,120) +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-1,4), "cm") 
+  ) +
+  coord_polar(start = 0) + 
+  geom_text(data=label_data, aes(x=id, y=value+10, label=metabolite_name, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE ) 
+
+p
+
+```
+
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 2: Adundance of metabolites by location across all time points."}
+# Create data
+data=data.frame(x=LETTERS[1:26], y=abs(rnorm(26)))
+ 
+# 1 - Custom markers (left)
+# note: shape = integer between 0 and 25
+# note: stroke exists only for shapes between 1 and 24
+ggplot(data, aes(x=x, y=y)) +
+  geom_segment( aes(x=x, xend=x, y=0, yend=y)) +
+  geom_point( size=5, color="red", fill=alpha("orange", 0.3), alpha=0.7, shape=21, stroke=2) 
+ 
+# 2 - Custom stems (right)
+# note: size is the width in mm
+# note: style can be in: "blank", "solid", "dashed", "dotted", "dotdash", "longdash","twodash"
+ggplot(data, aes(x=x, y=y)) +
+  geom_segment( aes(x=x, xend=x, y=0, yend=y) , size=1, color="blue", linetype="dotted" ) +
+  geom_point()
+```
+
+
+
+```{r, echo=FALSE}
+
+data=water %>%
+  select(metabolite_name, barcode, time, run, location, value) %>%
+  mutate(tmp=ifelse(value=="NA",0,1)) %>%
+  group_by(location, metabolite_name) %>%
+  tally(tmp) %>%
+  rename(value=n)  %>% 
+  ungroup() %>%
+  select(metabolite_name,location, value) %>%
+  filter(value >5) 
+```
+
+```{r, echo=FALSE}
+ 
+# https://www.r-graph-gallery.com/297-circular-barplot-with-groups/
+
+# Set a number of 'empty bar' to add at the end of each group
+empty_bar=1
+to_add = data.frame( matrix(NA, empty_bar*nlevels(data$location), ncol(data)) )
+colnames(to_add) = colnames(data)
+to_add$location=rep(levels(data$location), each=empty_bar)
+data=rbind(data, to_add)
+data=data %>% arrange(location, value)
+data$id=seq(1, nrow(data))
+ 
+# Get the name and the y position of each label
+label_data=data
+number_of_bar=nrow(label_data)
+angle= 90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
+label_data$hjust<-ifelse( angle < -90, 1, 0)
+label_data$angle<-ifelse(angle < -90, angle+180, angle)
+ 
+# Make the plot
+p = ggplot(data, aes(x=as.factor(id), y=value, fill=location)) +       
+  geom_bar(stat="identity", alpha=0.5) +
+  ylim(-100,120) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-1,4), "cm") 
+  ) +
+  coord_polar() + 
+  geom_text(data=label_data, aes(x=id, y=value+10, label=metabolite_name, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE ) 
+ 
+p
+
+```
+
+
+
+
+
