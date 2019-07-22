@@ -1,8 +1,13 @@
 ---
-title: "waste_water_table_01"
+title: "UF Waste Water Analysis"
 author: "Dominick Lemas"
 date: "7/20/2019"
-output: html_document
+output: 
+  html_document:
+    theme: spacelab 
+    highlight: tango
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +28,7 @@ water=water.df
 ```
 
 
-```{r}
+```{r , message=FALSE, warning=FALSE, echo=FALSE}
 drugs=water %>%
   select(metabolite_name, barcode, time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
@@ -33,13 +38,21 @@ drugs=water %>%
   filter(value >0) 
 
 ```
-# how many metabolites were detected in all samples?
-`r sum(drugs$value)`
 
-# what is the average number of metabolites in all samples? `r mean(drugs$value)`
+# Overview
+Wastewater samples were manually collected  during the football game between Florida and Kentucky on Saturday, September 8, 2018 (n = 80,651). Samples were collected near the Ben Hill Griffith Stadium at three discrete locations. Samples were collected at each site every 30 minutes beginning approximately an hour before kickoff until 30 minutes after the game.
 
+### Descriptive Stats
 
-```{r, echo=FALSE}
+Variables | Value
+------------- | -------------
+Total # of metabolites | `r sum(drugs$value)`
+Mean # of metabolites | `r round(mean(drugs$value),0)`
+
+### All Samples  
+
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 1: Adundance of metabolites in all samples across all time points."}
+
 
 data=drugs %>% arrange(value)
 
@@ -77,7 +90,7 @@ p
 
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 2: Adundance of metabolites by location across all time points."}
 # Create data
 data=data.frame(x=LETTERS[1:26], y=abs(rnorm(26)))
  
