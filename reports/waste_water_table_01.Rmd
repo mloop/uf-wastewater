@@ -42,16 +42,15 @@ drugs=water %>%
 # Overview
 Wastewater samples were manually collected  during the football game between Florida and Kentucky on Saturday, September 8, 2018 (n = 80,651). Samples were collected near the Ben Hill Griffith Stadium at three discrete locations. Samples were collected at each site every 30 minutes beginning approximately an hour before kickoff until 30 minutes after the game.
 
-### Descriptive Stats
+### All Samples
 
 Variables | Value
 ------------- | -------------
 Total # of metabolites | `r sum(drugs$value)`
 Mean # of metabolites | `r round(mean(drugs$value),0)`
 
-### All Samples  
-
-```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 1: Adundance of metabolites in all samples across all time points."}
+  
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 1: Metabolites detected across all time points."}
 
 
 data=drugs %>% arrange(value)
@@ -90,23 +89,25 @@ p
 
 ```
 
-```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 2: Adundance of metabolites by location across all time points."}
-# Create data
-data=data.frame(x=LETTERS[1:26], y=abs(rnorm(26)))
- 
-# 1 - Custom markers (left)
-# note: shape = integer between 0 and 25
-# note: stroke exists only for shapes between 1 and 24
-ggplot(data, aes(x=x, y=y)) +
-  geom_segment( aes(x=x, xend=x, y=0, yend=y)) +
-  geom_point( size=5, color="red", fill=alpha("orange", 0.3), alpha=0.7, shape=21, stroke=2) 
- 
-# 2 - Custom stems (right)
-# note: size is the width in mm
-# note: style can be in: "blank", "solid", "dashed", "dotted", "dotdash", "longdash","twodash"
-ggplot(data, aes(x=x, y=y)) +
-  geom_segment( aes(x=x, xend=x, y=0, yend=y) , size=1, color="blue", linetype="dotted" ) +
-  geom_point()
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 2: Metabolites detected in all time points."}
+
+# Reorder
+data %>%
+  arrange(value) %>%
+  mutate(metabolite_name=factor(metabolite_name,metabolite_name)) %>%
+  ggplot( aes(x=metabolite_name, y=value)) +
+    geom_segment( aes(x=metabolite_name, xend=metabolite_name, y=0, yend=value), color="skyblue", size=1) +
+    geom_point( color="blue", size=4, alpha=0.6) +
+    theme_light() +
+    coord_flip() +
+    theme(
+      panel.grid.major.y = element_blank(),
+      panel.border = element_blank(),
+      axis.ticks.y = element_blank()
+    ) + xlab("") + ylab("Number of Samples")
+
+
+
 ```
 
 
@@ -124,7 +125,7 @@ data=water %>%
   filter(value >5) 
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
  
 # https://www.r-graph-gallery.com/297-circular-barplot-with-groups/
 
