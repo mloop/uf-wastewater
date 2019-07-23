@@ -25,6 +25,13 @@ data.file.name="water.RData";data.file.name
 data.file.path=paste0(data.dir,"",data.file.name);data.file.path
 load(data.file.path)
 water=water.df
+
+# Matthew read data
+library(Hmisc)
+
+water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
+
+
 ```
 
 
@@ -85,7 +92,7 @@ p = ggplot(data, aes(x=as.factor(id), y=value)) +       # Note that id is a fact
   coord_polar(start = 0) + 
   geom_text(data=label_data, aes(x=id, y=value+10, label=metabolite_name, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE ) 
 
-p
+p  # Don't do this! Tufte would lose his mind!
 
 ```
 
