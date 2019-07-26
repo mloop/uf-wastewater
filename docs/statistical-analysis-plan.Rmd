@@ -1,0 +1,20 @@
+---
+title: "Statistical analysis plan"
+author: "Matthew Shane Loop, PhD"
+date: "7/26/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# The data story
+
+* These data on concentrations of different illicit drugs in wastewater near Ben Hill Griffith stadium were collected in September of 2018. 
+* Water samples were collected at three separate sites near the stadium, starting at 6 PM and repeated every 30 minutes until 11 PM.
+* The water samples were sent to the Oklahoma State Health Sciences Center to be analyzed for illicit drug compounds using mass spectometry.
+  * To estimate the concentration of a compound in a sample of water, the mass spec instrument must suck up the samples into a machine to look at them and estimate the concentration. Some molecules that are large have a hard time being read because they get stuck or can't go through the tube in order to get to where the measurement is taken. Thus, some compounds will always have a value of 0 concentration in the sample, and some will have a measured concentration that is below their true concentration.
+* The results were then sent back to the University of Florida or University of Kentucky, depending upon where Chris Delcher was employed at the moment.
+* Another replicate of all samples were tested.[@Dom: Is that correct?]
+* The data was transformed by Dom, by hand, from the spreadsheet sent from OSUHSC to the structure needed for analysis.
