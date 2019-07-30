@@ -15,6 +15,38 @@ knitr::opts_chunk$set(echo = TRUE)
 * Water samples were collected at three separate sites near the stadium, starting at 6 PM and repeated every 30 minutes until 11 PM.
 * The water samples were sent to the Oklahoma State Health Sciences Center to be analyzed for illicit drug compounds using mass spectometry.
   * To estimate the concentration of a compound in a sample of water, the mass spec instrument must suck up the samples into a machine to look at them and estimate the concentration. Some molecules that are large have a hard time being read because they get stuck or can't go through the tube in order to get to where the measurement is taken. Thus, some compounds will always have a value of 0 concentration in the sample, and some will have a measured concentration that is below their true concentration.
+  * Each compound has a lower limit of quantification. Therefore, if there is a missing value for quantification for a given compound, we don't know that it was actually 0. All we know is that it was between 0 and, say, 0.05.
 * The results were then sent back to the University of Florida or University of Kentucky, depending upon where Chris Delcher was employed at the moment.
-* Another replicate of all samples were tested.[@Dom: Is that correct?]
+* Another replicate of all samples were tested.
 * The data was transformed by Dom, by hand, from the spreadsheet sent from OSUHSC to the structure needed for analysis.
+
+# Structure of dataset
+
+* 3 locations as the main unit of analysis ($i = 1,\dots, 3$)
+* 11 time points where samples were taken ($j = 1,\dots,11$)
+* 2 metabolomics reads of the concentrations of different compounds ($k = 1,2$)
+* concentrations of 58 different metabolites in each run ($l = 1, \dots, 58$)
+
+# Specific aims
+
+1. What is the average time series for a given compound, averaged across the three sites?
+2. Are there differences in the times series among different compounds, averaged across the three sites?
+3. Are there differences in concentrations of a given compound among the 3 sites, averaged over all tiem periods of collection?
+4. Are there differences in the time series for a given drug, among the 3 sites?
+
+# Statistical analysis strategy
+
+These data are complicated. There are basically `r 3 * 11 * 2 * 58` data points, with most of the concentration values missing (approximately 2/3). The data are hierarchically clustered within site/time/run/metabolite group. 
+
+We are going to use Bayesian hierarchical models to try and fit this model. We might have to end up using informative priors, given how little data there is.
+
+Complications of the data:
+
+* lower limit of detection
+* measurement error that varies depending on the compound
+
+## Aim 1
+
+* Poisson distribution for concentration of each drug
+* Fit a model separately for each drug
+* 
