@@ -19,19 +19,18 @@ water <- read_tsv("../../data/water_cleaned.txt") %>%
 ## Priors
 ## Had some issues with convergence on default priors. I will use slightly more informative priors and more iterations in order to try and speed convergence.
 
-prior <- c(prior(uniform(0, 5), class = "Intercept"),  # need to change prior because of inverse normal
-           prior(exponential(10), class = "sd"))
+prior <- c(prior(normal(0, 5), class = "Intercept"),
+           prior(exponential(5), class = "sd"))
 
 options(mc.cores = parallel::detectCores())
 set.seed(123)
 
 fit <- brm(value | trunc(lb = 0) + mi() ~ (1 | location) + (1 | time_lapse_hours) + (1 | run) + (1 | metabolite_name),
-           family = lognormal(link = "inverse"),
+           family = lognormal(link = "identity", link_sigma = "log"),
            prior = prior,
            data = water,
            chains = 2,
-           iter = 10000,
-           thin = 5)
+           iter = 5000)
 
 # Save the model
 save(fit, file = "bayesian-model-concentration-combine-metabolites.RData")
@@ -45,6 +44,9 @@ fit
 plot(fit)
 
 # Posterior-predictive checks
+## So many missing values that complete case posterior predictive checks may not be super helpful
+
+
 pred_data <- modelr::data_grid(water, location, time_lapse_hours, run, metabolite_name)
 
 posterior_mean_time_metabolite <- posterior_linpred(fit, newdata = pred_data, re_formula = ~ (1 | time_lapse_hours) + (1 | metabolite_name)) %>%
@@ -68,8 +70,9 @@ b %>% select(contains("time_lapse"), -contains("sd")) %>% summarise_all(mean) %>
   )
 
 # Time lapse and metabolite
-posterior_mean_time_metabolite %>%
+p <- posterior_mean_time_metabolite %>%
   ggplot(aes(x = prediction, y = factor(time_lapse_hours))) +
   geom_density_ridges() +
   facet_wrap(~ metabolite_name)
 
+ggsave(filename = "posterior-mean-time-metabolites.png", p, dpi = 600)
