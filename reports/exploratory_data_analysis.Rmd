@@ -14,7 +14,9 @@ library(Hmisc)
 
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
 
-water_gameday = filter(water, date == "2018-09-08")
+#water_gameday = filter(water, date == "2018-09-08")  # How do we find the gameday measurements now? Is it just gameday measurements in there are the moment?
+
+water_gameday = water
 ```
 
 ```{r}
@@ -24,10 +26,9 @@ describe(water_gameday) %>%
 
 ```{r, fig.height=5, fig.width=3, fig.cap="Any cells that are blank have only 1 data point. The counts for morphine and trazodone dominate everything else, but maybe those are a lot of 'cutoff' values. ", warning = FALSE}
 water_gameday %>%
-  filter(date == "2018-09-08") %>%
-  ggplot(aes(x = concentration_simulated)) +
+  ggplot(aes(x = value_simulated)) +
   geom_density() +
-  facet_grid(compound ~ location) +
+  facet_grid(metabolite_name ~ location) +
   ggthemes::theme_tufte() +
   theme(
     strip.text.y = element_text(angle = 360)
@@ -36,85 +37,44 @@ water_gameday %>%
 
 ```{r, fig.height=12, fig.width=7, fig.cap="Any cells that are blank have only 1 data point. Concentrations equal to the cutoff value or values that are out of range have been removed.", warning = FALSE}
 water_gameday %>%
-  filter(!(cutoff == concentration), outofrange == "no") %>%
-  ggplot(aes(x = log(concentration))) +
+  filter(is.na(value) == FALSE) %>%
+  ggplot(aes(x = log(value))) +
   geom_density() +
-  facet_grid(compound ~ date + location) +
+  facet_grid(metabolite_name ~ location, scales = "free_y") +
   ggthemes::theme_tufte() +
   theme(
     strip.text.y = element_text(angle = 360)
   )
 ```
-
-The distributions are so different as to be almost impossible to compare. Let's look at the median and 1st and 3rd quartiles.
-\newpage
-
-```{r, echo=FALSE, fig.width=5, fig.asp=0.6}
-water_gameday %>%
-  filter(!(cutoff == concentration), outofrange == "no") %>%
-  mutate(date = as.character(date)) %>%
-  group_by(compound, date, location) %>%
-  summarise(
-    median = median(concentration),
-    q25 = quantile(concentration, probs = 0.25),
-    q75 = quantile(concentration, probs = 0.75)
-  ) %>%
-  mutate(`Median (q1, q3)` = paste0(median, " (", q25, ", ", q75, ")", sep = "")) %>%
-  ungroup() %>%
-  arrange(desc(`Median (q1, q3)`)) %>%
-  ggplot(aes(x = factor(compound) %>% fct_reorder(median), y = median)) +
-  geom_pointrange(aes(ymin = q25, ymax = q75, color = date), size = 0.2) +
-  ggthemes::theme_tufte() +
-  facet_wrap(~ location) +
-  coord_flip() +
-  labs(
-    x = "Compound",
-    y = "Median concentration (q1, q3)",
-    title = "Concentrations by location and date",
-    caption = paste0("Only among concentrations not equal to the cutoff and not out of range (n = ", water_gameday %>% filter(!(cutoff == concentration), outofrange == "no") %>% nrow(), ")", sep = "")
-  )
-```
-
-How many of the non-missing concentrations are equal to the cutoff, by compound?
+How many of the concentrations are simulated, by compound?
 ```{r}
 water_gameday %>%
-  group_by(compound) %>%
-  mutate(below_cutoff = if_else(cutoff == concentration, 1, 0)) %>%
+  group_by(metabolite_name) %>%
+  mutate(below_cutoff = if_else(is.na(value) ==  TRUE, 1, 0)) %>%
   summarise(
-    number_below_cutoff = sum(below_cutoff)
+    number_below_cutoff = sum(below_cutoff),
+    total_measurements = n()
   ) %>%
-  arrange(desc(number_below_cutoff)) %>%
-  kable(caption = "Not many at all. That's great!")
+  mutate(proportion_below_cutoff = number_below_cutoff / total_measurements) %>%
+  arrange(desc(proportion_below_cutoff)) %>%
+  kable()
 ```
-
-Concentrations over time?
-```{r}
-a <- water_gameday %>%
-  filter(!(cutoff == concentration), outofrange == "no") %>%
-  mutate(date = as.character(date)) %>%
-  group_by(compound, date, location) %>%
-  nest() %>%
-  mutate(obs = map_dbl(data, ~nrow(.)))
-
-a
-```
-
 
 # Simulate values of concentration for observations below the limit of detection
 
 How many measurements are there per site?
 ```{r}
-water_gameday %>% count(location, compound) %>% group_by(location) %>% slice(1) %>% select(location, n) %>% kable()
+water_gameday %>% count(location, metabolite_name) %>% group_by(location) %>% slice(1) %>% select(location, n) %>% kable()
 ```
 
 We have a concentration for each of the compounds we were interested in for each of these samples taken.
 
-```{r}
+```{r, fig.height=12, fig.width=7, }
 water_gameday %>%
-  ggplot(aes(x = timestamp, y = concentration_simulated)) +
+  ggplot(aes(x = time_pretty, y = value_simulated)) +
   geom_point() +
   geom_smooth() +
-  facet_grid(compound ~ location, scales = "free_y")
+  facet_grid(metabolite_name ~ location, scales = "free_y")
 ```
 
 
@@ -125,38 +85,73 @@ library(broom)
 library(Hmisc)
 library(cowplot)
 library(modelr)
+library(rms)
 
 
 fit <- water_gameday %>%
   mutate(location = factor(location)) %>%
   group_by(location) %>%
   mutate(time_from_0_minutes = (timestamp - min(timestamp)) / 60) %>%
-  group_by(compound) %>%
+  ungroup() %>%
+  group_by(metabolite_name) %>%
+  filter(metabolite_name %in% c("Pseudoephedrine", "THCA", "Amphetamine", "Benzoylecgonine", "Noroxycodone")) %>%
   nest() %>%
   mutate(
-    model = map(data, ~lm(concentration_simulated ~ location + time_from_0_minutes, data = .)),
+    model = map(data, ~lm(value_simulated ~ location + rcs(time_from_0_minutes, 3), data = .)),
     simulated_coefficients = map(model, ~sim(., n.sims = 100)),
     prediction_grid = map(data, ~data_grid(., time_from_0_minutes = seq_range(time_from_0_minutes, 20), location)),
     #simulated_predictions = map2(simulated_coefficients, prediction_grid, ~for(s in 1:nrow(.x)){
      # .x[s, ] %*% .y 
     #}),
-    predictions = map2(model, prediction_grid, ~add_predictions(data = .y, model = .x)),
-    broom_predictions = map(model, ~augment(.)),
-    fitted_lines = map(predictions, ~ggplot(data = ., aes(x = time_from_0_minutes, y = pred, color = factor(location))) +
-                                      geom_path()),
-    r_p_plots = map(broom_predictions, ~ggplot(data = ., aes(x = .fitted, y = .resid, color = factor(location))) +
-                                      geom_point() + geom_smooth())
+    predictions = map2(model, prediction_grid, ~predict(.x, newdata = .y, se = TRUE) %>% as_tibble() %>%  bind_cols(.y, .)),
+    #broom_predictions = map(model, ~augment(.)),
+    fitted_lines = map(predictions, ~ggplot(data = ., aes(x = time_from_0_minutes, y = fit, color = factor(location))) +
+                                      geom_path() +
+                         geom_ribbon(aes(ymin = fit - 2 * se.fit, ymax = fit + 2 * se.fit, fill = factor(location)), alpha = 0.2) + labs(x = "Time (minutes)", y = "Concentration (ng/mL)") + theme(text = element_text(size = 8)) + scale_color_discrete(name = "Location") + scale_fill_discrete(name = "Location"))#,
+    #r_p_plots = map(broom_predictions, ~ggplot(data = ., aes(x = .fitted, y = .resid, color = factor(location))) +
+                                      #geom_point() + geom_smooth())
   )
 
 ```
 
 Fitted lines:
 ```{r, fig.width=15, fig.asp=0.8}
-plot_grid(plotlist = fit$fitted_lines, labels = fit$compound)
+plot_grid(plotlist = fit$fitted_lines, labels = fit$metabolite_name, label_x = 0.1) -> p
+
+p
+
+ggplot2::ggsave("fitted_lines.png", p, width = 10, height = 6, units = "in")
 ```
 
 r/p plots:
 ```{r, fig.width=15, fig.asp=0.8}
 plot_grid(plotlist = fit$r_p_plots, labels = fit$compound)
+```
+
+## Mixed model for each compound
+
+start with THCA:
+```{r}
+thca <- water_gameday %>%
+  mutate(location = factor(location)) %>%
+  group_by(location) %>%
+  mutate(time_from_0_minutes = (timestamp - min(timestamp)) / 60) %>%
+  ungroup() %>%
+  group_by(metabolite_name) %>%
+  filter(metabolite_name %in% c("THCA"))
+
+thca
+```
+
+```{r}
+library(brms)
+fit <- brm(value_simulated ~ (1 + time_from_0_minutes | location) + (1 | run) + time_from_0_minutes,
+           data = thca)
+
+summary(fit)
+
+a = ranef(fit)
+a
+str(a)
 ```
 

@@ -4,7 +4,7 @@
 # **************************************************************************** #
 
 # Author:      Matt Loop & Dominick Lemas
-# Date:        May 21, 2019
+# Date:        May 21, 2019 
 # IRB:
 # Description: identify missing data for UF waste water
 # Data: '20190508 UFWW Results Comparison.xlsx'
@@ -57,7 +57,9 @@ water <- read_excel("20190508_UFWW_Results_Comparison.xlsx") %>%
          min = if_else(min == "0", "00", min),
          value = as.numeric(value)) %>%
   unite(time_pretty, c("hr", "min"), sep = ":") %>%
-  rename_all(~tolower(.))
+  rename_all(~tolower(.)) %>%
+  mutate(lloq_ng_ml = na_if(lloq_ng_ml, "N/A"),
+         uloq_ng_ml = na_if(lloq_ng_ml, "N/A"))
 water
 
 # **************************************************************************** #
@@ -133,7 +135,6 @@ names(water.df)
 
 water_cleaned <- water %>%
   rename_all(funs(tolower(.))) %>%
-  select(-time) %>%
   mutate(
     value_simulated = if_else(is.na(value), runif(1, 0, as.numeric(lloq_ng_ml)), value)
     ) %>%
@@ -141,5 +142,5 @@ water_cleaned <- water %>%
 
 #water_cleaned %>%
  # write_tsv(path = "../data/water_cleaned.txt")
-water %>%
+water_cleaned %>%
    write_tsv(path = "../data/water_cleaned.txt")
