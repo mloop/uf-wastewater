@@ -62,7 +62,7 @@ posterior_pred_time_metabolite <- posterior_predict(fit, newdata = pred_data, re
 p <- posterior_pred_time_metabolite %>%
   ggplot(aes(x = prediction, y = factor(time_pretty))) +
   geom_density_ridges(color = "gray") +
-  facet_wrap(~ metabolite_name, scales = "free_x") +
+  facet_wrap(~ metabolite_name) +
   labs(
     title = "Predicted densities of metabolite concentrations",
     y = "Time of collection",
@@ -80,7 +80,7 @@ p <- posterior_pred_time_metabolite %>%
   ) %>%
   ggplot(aes(x = time_pretty, y = mean)) +
   geom_pointrange(aes(ymin = q_25, ymax = q_75), size = 0.1) +
-  facet_wrap(~ metabolite_name, scales = "free_y") +
+  facet_wrap(~ metabolite_name) +
   ggthemes::theme_tufte() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1)
@@ -92,3 +92,62 @@ p <- posterior_pred_time_metabolite %>%
   )
 
 ggsave(filename = "posterior-predictions-time-metabolites-pointrange-inxn-time-metabolite.png", p, dpi = 600)
+
+# Posterior means
+posterior_mean_time_metabolite <- posterior_linpred(fit, newdata = pred_data, re_formula = ~ (1 | time_pretty) + (1 + time_pretty | metabolite_name)) %>%
+  t() %>%
+  as_tibble() %>%
+  bind_cols(pred_data, .) %>%
+  group_by(time_pretty, metabolite_name) %>%
+  slice(1) %>%
+  select(-run, -location) %>%
+  gather(draw, prediction, starts_with("V"))
+
+posterior_mean_time_metabolite %>%
+  summarise(
+    mean = quantile(prediction, probs = 0.5),
+    q_25 = quantile(prediction, probs = 0.25),
+    q_75 = quantile(prediction, probs = 0.75)
+  ) %>%
+  ggplot(aes(x = time_pretty, y = mean)) +
+  geom_pointrange(aes(ymin = q_25, ymax = q_75), size = 0.1) +
+  facet_wrap(~ metabolite_name) +
+  ggthemes::theme_tufte() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  labs(
+    title = "Median, 25th, and 75th percentiles of concentration of each metabolite",
+    x = "Time of collection",
+    y = "Concentration of metabolite (ng/mL)"
+  )
+
+# Site by drug
+
+posterior_pred_time_metabolite <- posterior_predict(fit, newdata = pred_data, re_formula = ~ (1 | location) + (1 + time_pretty | metabolite_name)) %>%
+  t() %>%
+  as_tibble() %>%
+  bind_cols(pred_data, .) %>%
+  group_by(location, time_pretty, metabolite_name) %>%
+  slice(1) %>%
+  select(-run) %>%
+  gather(draw, prediction, starts_with("V"))
+
+posterior_pred_time_metabolite %>%
+  summarise(
+    mean = quantile(prediction, probs = 0.5),
+    q_25 = quantile(prediction, probs = 0.25),
+    q_75 = quantile(prediction, probs = 0.75)
+  ) %>%
+  ggplot(aes(x = time_pretty, y = mean, color = factor(location))) +
+  geom_pointrange(aes(ymin = q_25, ymax = q_75), size = 0.1) +
+  facet_wrap(~ metabolite_name, scales = "free_y") +
+  ggthemes::theme_tufte() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  labs(
+    title = "Median, 25th, and 75th percentiles of concentration of each metabolite",
+    x = "Time of collection",
+    y = "Concentration of metabolite (ng/mL)"
+  )
