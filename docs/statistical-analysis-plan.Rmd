@@ -44,6 +44,22 @@ Complications of the data:
 
 * lower limit of detection
 * measurement error that varies depending on the compound
+* highly skewed distribution
+* small dataset (model for mean $\approx$ saturated)
+
+$$y_{i,obs} \sim N_t(y_{i,est}, \sigma_i^2, a = y_{i,obs}, b = \infty)$$
+
+$$y_{i,est} \sim N_t(\mu_i, \sigma_i^2, a = 0, b = \infty)$$
+
+$$\mu_i = \beta_0 + b_{location[i]} + b_{time[i]} + b_{run[i]}$$
+
+$$b_{time[i]} \sim N(b_{metabolite[i]}, \sigma^2_{time})$$
+$$b_{location[i]} \sim N(0, \sigma^2_{location})$$
+$$b_{run[i]} \sim N(0, \sigma^2_{run})$$
+$$b_{metabolite[i]} \sim N(0, \sigma^2_{metabolite})$$
+$$\sigma^2_i \sim \textrm{HalfCauchy}(0, \sigma^2_{metaboliteerror})$$
+
+$$\sigma^2_{\textrm{all others}} \sim \textrm{HalfCauchy}(0, 1)$$
 
 ## Aim 1
 

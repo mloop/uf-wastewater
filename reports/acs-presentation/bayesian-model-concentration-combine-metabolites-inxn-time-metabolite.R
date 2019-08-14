@@ -2,8 +2,9 @@
 
 
 library(tidyverse)
-library(brms)
+library(rethinking)
 library(ggridges)
+
 
 water <- read_tsv("../../data/water_cleaned.txt") %>%
   mutate(run = factor(run),
@@ -20,7 +21,70 @@ water <- read_tsv("../../data/water_cleaned.txt") %>%
 ## Priors
 options(mc.cores = parallel::detectCores())
 set.seed(123)
-## Had some issues with convergence on default priors. I will use slightly more informative priors and more iterations in order to try and speed convergence.
+
+# Use rethinking package to fit models
+f <- alist(
+  # Model
+  y_obs ~ dnorm(y_est, sigma_error),# T[y_obs,],
+  sigma_error <- sigma_error_metabolite[metabolite_name],
+  y_est ~ dnorm( mu , sigma ),# T[0,],
+  mu <- b + bj[location] + bk[time_pretty] + bl[run] + bm[metabolite_name],
+  bk[time_pretty] ~ dnorm(0, sigma_time_pretty),
+  sigma_error_metabolite[metabolite_name] ~ dcauchy( 0 , 1),
+  b ~ dnorm(0, 5),
+  bj[location] ~ dnorm(0, sigma_location),
+  bl[run] ~ dnorm(0, sigma_location),
+  bm[metabolite_name] ~ dnorm(0, sigma_metabolite_name),
+   # Hyper priors
+  mu_metabolite[metabolite_name] ~ dnorm(0, 1),
+  epsilon ~ dcauchy(0, 1),
+  sigma ~ dcauchy(0, 1),
+  sigma_time_pretty ~ dcauchy(0, 1),
+  sigma_location ~ dcauchy(0, 1),
+  sigma_run ~ dcauchy(0, 1),
+  sigma_metabolite_name ~ dcauchy(0, 1),
+  sigma_error_metabolite ~ dcauchy(0, 1))
+
+# Simpler one
+# I'm still not sure this model is identifiable
+f <- alist(
+  # Model
+  y_obs ~ dnorm(y_est, sigma_error),# T[y_obs,],
+  #sigma_error <- sigma_error_metabolite[metabolite_name],
+  y_est ~ dnorm( mu , sigma ),# T[0,],
+  mu <- b + bj[location] + bk[time_pretty] + bl[run] + bm[metabolite_name],
+  bk[time_pretty] ~ dnorm(0, sigma_time_pretty),
+  #sigma_error_metabolite[metabolite_name] ~ dcauchy( 0 , 1),
+  b ~ dnorm(0, 5),
+  bj[location] ~ dnorm(0, sigma_location),
+  bl[run] ~ dnorm(0, sigma_location),
+  bm[metabolite_name] ~ dnorm(0, sigma_metabolite_name),
+  # Hyper priors
+  mu_metabolite[metabolite_name] ~ dnorm(0, 1),
+  epsilon ~ dcauchy(0, 1),
+  sigma ~ dcauchy(0, 1),
+  sigma_time_pretty ~ dcauchy(0, 1),
+  sigma_location ~ dcauchy(0, 1),
+  sigma_run ~ dcauchy(0, 1),
+  sigma_metabolite_name ~ dcauchy(0, 1),
+  #sigma_error_metabolite ~ dcauchy(0, 1)
+  sigma_error ~ dcauchy(0, 1)
+)
+  
+fit <- map2stan(
+  f,
+  data = list(y_obs = water$value,
+              location = water$location,
+              time_pretty = water$time_pretty,
+              run = water$run,
+              metabolite_name = water$metabolite_name),
+  constraints = list(mu = "real<lower = 0>"),
+  iter = 3000,
+  warmup = 2500,
+  chains = 2,
+  cores = 2
+)
+  ## Had some issues with convergence on default priors. I will use slightly more informative priors and more iterations in order to try and speed convergence.
 
 prior <- c(prior(normal(0, 5), class = "Intercept"),
            prior(exponential(5), class = "sd"))
