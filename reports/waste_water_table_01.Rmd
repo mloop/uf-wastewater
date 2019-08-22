@@ -17,20 +17,13 @@ library(tidyr)
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
+library(Hmisc)
 
-data.dir=paste0(Sys.getenv("USERPROFILE"),"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\");data.dir
-
-#Read Data
-data.file.name="water.RData";data.file.name
-data.file.path=paste0(data.dir,"",data.file.name);data.file.path
-load(data.file.path)
-water=water.df
-
-# Matthew read data
-# library(Hmisc)
-# 
+# # Read data: Matt
 # water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
 
+load("../data/water.RData")
+water=water.df
 
 ```
 
@@ -90,19 +83,16 @@ data %>%
 location=water %>%
   select(metabolite_name, barcode, time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
-  group_by(location, run, time, metabolite_name) %>%
-  tally(tmp) %>%
-  rename(value=n)  %>% 
-  ungroup() %>%
   group_by(location) %>%
-  summarize(count=sum(value)) 
+  tally(tmp) %>%
+  summarize(n) 
+
 
 time=water %>%
   select(metabolite_name, barcode, time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
   group_by(location, run, time, metabolite_name) %>%
   tally(tmp) %>%
-  rename(value=n)  %>% 
   ungroup() %>%
   group_by(location, time) %>%
   summarize(count=sum(value)) 
