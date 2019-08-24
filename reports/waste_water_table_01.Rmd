@@ -76,26 +76,22 @@ data %>%
 ```
 
 
-```{r, echo=FALSE}
+```{r,message=FALSE, warning=FALSE, echo=FALSE}
 
-# observation by location
-
-location=water %>%
-  select(metabolite_name, barcode, time, run, location, value) %>%
+# observation by location: yes/no 
+loc=water %>%
+  select(metabolite_name,time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
-  group_by(location) %>%
-  tally(tmp) %>%
-  summarize(n) 
+  filter(tmp==1 & run==2) %>%
+  spread(location, tmp)
 
-
-time=water %>%
-  select(metabolite_name, barcode, time, run, location, value) %>%
+# observation by location: yes/no 
+# needs to be true/false across all times
+loc=water %>%
+  select(metabolite_name,time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
-  group_by(location, run, time, metabolite_name) %>%
-  tally(tmp) %>%
-  ungroup() %>%
-  group_by(location, time) %>%
-  summarize(count=sum(value)) 
+  filter(tmp==1 & run==2) %>%
+  spread(location, tmp)
 
 ```
 
