@@ -29,6 +29,7 @@ water=water.df
 
 
 ```{r , message=FALSE, warning=FALSE, echo=FALSE}
+# counts of all metabolites across all samples/sites
 drugs=water %>%
   select(metabolite_name, barcode, time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
@@ -38,6 +39,17 @@ drugs=water %>%
   filter(value >0) 
 
 data=drugs %>% arrange(value)
+
+# counts of metabolites within site
+drug_location=water %>%
+  select(metabolite_name, time, location, value) %>%
+  mutate(tmp=ifelse(value=="NA","NA",1)) %>%
+  group_by(metabolite_name, location) %>%
+  tally(tmp) %>%
+  rename(value=n) %>%
+  filter(value>0) %>% 
+  mutate(present=ifelse(value>0, TRUE, FALSE))
+
 
 ```
 
