@@ -48,8 +48,13 @@ drug_location=water %>%
   tally(tmp) %>%
   rename(value=n) %>%
   filter(value>0) %>% 
-  mutate(present=ifelse(value>0, TRUE, FALSE))
+  mutate(present=ifelse(value>0, TRUE, FALSE)) %>%
+  select(metabolite_name,location,present) %>%
+  spread(location,present) %>%
+  mutate(species_new = case_when(is.na(`1`) ~ "FALSE",
+                          is.na(`1`) ~ "TRUE")
 
+         # start here
 
 ```
 
