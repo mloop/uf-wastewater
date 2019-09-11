@@ -51,8 +51,11 @@ stacked <- intermediate %>%
     above_uloq = if_else(value > uloq, 1, 0),
     run = if_else(str_detect(run, "Shimadzu") == TRUE, "shimadzu",
                   if_else(str_detect(run, "Austin") == TRUE, "austin", "prior")),
-    time_pretty = factor(time_pretty) %>% fct_relevel("6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00")
-  )
+    time_pretty = factor(time_pretty) %>% fct_relevel("6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00"),
+    extraction = if_else(run == "prior", "zach", "austin"),
+    machine = if_else(run == "shimadzu", "shimadzu", "waters")
+  ) %>%
+  select(-run)
 
 stacked %>%
    write_tsv(path = "../data/water_cleaned.txt")

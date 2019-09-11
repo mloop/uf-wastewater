@@ -17,25 +17,19 @@ library(tidyr)
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
-
-data.dir=paste0(Sys.getenv("USERPROFILE"),"\\Dropbox (UFL)\\02_Projects\\WASTE_WATER\\2018_KY_Sep18\\");data.dir
-
-#Read Data
-data.file.name="water.RData";data.file.name
-data.file.path=paste0(data.dir,"",data.file.name);data.file.path
-load(data.file.path)
-water=water.df
-
-# Matthew read data
 library(Hmisc)
 
-water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
+# # Read data: Matt
+# water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
 
+load("../data/water.RData")
+water=water.df
 
 ```
 
 
 ```{r , message=FALSE, warning=FALSE, echo=FALSE}
+# counts of all metabolites across all samples/sites
 drugs=water %>%
   select(metabolite_name, barcode, time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
@@ -43,6 +37,24 @@ drugs=water %>%
   tally(tmp) %>%
   rename(value=n) %>%
   filter(value >0) 
+
+data=drugs %>% arrange(value)
+
+# counts of metabolites within site
+drug_location=water %>%
+  select(metabolite_name, time, location, value) %>%
+  mutate(tmp=ifelse(value=="NA","NA",1)) %>%
+  group_by(metabolite_name, location) %>%
+  tally(tmp) %>%
+  rename(value=n) %>%
+  filter(value>0) %>% 
+  mutate(present=ifelse(value>0, TRUE, FALSE)) %>%
+  select(metabolite_name,location,present) %>%
+  spread(location,present) %>%
+  mutate(species_new = case_when(is.na(`1`) ~ "FALSE",
+                          is.na(`1`) ~ "TRUE")
+
+         # start here
 
 ```
 
@@ -53,57 +65,23 @@ Wastewater samples were manually collected  during the football game between Flo
 
 Variables | Value
 ------------- | -------------
-Total # of metabolites | `r sum(drugs$value)`
-Mean # of metabolites | `r round(mean(drugs$value),0)`
+Total # of observations | `r sum(drugs$value)`
+Total # of locations | `r length(unique(water$location))`
+Total # of time points | `r length(unique(water$time))`
+Total # of metabolites | `r length(unique(water$metabolite_name ))`
+Total # of runs | `r length(unique(water$run))`
 
-  
-```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 1: Metabolites detected across all time points."}
 
 
-data=drugs %>% arrange(value)
-
-# Set a number of 'empty bar'
-empty_bar=2
-
-# Add lines to the initial dataset
-to_add = matrix(NA, empty_bar, ncol(data))
-colnames(to_add) = colnames(data)
-data=rbind(data, to_add)
-data$id=seq(1, nrow(data))
-
-# Get the name and the y position of each label
-label_data=data
-number_of_bar=nrow(label_data)
-angle= 90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
-label_data$hjust<-ifelse( angle < -90, 1, 0)
-label_data$angle<-ifelse(angle < -90, angle+180, angle)
-
-# Make the plot
-p = ggplot(data, aes(x=as.factor(id), y=value)) +       # Note that id is a factor. If x is numeric, there is some space between the first bar
-  geom_bar(stat="identity", fill=alpha("green", 0.3)) +
-  ylim(-100,120) +
-  theme_minimal() +
-  theme(
-    axis.text = element_blank(),
-    axis.title = element_blank(),
-    panel.grid = element_blank(),
-    plot.margin = unit(rep(-1,4), "cm") 
-  ) +
-  coord_polar(start = 0) + 
-  geom_text(data=label_data, aes(x=id, y=value+10, label=metabolite_name, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE ) 
-
-p  # Don't do this! Tufte would lose his mind!
-
-```
-
-```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 2: Metabolites detected in all time points."}
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 1: Metabolites detected in all samples."}
 
 # Reorder
 data %>%
+  mutate(percent=(value/66)*100) %>%
   arrange(value) %>%
   mutate(metabolite_name=factor(metabolite_name,metabolite_name)) %>%
-  ggplot( aes(x=metabolite_name, y=value)) +
-    geom_segment( aes(x=metabolite_name, xend=metabolite_name, y=0, yend=value), color="skyblue", size=1) +
+  ggplot( aes(x=metabolite_name, y=percent)) +
+    geom_segment( aes(x=metabolite_name, xend=metabolite_name, y=0, yend=percent), color="skyblue", size=1) +
     geom_point( color="blue", size=4, alpha=0.6) +
     theme_light() +
     coord_flip() +
@@ -111,67 +89,41 @@ data %>%
       panel.grid.major.y = element_blank(),
       panel.border = element_blank(),
       axis.ticks.y = element_blank()
-    ) + xlab("") + ylab("Number of Samples")
-
-
-
+    ) + xlab("") + ylab("Percentage of Samples")
 ```
 
 
+```{r,message=FALSE, warning=FALSE, echo=FALSE}
 
-```{r, echo=FALSE}
-
-data=water %>%
-  select(metabolite_name, barcode, time, run, location, value) %>%
+# observation by location: yes/no 
+loc=water %>%
+  select(metabolite_name,time, run, location, value) %>%
   mutate(tmp=ifelse(value=="NA",0,1)) %>%
-  group_by(location, metabolite_name) %>%
-  tally(tmp) %>%
-  rename(value=n)  %>% 
-  ungroup() %>%
-  select(metabolite_name,location, value) %>%
-  filter(value >5) 
-```
+  filter(tmp==1 & run==2) %>%
+  spread(location, tmp)
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
- 
-# https://www.r-graph-gallery.com/297-circular-barplot-with-groups/
-
-# Set a number of 'empty bar' to add at the end of each group
-empty_bar=1
-to_add = data.frame( matrix(NA, empty_bar*nlevels(data$location), ncol(data)) )
-colnames(to_add) = colnames(data)
-to_add$location=rep(levels(data$location), each=empty_bar)
-data=rbind(data, to_add)
-data=data %>% arrange(location, value)
-data$id=seq(1, nrow(data))
- 
-# Get the name and the y position of each label
-label_data=data
-number_of_bar=nrow(label_data)
-angle= 90 - 360 * (label_data$id-0.5) /number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
-label_data$hjust<-ifelse( angle < -90, 1, 0)
-label_data$angle<-ifelse(angle < -90, angle+180, angle)
- 
-# Make the plot
-p = ggplot(data, aes(x=as.factor(id), y=value, fill=location)) +       
-  geom_bar(stat="identity", alpha=0.5) +
-  ylim(-100,120) +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.text = element_blank(),
-    axis.title = element_blank(),
-    panel.grid = element_blank(),
-    plot.margin = unit(rep(-1,4), "cm") 
-  ) +
-  coord_polar() + 
-  geom_text(data=label_data, aes(x=id, y=value+10, label=metabolite_name, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=2.5, angle= label_data$angle, inherit.aes = FALSE ) 
- 
-p
+# observation by location: yes/no 
+# needs to be true/false across all times
+loc=water %>%
+  select(metabolite_name,time, run, location, value) %>%
+  mutate(tmp=ifelse(value=="NA",0,1)) %>%
+  filter(tmp==1 & run==2) %>%
+  spread(location, tmp)
 
 ```
 
+### Samples by location
+
+Variables | Value
+------------- | -------------
+Location 1 # of obs  | `r location$count[1]`
+Location 2 # of obs  | `r location$count[2]`
+Location 3 # of obs  | `r location$count[3]`
 
 
+```{r message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "Figure 1: Metabolites detected in all samples."}
 
+g <- ggplot(time, aes(x = time, y = count, color=location))+geom_bar(stat="identity")+theme_minimal()
+g
 
+```

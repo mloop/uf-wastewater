@@ -9,7 +9,7 @@ water <- read_tsv("../../data/water_cleaned.txt") %>%
   mutate(run = factor(run),
          has_value = if_else(is.na(value) == TRUE, 0, 1),
          time_pretty = as.character(time_pretty)) %>%
-  group_by(metabolite_name) %>%
+  group_by(metabolite) %>%
   mutate(total_values = sum(has_value)) %>%
   filter(value < 100000 | is.na(value) == TRUE,
          total_values > 6) 
@@ -23,7 +23,7 @@ set.seed(123)
 ## Had some issues with convergence on default priors. I will use slightly more informative priors and more iterations in order to try and speed convergence.
 
 prior <- c(prior(normal(0, 5), class = "Intercept"),
-           prior(exponential(5), class = "sd"))
+           prior(cauchy(0, 1), class = "sd"))
 
 fit <- brm(value | trunc(lb = 0) + mi() ~ (1 | location) + (1 | time_pretty) + (1 | run) + (1 + time_pretty | metabolite_name),
            family = lognormal(link = "identity", link_sigma = "log"),
