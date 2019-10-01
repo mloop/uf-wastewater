@@ -3,15 +3,14 @@ library(tidyverse)
 water <- read_tsv("../../data/water_cleaned.txt")
 
 p <- water %>%
-  mutate(run = factor(run),
-         has_value = if_else(is.na(value) == TRUE, 0, 1)) %>%
-  group_by(metabolite_name) %>%
+  mutate(has_value = if_else(is.na(value) == TRUE, 0, 1)) %>%
+  group_by(metabolite) %>%
   mutate(total_values = sum(has_value)) %>%
   filter(value < 100000 | is.na(value) == TRUE,
          total_values > 6) %>%
-  ggplot(aes(x = time_lapse_hours, y = value, color = metabolite_name, linetype = run, group = interaction(run, metabolite_name))) +
+  ggplot(aes(x = time_pretty, y = value, color = metabolite, linetype = extraction, group = interaction(extraction, metabolite))) +
   geom_path() +
-  facet_wrap(~location) +
+  facet_grid(machine ~location) +
   theme(
     legend.position = "bottom"
   ) +
