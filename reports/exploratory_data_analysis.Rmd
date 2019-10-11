@@ -11,6 +11,7 @@ library(Hmisc)
 library(tidyverse)
 
 
+
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
   mutate(time_pretty = as.character(time_pretty))
 
@@ -21,77 +22,28 @@ How many unique compounds are there under analysis? `r water %>% distinct(metabo
 
 How many time points? `r water %>% distinct(time_pretty) %>% nrow()`
 
-Does each site/time/metabolite group have two observations, representing the two different runs of the data? 
-```{r}
-water %>%
-  group_by(location, time_lapse_hours, metabolite_name) %>%
-  tally() %>%
-  filter(n < 2)
-```
-
-Nope! That's good. So the structure of the dataset is that we have:
-
 * 3 locations as the main unit of analysis (i)
 * 11 time points where samples were taken (j)
-* 2 metabolomics reads of the concentrations of different compounds (k)
-* concentrations of 58 different metabolites in each run (l)
+* 2 extraction methods (k)
+* 2 different MS machines (l)
+* concentrations of 56 different metabolites in each run (m)
 
 Here's a plot of the concentrations of each metabolite vs. time, across the 3 sites.
 
 ```{r}
 water %>%
-  ggplot(aes(x = time_lapse_hours, y = value, color = metabolite_name, linetype = run, group = interaction(run, metabolite_name))) +
+  ggplot(aes(x = time_pretty, y = value, color = metabolite, linetype = extraction, group = interaction(extraction, metabolite))) +
   geom_path() +
-  facet_wrap(~location)
-```
-
-Wow, look at those outliers! What are they?
-```{r}
-water %>% 
-  filter(value > 100000)
-```
-
-Hrm...it looks like the upper limit of quantification and the lower limit of quantification are equal. That doesn't make any sense.
-
-* Are these two amphetamine concentrations even possible?
-* For how many compounds are the upper and lower limits of quantification equal? We need to check back with the original data sent by OSUHSC to make sure we didn't leave out any upper or lower limits.
-
-```{r}
-water %>%
-  filter(uloq_ng_ml == lloq_ng_ml) %>%
-  distinct(metabolite_name) %>%
-  nrow()
-```
-So for all but two of the compounds, the lower and upper limits are the same. I'm not sure I believe that. I wonder if there are no upper limits for some of these. What are the two that have unequal upper and lower limits?
-```{r}
-water %>% ungroup() %>% dplyr::filter(uloq_ng_ml != lloq_ng_ml)
-```
-
-Weird. It won't run and is telling me something about different numbers of rows. Which is not true. Someone on the internet said they encounted the [same error with null values](https://stackoverflow.com/questions/26147558/what-does-the-error-arguments-imply-differing-number-of-rows-x-y-mean), but it doesn't seem to apply here.
-
-* We might want to make the assumption that there is no upper limit of quantification.
-
-Anyway, what do the distributions look like when we remove those observations?
-```{r, fig.height = 9, fig.width=12}
-water %>%
-  filter(value < 100000 | is.na(value) == TRUE) %>%
-  ggplot(aes(x = time_lapse_hours, y = value, color = metabolite_name, linetype = run, group = interaction(run, metabolite_name))) +
-  geom_path() +
-  facet_wrap(~location) +
+  facet_grid(machine ~location) +
   theme(
     legend.position = "bottom"
-  ) +
-  scale_color_viridis_d() +
-  labs(
-    title = "Observed concentrations of each metabolite over time, by run and location",
-    subtitle = "Values are limited to those less than 100,000"
   )
 ```
 
 Now, for each metabolite and run, how many missing values are there? And what proportion?
 ```{r}
 water %>%
-  group_by(metabolite_name, run) %>%
+  group_by(metabolite, extraction, machine) %>%
   mutate(is_missing = if_else(is.na(value) == TRUE, 1, 0),
          number_of_observations = n()) %>%
   summarise(
@@ -102,3 +54,5 @@ water %>%
   knitr::kable(caption = "Number and proportion of missing values of concentration, across all locations and time points (n = 33). The number of missing values is not always consistent for a given metabolite between the two runs.") %>%
   kableExtra::kable_styling()
 ```
+
+
