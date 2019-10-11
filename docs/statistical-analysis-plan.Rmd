@@ -15,11 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
 * Water samples were collected at three separate sites near the stadium, starting at 6 PM and repeated every 30 minutes until 11 PM.
 * The water samples were sent to the Oklahoma State Health Sciences Center to be analyzed for illicit drug compounds using mass spectometry.
   * To estimate the concentration of a compound in a sample of water, the mass spec instrument must suck up the samples into a machine to look at them and estimate the concentration. Some molecules that are large have a hard time being read because they get stuck or can't go through the tube in order to get to where the measurement is taken. Thus, some compounds will always have a value of 0 concentration in the sample, and some will have a measured concentration that is below their true concentration.
-  * Each compound has a lower limit of quantification. Therefore, if there is a missing value for quantification for a given compound, we don't know that it was actually 0. All we know is that it was between 0 and, say, 0.05.
-* The results were then sent back to the University of Florida or University of Kentucky, depending upon where Chris Delcher was employed at the moment.
-* 2 different extraction procedures were performed
-* One extraction had one type of MS done, and another extraction had two different types of MS done (3 total runs)
-* The data were sent back by Oklahoma
+  * Two different extractions were performed
+  * The extraction by Austin was measured on both the waters mass spectrometry machine and the shimadzu mass spectrometry machine
+  * Each compound has a lower and upper limit of quantification. Therefore, if there is a missing value for quantification for a given compound, we don't know that it was actually 0. All we know is that it was between 0 and, say, 0.05.
 
 # Structure of dataset
 
@@ -28,25 +26,53 @@ knitr::opts_chunk$set(echo = TRUE)
 * 2 extractions ($k = \{1, 2\}$)
 * 2 different machines (1 extraction had 2 machines, 1 had only 1 machine) $l = \{1, 2\}$)
 * concentrations of 58 different metabolites in each run ($m = 1, \dots, 58$)
+  * due to data quality issues, results for only 56 metabolites were reported
+  
+All in all, there are 99 possible measurements for each metabolite.
 
 # Specific aims
 
 1. What is the average time series for a given compound, averaged across the three sites?
 2. Are there differences in the times series among different compounds, averaged across the three sites?
-3. Are there differences in concentrations of a given compound among the 3 sites, averaged over all tiem periods of collection?
+3. Are there differences in concentrations of a given compound among the 3 sites, averaged over all time periods of collection?
 4. Are there differences in the time series for a given drug, among the 3 sites?
+5. What are the estimated mass loadings and prevalence of use by metabolite, among the 3 sites?
 
 # Statistical analysis strategy
 
-These data are complicated. There are basically `r 3 * 11 * 3 * 58` data points, with most of the concentration values missing (approximately 2/3). The data are hierarchically clustered within site/time/run/metabolite group. 
+## Exploratory data analysis (EDA)
 
-We are going to use Bayesian hierarchical models to try and fit this model. We might have to end up using informative priors, given how little data there is.
+EDA will focus on the number of observed values for each metabolite, the distribution of values for a given metabolite relative to the lower and upper limits of quantification, the variation in values by time, extraction, machine, location, and metabolite, and the relationship among the metabolites.
+
+**Decision: After conducting exploratory data analysis, we have decided to focus on the metabolites with at least 50 observed values for modeling. All descriptions of missingness and univariate statistics for all 56 reported metabolites will be included in the paper.**
+
+These data are complicated. They are hierarchically clustered within site/time/run/metabolite group. 
+
+Given the complexity, we are going to use Bayesian hierarchical models to try and fit these data. We might have to end up using informative priors, given how little data there is and the restrictive range of some 
 
 Complications of the data:
 
 * lower limit of detection
-* measurement error that varies depending on the compound
-* concentrations so low that with normal random effects, you can get negative means
+* upper limit of detection
+* limits of detection are different for different metabolites
+* measurement error that varies depending on the compound (at the moment, this is unknown)
 * truncated distribution, where mean is near truncation limit
+* highly non-normal, truncated distributions
 
+**Decision: We will model the values on the natural logarithm scale, in order to make the sampling much easier for the model fit. Modeling an untruncated random variable is much easier.**
 
+## Modeling
+Because the data are so complicated and the analysis is not straightforward, we will consider the following analyses for this project.
+
+For the m$^{th}$ metabolite, a univariate model could be
+
+$$\textrm{log}y_{ijklm} = \textrm{location}_i + \textrm{time}_j + \textrm{extraction}_k + \textrm{machine}_l, $$
+where each random effect has its own variance.
+
+Another strategy could be assuming that the metabolites are mutlivariate normal, which would allow each one to have its own mean and variance, as well as allow us to estimate the correlations among the different metabolites, conditional upon the data. From looking at the EDA, however, there doesn't seem to be a ton of correlation among the metabolites, except for cocaine and its metabolite.
+
+**Decision: Model each metabolite separately.**
+
+In order to handle the values below the lower limit of detection (or above the upper limit of detection), there are two possibilities: (1) impute the values; or (2) treat them as censored and "average over them." Effectively, #2 just says that we're claiming "we know they're somewhere below $a$, but we don't know where." I believe this method is more computationally feasible.
+
+All modeling results will be subjected to posterior predictive checks, in order to determine whether data simulated from the fitted model resembles the observed data. We will additionally conduct *prior* predictive checks, in order to make sure our prior beliefs produce estimates at least on the same approximate numeric scale as the observed data.
