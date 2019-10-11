@@ -11,7 +11,9 @@ library(Hmisc)
 library(tidyverse)
 
 
-water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., "")))
+
+water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
+  mutate(time_pretty = as.character(time_pretty))
 
 water
 ```
