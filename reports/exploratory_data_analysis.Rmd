@@ -12,14 +12,14 @@ library(tidyverse)
 
 
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
-  mutate(run = factor(run))
+  mutate(time_pretty = as.character(time_pretty))
 
 water
 ```
 
-How many unique compounds are there under analysis? `r water %>% distinct(metabolite_name) %>% nrow()`
+How many unique compounds are there under analysis? `r water %>% distinct(metabolite) %>% nrow()`
 
-How many time points? `r water %>% distinct(time_lapse_hours) %>% nrow()`
+How many time points? `r water %>% distinct(time_pretty) %>% nrow()`
 
 Does each site/time/metabolite group have two observations, representing the two different runs of the data? 
 ```{r}
