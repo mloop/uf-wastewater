@@ -23,10 +23,14 @@ water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, ~na_i
   mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
          total_non_missing = sum(non_missing)) %>%
   filter(total_non_missing > 50) %>%
-  mutate(value = if_else(is.na(value), lloq, value),
-    log_value = log(value),
-         censored = if_else(value == lloq, "left",
-                      if_else(value > uloq, "right", "none"))
+  mutate(censored_value = if_else(is.na(value) == TRUE, lloq, 
+                                  if_else(value < lloq, lloq,
+                                          if_else(value > uloq, uloq, value)
+                                          )
+                                  ),
+         log_value = log(censored_value),
+         censored = if_else(censored_value == lloq, "left",
+                      if_else(censored_value == uloq, "right", "none"))
   )
 ```
 
@@ -99,68 +103,23 @@ Posterior predictive checks of distribution
 ```{r}
 pp_check(fit_amphetamine)
 ```
-```{r}
-a <- posterior_predict(fit_amphetamine)
-sd(a[1, ])
-sd(a[2, ])
-sd(a[1000, ])
-water %>% filter(metabolite == "Amphetamine") %>% summarise(standard = sd(log_value))
-```
+
 
 The distribution is a little wider, but maybe it's OK.
 
-```{r}
-a <- posterior_predict(fit_amphetamine, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
-
-a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high))
-```
-
-Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
-b <- posterior_linpred(fit_amphetamine, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
+means <- conditional_effects(fit_amphetamine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
-cowplot::plot_grid(b %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.025),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.975)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
+p_amphetamine <- plot(means, plot = FALSE)[[1]] +
   labs(
-    title = "Mean concentration (median, 95% credible interval)",
+    title = "Amphetamine",
     x = "Time of day",
-    y = "Mean concentration (ng/mL)"
-  ),
-  a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
-  labs(
-    title = "Predicted distribution of concentrations (median, 50% prediction interval)",
-    x = "Time of day",
-    y = "Predicted concentration (ng/mL)"
-  ))
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(5)) +
+  cowplot::theme_cowplot()
+p_amphetamine
 ```
 
 ## Benzoylcgonine
@@ -191,15 +150,6 @@ Prior predictive checks:
 pp_check(fit_benzo_priors)
 ```
 
-```{r}
-ppd <- posterior_predict(fit_amphetamine_priors)
-
-ggplot(filter(water, metabolite == "Benzoylecgonine"), aes(x = log_value)) + geom_histogram(bins = 500) 
-hist(ppd[1, ])
-hist(ppd[2, ])
-hist(ppd[3, ])
-```
-
 Alright, let's fit the model for real now.
 ```{r}
 fit_benzo <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
@@ -222,58 +172,19 @@ pp_check(fit_benzo)
 
 The distribution is a little wider, but maybe it's OK.
 
-```{r}
-a <- posterior_predict(fit_benzo, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
-
-a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high))
-```
-
-Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
-b <- posterior_linpred(fit_benzo, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
+means <- conditional_effects(fit_benzo, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
-cowplot::plot_grid(b %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.025),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.975)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
+p_benzo <- plot(means, plot = FALSE)[[1]] +
   labs(
-    title = "Mean concentration (median, 95% credible interval)",
+    title = "Benzoylecgonine",
     x = "Time of day",
-    y = "Mean concentration (ng/mL)"
-  ),
-  a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
-  labs(
-    title = "Predicted distribution of concentrations (median, 50% prediction interval)",
-    x = "Time of day",
-    y = "Predicted concentration (ng/mL)"
-  ))
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_benzo
 ```
 
 ## Cocaine
@@ -326,58 +237,19 @@ pp_check(fit_cocaine)
 
 The distribution is a little wider, but maybe it's OK.
 
-```{r}
-a <- posterior_predict(fit_cocaine, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
-
-a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high))
-```
-
-Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
-b <- posterior_linpred(fit_cocaine, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
+means <- conditional_effects(fit_cocaine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
-cowplot::plot_grid(b %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.025),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.975)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
+p_cocaine <- plot(means, plot = FALSE)[[1]] +
   labs(
-    title = "Mean concentration (median, 95% credible interval)",
+    title = "Cocaine",
     x = "Time of day",
-    y = "Mean concentration (ng/mL)"
-  ),
-  a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
-  labs(
-    title = "Predicted distribution of concentrations (median, 50% prediction interval)",
-    x = "Time of day",
-    y = "Predicted concentration (ng/mL)"
-  ))
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.15)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_cocaine
 ```
 
 ## Hydrocodone
@@ -430,58 +302,19 @@ pp_check(fit_hydrocodone)
 
 The distribution is a little wider, but maybe it's OK. It's also down some, but that actually makes sense. We set a lot of the censored values to the lloq, but now we are trying to generate those values.
 
-```{r}
-a <- posterior_predict(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
-
-a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high))
-```
-
-Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
-b <- posterior_linpred(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
+means <- conditional_effects(fit_hydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
-cowplot::plot_grid(b %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.025),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.975)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
+p_hydrocodone <- plot(means, plot = FALSE)[[1]] +
   labs(
-    title = "Mean concentration (median, 95% credible interval)",
+    title = "Hydrocodone",
     x = "Time of day",
-    y = "Mean concentration (ng/mL)"
-  ),
-  a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
-  labs(
-    title = "Predicted distribution of concentrations (median, 50% prediction interval)",
-    x = "Time of day",
-    y = "Predicted concentration (ng/mL)"
-  ))
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(2.5)) +
+  cowplot::theme_cowplot()
+p_hydrocodone
 ```
 
 ## Norhydrocodone
@@ -532,58 +365,19 @@ Posterior predictive checks of distribution
 pp_check(fit_norhydrocodone)
 ```
 
-```{r}
-a <- posterior_predict(fit_norhydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
-
-a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high))
-```
-
-Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
-b <- posterior_linpred(fit_norhydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
+means <- conditional_effects(fit_norhydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
-cowplot::plot_grid(b %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.025),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.975)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
+p_norhydrocodone <- plot(means, plot = FALSE)[[1]] +
   labs(
-    title = "Mean concentration (median, 95% credible interval)",
+    title = "Norhydrocodone",
     x = "Time of day",
-    y = "Mean concentration (ng/mL)"
-  ),
-  a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
-  labs(
-    title = "Predicted distribution of concentrations (median, 50% prediction interval)",
-    x = "Time of day",
-    y = "Predicted concentration (ng/mL)"
-  ))
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(5)) +
+  cowplot::theme_cowplot()
+p_norhydrocodone
 ```
 
 ## Noroxycodone
@@ -620,7 +414,7 @@ water %>% filter(metabolite == "Noroxycodone") %>% ggplot(aes(x = value)) + geom
 
 
 Alright, let's fit the model for real now.
-```{r}
+```{r, eval=F}
 fit_noroxycodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Noroxycodone"),
@@ -633,18 +427,18 @@ save(fit_noroxycodone, file = "02_model_metabolites_censored_noroxycodone.RData"
 Noroxycodone is a pain in the ass.
 
 
-```{r}
+```{r, eval=F}
 summary(fit_hydrocodone)
 ```
 
 Posterior predictive checks of distribution
-```{r}
+```{r, eval=F}
 pp_check(fit_hydrocodone)
 ```
 
 The distribution is a little wider, but maybe it's OK. It's also down some, but that actually makes sense. We set a lot of the censored values to the lloq, but now we are trying to generate those values.
 
-```{r}
+```{r, eval=F}
 a <- posterior_predict(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
   t() %>% 
   as_tibble() %>% 
@@ -663,7 +457,7 @@ a %>%
 ```
 
 Summary of expected concentration at each time point
-```{r, fig.width=7, fig.height=2}
+```{r, fig.width=7, fig.height=2, eval=F}
 b <- posterior_linpred(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
   t() %>% 
   as_tibble() %>% 
@@ -698,39 +492,276 @@ cowplot::plot_grid(b %>%
   ))
 ```
 
-
-# Fit everything
-
-Now that we've worked out what we want to look at and good priors, let's fit the same model to the 10 most common metabolites.
-
+## Oxycodone
 ```{r}
-prior <- c(prior(normal(0, 5), class = "Intercept"),
-           prior(cauchy(0, 1), class = "sd"),
-           prior(cauchy(0, 1), class = "sigma"))
+water %>%
+  filter(metabolite == "Oxycodone") %>%
+  count(censored)
+```
 
-model_fits <- water %>%
-  nest() %>%
-  mutate(
-    fit = map(data, ~brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_oxycodone <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_oxycodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
-           data = .,
-           iter = 4000,
-           chains = 5, 
-           prior = prior))
-  )
-save(model_fits, file = "02_model_metabolites_censored.RData")
+           data = filter(water, metabolite == "Oxycodone"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_oxycodone)
 ```
 
-Posterior predictive checks
+Prior predictive checks:
 ```{r}
-model_fits$fit[[8]]
-cowplot::plot_grid(plotlist = map(model_fits$fit, ~pp_check(., replace = TRUE)))
+pp_check(fit_oxycodone_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_oxycodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Oxycodone"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_oxycodone)
+save(fit_oxycodone, file = "02_model_metabolites_censored_oxycodone.RData")
 ```
 
 ```{r}
-model_fits %>%
-  mutate(
-    draws = map(fit, ~as.data.frame(.) %>% tibble())
-  )
+summary(fit_oxycodone)
 ```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_oxycodone)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- conditional_effects(fit_oxycodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_oxycodone <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Oxycodone",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_oxycodone
+```
+
+## Phentermine
+```{r}
+water %>%
+  filter(metabolite == "Phentermine") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_phentermine <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_phentermine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Phentermine"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_phentermine)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_phentermine_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_phentermine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Phentermine"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_phentermine)
+save(fit_phentermine, file = "02_model_metabolites_censored_phentermine.RData")
+```
+
+```{r}
+summary(fit_phentermine)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_phentermine)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- conditional_effects(fit_phentermine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_phentermine <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Phentermine",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(5)) +
+  cowplot::theme_cowplot()
+p_phentermine
+```
+
+## Pseudoephedrine
+```{r}
+water %>%
+  filter(metabolite == "Pseudoephedrine") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_pseudoephedrine <- c(prior(normal(0, 5), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_pseudoephedrine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Pseudoephedrine"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_pseudoephedrine)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_pseudoephedrine_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_pseudoephedrine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Pseudoephedrine"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_pseudoephedrine)
+save(fit_pseudoephedrine, file = "02_model_metabolites_censored_pseudoephedrine.RData")
+```
+
+```{r}
+summary(fit_pseudoephedrine)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_pseudoephedrine)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- conditional_effects(fit_pseudoephedrine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_pseudoephedrine <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Pseudoephedrine",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_pseudoephedrine
+```
+
+## Tramadol
+```{r}
+water %>%
+  filter(metabolite == "Tramadol") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_tramadol <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_tramadol_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Tramadol"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_tramadol)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_tramadol_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_tramadol <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Tramadol"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_tramadol)
+save(fit_tramadol, file = "02_model_metabolites_censored_tramadol.RData")
+```
+
+```{r}
+summary(fit_tramadol)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_tramadol)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- conditional_effects(fit_tramadol, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_tramadol <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Tramadol",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_tramadol
+```
+
+# Make one plot
+
+```{r, fig.width=10, fig.height=10}
+cowplot::plot_grid(p_amphetamine, p_benzo, p_cocaine, p_hydrocodone, p_norhydrocodone, p_oxycodone, p_phentermine, p_pseudoephedrine, p_tramadol) -> p
+p
+ggsave("02_model_metabolites_censored_mean_combined.png", p, width = 20, height = 12)
+```
+
 
