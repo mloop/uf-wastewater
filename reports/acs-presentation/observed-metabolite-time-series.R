@@ -1,6 +1,10 @@
 library(tidyverse)
 
-water <- read_tsv("../../data/water_cleaned.txt")
+water <- read_tsv("../../data/water_cleaned.txt") %>%
+  mutate(run = factor(run),
+         has_value = if_else(is.na(value) == TRUE, 0, 1),
+         time_pretty = as.character(time_pretty)) %>%
+  group_by(metabolite_name) %>%
 
 p <- water %>%
   mutate(run = factor(run),
