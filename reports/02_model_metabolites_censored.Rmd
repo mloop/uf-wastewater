@@ -108,7 +108,7 @@ pp_check(fit_amphetamine)
 The distribution is a little wider, but maybe it's OK.
 
 ```{r, fig.width=7, fig.height=2}
-means <- conditional_effects(fit_amphetamine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_amphetamine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_amphetamine <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -173,7 +173,7 @@ pp_check(fit_benzo)
 The distribution is a little wider, but maybe it's OK.
 
 ```{r, fig.width=7, fig.height=2}
-means <- conditional_effects(fit_benzo, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_benzo, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_benzo <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -238,7 +238,7 @@ pp_check(fit_cocaine)
 The distribution is a little wider, but maybe it's OK.
 
 ```{r, fig.width=7, fig.height=2}
-means <- conditional_effects(fit_cocaine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_cocaine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_cocaine <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -303,7 +303,7 @@ pp_check(fit_hydrocodone)
 The distribution is a little wider, but maybe it's OK. It's also down some, but that actually makes sense. We set a lot of the censored values to the lloq, but now we are trying to generate those values.
 
 ```{r, fig.width=7, fig.height=2}
-means <- conditional_effects(fit_hydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_hydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_hydrocodone <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -366,7 +366,7 @@ pp_check(fit_norhydrocodone)
 ```
 
 ```{r, fig.width=7, fig.height=2}
-means <- conditional_effects(fit_norhydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_norhydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_norhydrocodone <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -544,7 +544,7 @@ Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
 
 
-means <- conditional_effects(fit_oxycodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_oxycodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_oxycodone <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -610,7 +610,7 @@ Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
 
 
-means <- conditional_effects(fit_phentermine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_phentermine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_phentermine <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -676,7 +676,7 @@ Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
 
 
-means <- conditional_effects(fit_pseudoephedrine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_pseudoephedrine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_pseudoephedrine <- plot(means, plot = FALSE)[[1]] +
   labs(
@@ -742,7 +742,7 @@ Summary of expected concentration at each time point
 ```{r, fig.width=7, fig.height=2}
 
 
-means <- conditional_effects(fit_tramadol, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+means <- marginal_effects(fit_tramadol, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
 p_tramadol <- plot(means, plot = FALSE)[[1]] +
   labs(
