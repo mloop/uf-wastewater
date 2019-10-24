@@ -136,7 +136,7 @@ prior_benzo <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were 
            prior(cauchy(0, 0.5), class = "sigma"),
            prior(normal(0, 1), class = "b"))
 
-fit_benzo_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_benzo_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Benzoylecgonine"),
            iter = 2000,
@@ -152,7 +152,7 @@ pp_check(fit_benzo_priors)
 
 Alright, let's fit the model for real now.
 ```{r}
-fit_benzo <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_benzo <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Benzoylecgonine"),
            iter = 6000,
@@ -201,7 +201,7 @@ prior_cocaine <- c(prior(normal(0, 1), class = "Intercept"),  # These priors wer
            prior(cauchy(0, 0.5), class = "sigma"),
            prior(normal(0, 1), class = "b"))
 
-fit_cocaine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_cocaine_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Cocaine"),
            iter = 2000,
@@ -217,7 +217,7 @@ pp_check(fit_cocaine_priors)
 
 Alright, let's fit the model for real now.
 ```{r}
-fit_cocaine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_cocaine <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Cocaine"),
            iter = 6000,
@@ -266,7 +266,7 @@ prior_hydrocodone <- c(prior(normal(0, 1), class = "Intercept"),  # These priors
            prior(cauchy(0, 0.5), class = "sigma"),
            prior(normal(0, 1), class = "b"))
 
-fit_hydrocodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_hydrocodone_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Hydrocodone"),
            iter = 2000,
@@ -282,7 +282,7 @@ pp_check(fit_amphetamine_priors)
 
 Alright, let's fit the model for real now.
 ```{r}
-fit_hydrocodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_hydrocodone <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Hydrocodone"),
            iter = 6000,
@@ -331,7 +331,7 @@ prior_norhydrocodone <- c(prior(normal(0, 1), class = "Intercept"),  # These pri
            prior(cauchy(0, 0.5), class = "sigma"),
            prior(normal(0, 1), class = "b"))
 
-fit_norhydrocodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_norhydrocodone_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Norhydrocodone"),
            iter = 2000,
@@ -347,7 +347,7 @@ pp_check(fit_norhydrocodone_priors)
 
 Alright, let's fit the model for real now.
 ```{r}
-fit_norhydrocodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_norhydrocodone <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Norhydrocodone"),
            iter = 6000,
@@ -394,7 +394,7 @@ prior_noroxycodone <- c(prior(normal(0, 0.05), class = "Intercept"),  # These pr
            prior(cauchy(0, 0.25), class = "sigma"),
            prior(normal(0, 0.5), class = "b"))
 
-fit_noroxycodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_noroxycodone_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Noroxycodone"),
            iter = 2000,
@@ -415,7 +415,7 @@ water %>% filter(metabolite == "Noroxycodone") %>% ggplot(aes(x = value)) + geom
 
 Alright, let's fit the model for real now.
 ```{r, eval=F}
-fit_noroxycodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+fit_noroxycodone <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Noroxycodone"),
            iter = 6000,

@@ -183,3 +183,26 @@ cowplot::plot_grid(title, plots, ncol = 1, rel_heights = c(1, 9)) -> p
 p
 ggsave(filename = "02_estimate_dosage_censored_overall.png", p)
 ```
+
+## Estimate overall, averaged across all times
+```{r, fig.width=10, fig.height=5}
+predicted_consumption_overall %>%
+  unnest(posterior_predictions) %>%
+  ungroup() %>%
+  group_by(metabolite) %>%
+  filter(consumption_missing == 0) %>%
+  summarise(median_mean_consumption = median(consumption_per_1000),
+            low_mean_consumption = quantile(consumption_per_1000, probs = 0.25),
+            high_mean_consumption = quantile(consumption_per_1000, probs = 0.75),
+  ) %>%
+  ggplot(aes(x = metabolite, y = median_mean_consumption)) +
+  geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption)) +
+  labs(
+    y = "Doses per 1,000 attendees",
+    x = "Time of wastewater collection",
+    title = "Estimated 25th, 50th, and 75th percentiles of number of doses 1,000 attendees"
+  ) -> p
+p
+ggsave(filename = "02_estimate_dosage_censored_grand.png", p, dpi = 300)
+```
+
