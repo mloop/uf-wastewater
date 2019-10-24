@@ -59,3 +59,20 @@ stacked <- intermediate %>%
 
 stacked %>%
    write_tsv(path = "../data/water_cleaned.txt")
+
+## Now do flow rate
+
+flow <- read_excel("../data/20190508_UFWW_Results_Comparison.xlsx",
+                   sheet = "analysis_data") %>%
+  select(time, FlowRate) %>%
+  mutate(
+    time = factor(time)
+  ) %>%
+  separate(time, into = c("date", "time_pretty"), sep = " ") %>%
+  select(-date) %>%
+  group_by(time_pretty) %>%
+  slice(1) %>%
+  rename(flow_rate = FlowRate)
+
+flow %>%
+  write_tsv("../data/flow_rate.txt")
