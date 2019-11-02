@@ -4,7 +4,7 @@
     <title>Can we identify metabolites of commonly abused substances during a college football game?</title>
     <meta charset="utf-8" />
     <meta name="author" content="Matthew Loop, PhD" />
-    <meta name="date" content="2019-10-29" />
+    <meta name="date" content="2019-11-02" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 
 # Can we identify metabolites of commonly abused substances during a college football game?
 ### Matthew Loop, PhD
-### 2019-10-29
+### 2019-11-02
 
 ---
 
@@ -83,12 +83,24 @@ background-size: fill
 * mass spectroscopy on two different machines
 
 ---
+
+class: center, top
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" width="80%" /&gt;
+---
 class: center, middle
-&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
 
 ---
-class: center, top
-&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="80%" /&gt;
+class: center, middle
+![](index_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+class: center, middle
+
+![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+
+
 
 ---
 class: inverse, middle, center
@@ -97,7 +109,13 @@ class: inverse, middle, center
 
 ---
 class: center, middle
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="80%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="80%" /&gt;
+
+
+---
+class: center, middle
+
+![](index_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
 class: center, middle, inverse
@@ -108,53 +126,158 @@ class: center, middle, inverse
 
 # Statistical problems
 
-1. Some metabolites have no observed concentrations
-2. Some balues observed above or below limit
+1. Many metabolites have no observed concentrations
+2. Some values observed above or below limit
 3. Highly skewed distribution
 4. Lots of missing even in most common metabolites -&gt; MNAR
 5. Only 1 data point for each group we modeled
 
 ---
-# Initial try was imputing missings from a uniform and using mixed model
+# Bayesian model
 
-![](prez-pics/original_mixed_model.png)&lt;!-- --&gt;
+`$$\mu = E[log(y_{ijkl})] = \beta_0 + \textrm{time}_i\mathbf{\beta} + \textrm{location}_{ij} + \textrm{extraction}_{ijk} + \textrm{machine}_{ijkl}$$`
+`$$log(y_{ijkl}) \sim N(\mu, \sigma^2_y)$$`
+`$$\textrm{location}_{ij} \sim N(0, \sigma^2_{\textrm{loc}})$$`
+
+`$$\textrm{extraction}_{ijk} \sim N(0, \sigma^2_{\textrm{ext}})$$`
+`$$\textrm{machine}_{ijkl} \sim N(0, \sigma^2_{\textrm{mac}})$$`
+---
+# How to deal with the censoring?
+
+`$$L(\theta | y) = \prod_{i=1}^m f(y | \theta) \prod_{m + 1}^n F(\textrm{lloq} | \theta) \prod_{n + 1}^q 1 - F(\textrm{uloq} | \theta)$$`
+
+---
+background-image: url("https://mc-stan.org/images/stan_logo.png")
+# Fitting the model 
+
+* Developed by Andrew Gelman, Bob Carpeneter, and others at Columbia University
+* Implements Hamiltonian Monte Carlo with a No U-Turn Sampler (NUTS) instead of Markov Chain Monte Carlo with a Gibbs sampler (e.g., BUGS)
+* Becoming a de facto method for Bayesian inference (Stancon, front ends for R, Julia, Stata, Python, etc.)
+* we used th R package `brms` as the front end
+
+---
+# Choosing priors
+
+```
+## 
+## SAMPLING FOR MODEL 'dce7c4c16fa0d1c3e254633842f052a5' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0.000122 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.22 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 0.316151 seconds (Warm-up)
+## Chain 1:                0.193367 seconds (Sampling)
+## Chain 1:                0.509518 seconds (Total)
+## Chain 1:
+```
+
+![](index_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+class: center, middle
+# More informative priors
+
+`$$\beta \sim N(0, 1)$$`
+`$$\sigma^2 \sim \textrm{Half-Cauchy}(0, 0.5)$$`
+
+---
+
+```
+## 
+## SAMPLING FOR MODEL '91fed12a967f720373bc8d8e13573b92' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0.00012 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.2 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 0.300486 seconds (Warm-up)
+## Chain 1:                0.204206 seconds (Sampling)
+## Chain 1:                0.504692 seconds (Total)
+## Chain 1:
+```
+
+![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+---
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 
 ---
 
-class: inverse, center, middle
-
-# So I decided to get fancy...
-
----
-
-# Second try was at imputing the missing values from a truncated normal distribution
+![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 
 ---
-background-image: url("https://thumbs.gfycat.com/AbandonedWetArcticseal-max-1mb.gif")
-background-size: cover
+# Estimate *dose*
+
+`$$\textrm{Mass load (mg/day)} = \textrm{concentration (ng/L)} * \textrm{wastewater flow rate (L/day)} * \left(\frac{100}{100 + \textrm{Stability}}\right) * 10^{-6}$$`
+* Stability represents stability change in \% of metabolite in wastewater for up to 12 hours
 
 ---
+# Estimate *dose*
 
-# Final effort was tobit regression on a log-transformed outcome
+`$$\textrm{Doses per 1,000} = \textrm{Mass load} * \left(\frac{100}{\textrm{Excretion}}\right) * \frac{\textrm{MW}_{\textrm{pc}}}{\textrm{MW}_{\textrm{met}}} * \frac{1000}{\textrm{Population}}$$`
+---
+# Metabolite characteristics
+
+metabolite         mwpar_mwmet   stability   excretion   typical_dose_mg
+----------------  ------------  ----------  ----------  ----------------
+Amphetamine               1.00        46.8        33.2              30.0
+Benzoylecgonine           1.05         5.5        34.6                NA
+Cocaine                   1.00        -7.7         5.0              50.0
+Hydrocodone               1.00         9.6        19.6              10.0
+Norhydrocodone            1.05          NA         5.0              10.0
+Oxycodone                 1.00         9.6        11.5              10.0
+Phentermine               1.00          NA        48.0              22.5
+Pseudoephedrine           1.00       -40.4        88.0             240.0
+Tramadol                  1.00       -11.0        29.0             100.0
+
+
 
 ---
+class: center, middle
 
-Bayesian analysis needed pretty highly informative priors; show posterior predictive checks
-
----
-
-Model fit
+![](reports/02_estimate_dosage_censored.png)&lt;!-- --&gt;
 
 ---
-Estimated mean concentrations, as well as number of doses per 1,000 using posterior predictive distribution
+class: center, middle
+
+![](reports/02_estimate_dosage_censored_overall.png)&lt;!-- --&gt;
 
 ---
+class: center, middle
 
-# What else did we learn?
-
----
+![](reports/02_estimate_dosage_censored_grand.png)&lt;!-- --&gt;
 
 # Limitations
 

@@ -18,7 +18,7 @@ metabolite_performance <- tribble(
   "Cocaine", 1, -7.7, 5, 50,
   "Hydrocodone", 1, 9.6, 19.6, 10,
   "Norhydrocodone", 1.05, NA, 5, 10,
-  "Oxycodone", 1, 9.6, 11.5, NA,
+  "Oxycodone", 1, 9.6, 11.5, 10,  # from https://www.drugs.com/dosage/oxycodone.html
   "Phentermine", 1, NA, 48, 22.5,
   "Pseudoephedrine", 1, -40.4, 88, 240,
   "Tramadol", 1, -11, 29, 100
