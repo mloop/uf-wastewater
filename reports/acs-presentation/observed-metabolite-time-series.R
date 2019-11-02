@@ -8,7 +8,6 @@ water <- read_tsv("../../data/water_cleaned.txt") %>%
   filter(total_values > 6)
 
 p <- water %>%
-<<<<<<< Updated upstream
   mutate(has_value = if_else(is.na(value) == TRUE, 0, 1)) %>%
   group_by(metabolite) %>%
   mutate(total_values = sum(has_value)) %>%
@@ -17,15 +16,6 @@ p <- water %>%
   ggplot(aes(x = time_pretty, y = value, color = metabolite, linetype = extraction, group = interaction(extraction, metabolite))) +
   geom_path() +
   facet_grid(machine ~location) +
-=======
-  ungroup() %>%
-  group_by(time_pretty, metabolite, location) %>%
-  summarise(mean_value = mean(value, na.rm = TRUE)) %>%
-  ggplot(aes(x = time_pretty, y = mean_value, color = metabolite, group = metabolite)) +
-  geom_path() +
-  facet_wrap(~location) +
-  theme_bw() +
->>>>>>> Stashed changes
   theme(
     legend.position = "bottom",
     axis.text.x = element_text(angle = 45, hjust = 1)
