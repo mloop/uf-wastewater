@@ -1,0 +1,767 @@
+---
+title: "Fit models censored"
+author: "Matthew Shane Loop, PhD"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+Here we will fit the Bayesian regression models, treating values below the limit of detection as censored. The decisions made and details of the analysis can be found in the `docs/statistical_analysis_plan.Rmd` document.
+
+Let's bring in the data and do slight manipulation:
+```{r}
+library(tidyverse)
+library(brms)
+
+water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, ~na_if(., "")) %>%
+  mutate(time_pretty = as.character(time_pretty)) %>%
+  group_by(metabolite) %>%
+  mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
+         total_non_missing = sum(non_missing)) %>%
+  filter(total_non_missing > 50) %>%
+  mutate(censored_value = if_else(is.na(value) == TRUE, lloq, 
+                                  if_else(value < lloq, lloq,
+                                          if_else(value > uloq, uloq, value)
+                                          )
+                                  ),
+         log_value = log(censored_value),
+         censored = if_else(censored_value == lloq, "left",
+                      if_else(censored_value == uloq, "right", "none"))
+  )
+```
+
+Here are all of the compounds we will model:
+```{r}
+water %>%
+  distinct(metabolite) %>%
+  kable()
+```
+
+
+## Amphetamine
+```{r}
+water %>%
+  filter(metabolite == "Amphetamine") %>%
+  count(censored)
+```
+
+
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+options(mc.cores = parallel::detectCores())
+prior_amphetamine <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_amphetamine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Amphetamine"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_amphetamine)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_amphetamine_priors)
+```
+
+Whoa! Looks like way to much variability.
+
+```{r}
+ppd <- posterior_predict(fit_amphetamine_priors)
+
+ggplot(filter(water, metabolite == "Amphetamine"), aes(x = log_value)) + geom_histogram(bins = 500) 
+hist(ppd[1, ])
+hist(ppd[2, ])
+hist(ppd[3, ])
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_amphetamine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Amphetamine"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_amphetamine)
+save(fit_amphetamine, file = "02_model_metabolites_censored_amphetamine.RData")
+```
+
+```{r}
+summary(fit_amphetamine)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_amphetamine)
+```
+
+
+The distribution is a little wider, but maybe it's OK.
+
+```{r, fig.width=7, fig.height=2}
+means <- marginal_effects(fit_amphetamine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_amphetamine <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Amphetamine",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(5)) +
+  cowplot::theme_cowplot()
+p_amphetamine
+```
+
+## Benzoylcgonine
+```{r}
+water %>%
+  filter(metabolite == "Benzoylecgonine") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_benzo <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_benzo_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Benzoylecgonine"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_benzo)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_benzo_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_benzo <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Benzoylecgonine"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_benzo)
+save(fit_benzo, file = "02_model_metabolites_censored_benzoylecgonine.RData")
+```
+
+```{r}
+summary(fit_benzo)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_benzo)
+```
+
+The distribution is a little wider, but maybe it's OK.
+
+```{r, fig.width=7, fig.height=2}
+means <- marginal_effects(fit_benzo, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_benzo <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Benzoylecgonine",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_benzo
+```
+
+## Cocaine
+```{r}
+water %>%
+  filter(metabolite == "Cocaine") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_cocaine <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_cocaine_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Cocaine"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_cocaine)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_cocaine_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_cocaine <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Cocaine"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_cocaine)
+save(fit_cocaine, file = "02_model_metabolites_censored_cocaine.RData")
+```
+
+```{r}
+summary(fit_cocaine)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_cocaine)
+```
+
+The distribution is a little wider, but maybe it's OK.
+
+```{r, fig.width=7, fig.height=2}
+means <- marginal_effects(fit_cocaine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_cocaine <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Cocaine",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.15)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_cocaine
+```
+
+## Hydrocodone
+```{r}
+water %>%
+  filter(metabolite == "Hydrocodone") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_hydrocodone <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_hydrocodone_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Hydrocodone"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_hydrocodone)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_amphetamine_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_hydrocodone <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Hydrocodone"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_hydrocodone)
+save(fit_hydrocodone, file = "02_model_metabolites_censored_hydrocodone.RData")
+```
+
+```{r}
+summary(fit_hydrocodone)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_hydrocodone)
+```
+
+The distribution is a little wider, but maybe it's OK. It's also down some, but that actually makes sense. We set a lot of the censored values to the lloq, but now we are trying to generate those values.
+
+```{r, fig.width=7, fig.height=2}
+means <- marginal_effects(fit_hydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_hydrocodone <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Hydrocodone",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(2.5)) +
+  cowplot::theme_cowplot()
+p_hydrocodone
+```
+
+## Norhydrocodone
+```{r}
+water %>%
+  filter(metabolite == "Norhydrocodone") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_norhydrocodone <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_norhydrocodone_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Norhydrocodone"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_norhydrocodone)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_norhydrocodone_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_norhydrocodone <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Norhydrocodone"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_norhydrocodone)
+save(fit_norhydrocodone, file = "02_model_metabolites_censored_norhydrocodone.RData")
+```
+
+```{r}
+summary(fit_norhydrocodone)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_norhydrocodone)
+```
+
+```{r, fig.width=7, fig.height=2}
+means <- marginal_effects(fit_norhydrocodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_norhydrocodone <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Norhydrocodone",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(5)) +
+  cowplot::theme_cowplot()
+p_norhydrocodone
+```
+
+## Noroxycodone
+```{r}
+water %>%
+  filter(metabolite == "Noroxycodone") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_noroxycodone <- c(prior(normal(0, 0.05), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.25), class = "sd"),
+           prior(cauchy(0, 0.25), class = "sigma"),
+           prior(normal(0, 0.5), class = "b"))
+
+fit_noroxycodone_priors <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Noroxycodone"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_noroxycodone)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_noroxycodone_priors)
+```
+
+```{r}
+water %>% filter(metabolite == "Noroxycodone") %>% ggplot(aes(x = value)) + geom_histogram(bins = 200)
+```
+
+
+Alright, let's fit the model for real now.
+```{r, eval=F}
+fit_noroxycodone <- brm(log_value | cens(censored) ~ (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Noroxycodone"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_noroxycodone)
+save(fit_noroxycodone, file = "02_model_metabolites_censored_noroxycodone.RData")
+```
+
+Noroxycodone is a pain in the ass.
+
+
+```{r, eval=F}
+summary(fit_hydrocodone)
+```
+
+Posterior predictive checks of distribution
+```{r, eval=F}
+pp_check(fit_hydrocodone)
+```
+
+The distribution is a little wider, but maybe it's OK. It's also down some, but that actually makes sense. We set a lot of the censored values to the lloq, but now we are trying to generate those values.
+
+```{r, eval=F}
+a <- posterior_predict(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
+  t() %>% 
+  as_tibble() %>% 
+  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
+  gather(iteration, predicted_concentration, -time_pretty) %>% 
+  mutate(predicted_exp = exp(predicted_concentration)) %>% 
+  ungroup()
+
+a %>%
+  group_by(time_pretty) %>%
+  summarise(low = quantile(predicted_exp, 0.25),
+            median = quantile(predicted_exp, 0.5),
+            high = quantile(predicted_exp, 0.75)) %>% 
+  ggplot(aes(x = time_pretty, y = median)) +
+  geom_pointrange(aes(ymin = low, ymax = high))
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2, eval=F}
+b <- posterior_linpred(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
+  t() %>% 
+  as_tibble() %>% 
+  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
+  gather(iteration, predicted_concentration, -time_pretty) %>% 
+  mutate(predicted_exp = exp(predicted_concentration)) %>% 
+  ungroup()
+
+cowplot::plot_grid(b %>%
+  group_by(time_pretty) %>%
+  summarise(low = quantile(predicted_exp, 0.025),
+            median = quantile(predicted_exp, 0.5),
+            high = quantile(predicted_exp, 0.975)) %>% 
+  ggplot(aes(x = time_pretty, y = median)) +
+  geom_pointrange(aes(ymin = low, ymax = high)) +
+  labs(
+    title = "Mean concentration (median, 95% credible interval)",
+    x = "Time of day",
+    y = "Mean concentration (ng/mL)"
+  ),
+  a %>%
+  group_by(time_pretty) %>%
+  summarise(low = quantile(predicted_exp, 0.25),
+            median = quantile(predicted_exp, 0.5),
+            high = quantile(predicted_exp, 0.75)) %>% 
+  ggplot(aes(x = time_pretty, y = median)) +
+  geom_pointrange(aes(ymin = low, ymax = high)) +
+  labs(
+    title = "Predicted distribution of concentrations (median, 50% prediction interval)",
+    x = "Time of day",
+    y = "Predicted concentration (ng/mL)"
+  ))
+```
+
+## Oxycodone
+```{r}
+water %>%
+  filter(metabolite == "Oxycodone") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_oxycodone <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_oxycodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Oxycodone"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_oxycodone)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_oxycodone_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_oxycodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Oxycodone"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_oxycodone)
+save(fit_oxycodone, file = "02_model_metabolites_censored_oxycodone.RData")
+```
+
+```{r}
+summary(fit_oxycodone)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_oxycodone)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- marginal_effects(fit_oxycodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_oxycodone <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Oxycodone",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_oxycodone
+```
+
+## Phentermine
+```{r}
+water %>%
+  filter(metabolite == "Phentermine") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_phentermine <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_phentermine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Phentermine"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_phentermine)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_phentermine_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_phentermine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Phentermine"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_phentermine)
+save(fit_phentermine, file = "02_model_metabolites_censored_phentermine.RData")
+```
+
+```{r}
+summary(fit_phentermine)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_phentermine)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- marginal_effects(fit_phentermine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_phentermine <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Phentermine",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(5)) +
+  cowplot::theme_cowplot()
+p_phentermine
+```
+
+## Pseudoephedrine
+```{r}
+water %>%
+  filter(metabolite == "Pseudoephedrine") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_pseudoephedrine <- c(prior(normal(0, 5), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_pseudoephedrine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Pseudoephedrine"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_pseudoephedrine)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_pseudoephedrine_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_pseudoephedrine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Pseudoephedrine"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_pseudoephedrine)
+save(fit_pseudoephedrine, file = "02_model_metabolites_censored_pseudoephedrine.RData")
+```
+
+```{r}
+summary(fit_pseudoephedrine)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_pseudoephedrine)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- marginal_effects(fit_pseudoephedrine, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_pseudoephedrine <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Pseudoephedrine",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_pseudoephedrine
+```
+
+## Tramadol
+```{r}
+water %>%
+  filter(metabolite == "Tramadol") %>%
+  count(censored)
+```
+
+Now let's start designing the code. We will sample from the priors only to start with.
+```{r}
+prior_tramadol <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
+           prior(cauchy(0, 0.5), class = "sd"),
+           prior(cauchy(0, 0.5), class = "sigma"),
+           prior(normal(0, 1), class = "b"))
+
+fit_tramadol_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Tramadol"),
+           iter = 2000,
+           chains = 1, 
+           sample_prior = "only",
+           prior = prior_tramadol)
+```
+
+Prior predictive checks:
+```{r}
+pp_check(fit_tramadol_priors)
+```
+
+Alright, let's fit the model for real now.
+```{r}
+fit_tramadol <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+           family = gaussian(),
+           data = filter(water, metabolite == "Tramadol"),
+           iter = 6000,
+           chains = 4, 
+           prior = prior_tramadol)
+save(fit_tramadol, file = "02_model_metabolites_censored_tramadol.RData")
+```
+
+```{r}
+summary(fit_tramadol)
+```
+
+Posterior predictive checks of distribution
+```{r}
+pp_check(fit_tramadol)
+```
+
+Summary of expected concentration at each time point
+```{r, fig.width=7, fig.height=2}
+
+
+means <- marginal_effects(fit_tramadol, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
+
+p_tramadol <- plot(means, plot = FALSE)[[1]] +
+  labs(
+    title = "Tramadol",
+    x = "Time of day",
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(20)) +
+  cowplot::theme_cowplot()
+p_tramadol
+```
+
+# Make one plot
+
+```{r, fig.width=10, fig.height=10}
+cowplot::plot_grid(p_amphetamine, p_benzo, p_cocaine, p_hydrocodone, p_norhydrocodone, p_oxycodone, p_phentermine, p_pseudoephedrine, p_tramadol) -> p
+p
+ggsave("02_model_metabolites_censored_mean_combined.png", p, width = 20, height = 12)
+```
+
+

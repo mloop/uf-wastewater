@@ -6,13 +6,14 @@ library(brms)
 library(ggridges)
 
 water <- read_tsv("../../data/water_cleaned.txt") %>%
-  mutate(run = factor(run),
-         has_value = if_else(is.na(value) == TRUE, 0, 1),
+  mutate(has_value = if_else(is.na(value) == TRUE, 0, 1),
          time_pretty = as.character(time_pretty)) %>%
   group_by(metabolite) %>%
   mutate(total_values = sum(has_value)) %>%
   filter(value < 100000 | is.na(value) == TRUE,
-         total_values > 6) 
+         total_values > 6) %>%
+  mutate(
+    value_missing = na_if(value, 0))
 
 
 # Fit Bayesian model
@@ -25,11 +26,19 @@ set.seed(123)
 prior <- c(prior(normal(0, 5), class = "Intercept"),
            prior(cauchy(0, 1), class = "sd"))
 
-fit <- brm(value | trunc(lb = 0) + mi() ~ (1 | location) + (1 | time_pretty) + (1 | run) + (1 + time_pretty | metabolite_name),
+model <- make_stancode(value_missing | trunc(lb = 0) + mi() ~ (1 | location) + (1 | time_pretty) + (1 | machine) + (1 | extraction),
+  family = lognormal(link = "identity", link_sigma = "log"),
+prior = prior,
+data = water,
+chains = 4,
+iter = 5000
+)
+
+fit <- brm(value_missing | trunc(lb = 0) + mi() ~ (1 | location) + (1 | time_pretty) + (1 | machine) + (1 | extraction) + (1 + time_pretty | metabolite),
            family = lognormal(link = "identity", link_sigma = "log"),
            prior = prior,
            data = water,
-           chains = 2,
+           chains = 4,
            iter = 5000)
 
 # Save the model

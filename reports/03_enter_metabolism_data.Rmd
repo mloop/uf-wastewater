@@ -1,0 +1,29 @@
+---
+title: "Enter metabolism data"
+author: "Matthew Shane Loop, PhD"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+metabolite_performance <- tribble(
+  ~metabolite, ~mwpar_mwmet, ~stability, ~excretion, ~typical_dose_mg,
+  "Amphetamine", 1, 46.8, 33.2, 30,
+  "Benzoylecgonine", 1.05, 5.5, 34.6, NA,
+  "Cocaine", 1, -7.7, 5, 50,
+  "Hydrocodone", 1, 9.6, 19.6, 10,
+  "Norhydrocodone", 1.05, NA, 5, 10,
+  "Oxycodone", 1, 9.6, 11.5, NA,
+  "Phentermine", 1, NA, 48, 22.5,
+  "Pseudoephedrine", 1, -40.4, 88, 240,
+  "Tramadol", 1, -11, 29, 100
+)
+
+write_tsv(metabolite_performance, "03_metabolism_data.txt")
+```
+

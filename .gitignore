@@ -2,3 +2,6 @@
 *.png
 *.html
 *.DS_Store
+*.pptx
+*.RData
+*.rds

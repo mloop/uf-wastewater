@@ -6,99 +6,113 @@ author: "Matthew Shane Loop, PhD"
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(message = FALSE, echo=FALSE)
+knitr::opts_chunk$set(message = FALSE, echo=FALSE, fig.width = 10, fig.height = 10, warning=FALSE)
 library(Hmisc)
 library(tidyverse)
+library(GGally)
+
 
 
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
-  mutate(run = factor(run))
+  mutate(time_pretty = as.character(time_pretty))
 
 water
 ```
 
-How many unique compounds are there under analysis? `r water %>% distinct(metabolite_name) %>% nrow()`
+How many unique compounds are there under analysis? `r water %>% distinct(metabolite) %>% nrow()`
 
-How many time points? `r water %>% distinct(time_lapse_hours) %>% nrow()`
-
-Does each site/time/metabolite group have two observations, representing the two different runs of the data? 
-```{r}
-water %>%
-  group_by(location, time_lapse_hours, metabolite_name) %>%
-  tally() %>%
-  filter(n < 2)
-```
-
-Nope! That's good. So the structure of the dataset is that we have:
+How many time points? `r water %>% distinct(time_pretty) %>% nrow()`
 
 * 3 locations as the main unit of analysis (i)
 * 11 time points where samples were taken (j)
-* 2 metabolomics reads of the concentrations of different compounds (k)
-* concentrations of 58 different metabolites in each run (l)
+* 2 extraction methods (k)
+* 2 different MS machines (l)
+  * but one machine only had 1 extraction method (austin)
+* concentrations of 56 different metabolites in each run (m)
 
 Here's a plot of the concentrations of each metabolite vs. time, across the 3 sites.
 
-```{r}
+```{r, fig.width=15, fig.height=10}
 water %>%
-  ggplot(aes(x = time_lapse_hours, y = value, color = metabolite_name, linetype = run, group = interaction(run, metabolite_name))) +
+  ggplot(aes(x = time_pretty, y = value, color = metabolite, linetype = extraction, group = interaction(extraction, metabolite))) +
   geom_path() +
-  facet_wrap(~location)
-```
-
-Wow, look at those outliers! What are they?
-```{r}
-water %>% 
-  filter(value > 100000)
-```
-
-Hrm...it looks like the upper limit of quantification and the lower limit of quantification are equal. That doesn't make any sense.
-
-* Are these two amphetamine concentrations even possible?
-* For how many compounds are the upper and lower limits of quantification equal? We need to check back with the original data sent by OSUHSC to make sure we didn't leave out any upper or lower limits.
-
-```{r}
-water %>%
-  filter(uloq_ng_ml == lloq_ng_ml) %>%
-  distinct(metabolite_name) %>%
-  nrow()
-```
-So for all but two of the compounds, the lower and upper limits are the same. I'm not sure I believe that. I wonder if there are no upper limits for some of these. What are the two that have unequal upper and lower limits?
-```{r}
-water %>% ungroup() %>% dplyr::filter(uloq_ng_ml != lloq_ng_ml)
-```
-
-Weird. It won't run and is telling me something about different numbers of rows. Which is not true. Someone on the internet said they encounted the [same error with null values](https://stackoverflow.com/questions/26147558/what-does-the-error-arguments-imply-differing-number-of-rows-x-y-mean), but it doesn't seem to apply here.
-
-* We might want to make the assumption that there is no upper limit of quantification.
-
-Anyway, what do the distributions look like when we remove those observations?
-```{r, fig.height = 9, fig.width=12}
-water %>%
-  filter(value < 100000 | is.na(value) == TRUE) %>%
-  ggplot(aes(x = time_lapse_hours, y = value, color = metabolite_name, linetype = run, group = interaction(run, metabolite_name))) +
-  geom_path() +
-  facet_wrap(~location) +
+  facet_grid(machine ~location) +
+  cowplot::theme_cowplot() +
   theme(
-    legend.position = "bottom"
-  ) +
-  scale_color_viridis_d() +
-  labs(
-    title = "Observed concentrations of each metabolite over time, by run and location",
-    subtitle = "Values are limited to those less than 100,000"
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 45, hjust = 1)
   )
 ```
 
-Now, for each metabolite and run, how many missing values are there? And what proportion?
+The shimadzu machine obviously has less variability than the waters machine. The two extractions seem fairly close to one another in most cases, which is reassuring.
+
+## Description and analysis of metabolites
 ```{r}
 water %>%
-  group_by(metabolite_name, run) %>%
-  mutate(is_missing = if_else(is.na(value) == TRUE, 1, 0),
-         number_of_observations = n()) %>%
-  summarise(
-    number_missing = sum(is_missing),
-    proportion_missing = round(number_missing / n(), digits = 2)
-  ) %>%
-  arrange(proportion_missing) %>%
-  knitr::kable(caption = "Number and proportion of missing values of concentration, across all locations and time points (n = 33). The number of missing values is not always consistent for a given metabolite between the two runs.") %>%
-  kableExtra::kable_styling()
+  select(metabolite, value, location, time_pretty, machine, extraction) %>%
+  spread(metabolite, value) %>%
+  Hmisc::describe() %>%
+  html()
 ```
+
+These metabolites have both upper and lower limits of detection. Let's look at the distribution of each one, relative to those limits.
+
+```{r}
+water %>%
+  ggplot(aes(x = value)) +
+  geom_histogram(bins = 100) +
+  geom_vline(aes(xintercept = lloq), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = uloq), linetype = "dashed", color = "red") +
+  facet_wrap(~ metabolite, scales = "free_x") +
+  cowplot::theme_cowplot()
+```
+
+Let's remake this plot, taking out all metabolites that have all missing values.
+
+```{r}
+water_nomiss <- water %>%
+  group_by(metabolite) %>%
+  mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
+         total_non_missing = sum(non_missing)) %>%
+  filter(total_non_missing > 0)
+
+water_nomiss %>%
+  ggplot(aes(x = value)) +
+  geom_histogram(bins = 100) +
+  geom_vline(aes(xintercept = lloq), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = uloq), linetype = "dashed", color = "red") +
+  facet_wrap(~ metabolite, scales = "free_x") +
+  cowplot::theme_cowplot()
+```
+
+One challenge is that imputing values very close to 0 can be difficult. Let's try to assess how wide the distribution is relative to this small range near 0. To do this, let's divide the inter quartile range of each metabolite by its lloq.
+```{r, fig.height = 5}
+water_nomiss %>%
+  mutate(iqr_value = IQR(value, na.rm = TRUE)) %>%
+  slice(1) %>%
+  mutate(iqr_over_lloq = iqr_value / lloq) %>%
+  ggplot(aes(x = iqr_over_lloq, y = factor(metabolite) %>% fct_reorder(iqr_over_lloq))) +
+  geom_point(aes(color = total_non_missing)) +
+  labs(
+    x = "IQR / lloq",
+    y = "Metabolite",
+    title = "Dot plot of range of 50% of values relative to the lloq\n(range to be imputed)"
+  )
+```
+
+This plot shows that, at least as far as sampling the unknown values is concerned, Pseudoephedrine, Tramadol, Benzoylecgonine, Phentermine, Amphetamine, MDMA, Tapentadol, and Cocaine will be the easiest to estimate. MDMA and Tapentadol have a lot of missing values, so they will be difficult to impute as well. Overall, however, the distributions of observed values are very close to the lloq, so we cannot ignore the information about the observed values when trying to generate the unobserved values below the lloq.
+
+## Relationships among metabolites
+Let's look at only the most common metabolites. We will only take those that have at least 50 of the 99 possible observations.
+
+```{r, message=F, fig.width=20, fig.height=20}
+water_nomiss %>%
+  filter(total_non_missing >= 50) %>%
+  select(metabolite, value, location, time_pretty, machine, extraction) %>%
+  spread(metabolite, value) %>%
+  select(5:14) %>%
+  mutate_all(~log(.)) %>%
+  ggscatmat(corMethod = "spearman")
+```
+
+There doesn't seem to be a monstrous amount of structure here. Benzoylecgonine and Cocaine are obviously correlated. This graph may need some more careful study from Chris, who has more pharmacy training.
