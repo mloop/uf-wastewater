@@ -4,7 +4,7 @@
     <title>Can we identify metabolites of commonly abused substances during a college football game?</title>
     <meta charset="utf-8" />
     <meta name="author" content="Matthew Loop, PhD" />
-    <meta name="date" content="2019-10-27" />
+    <meta name="date" content="2019-10-29" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 
 # Can we identify metabolites of commonly abused substances during a college football game?
 ### Matthew Loop, PhD
-### 2019-10-27
+### 2019-10-29
 
 ---
 
@@ -65,6 +65,106 @@ background-size: cover
 ---
 background-image: url("prez-pics/sampling_locations.png")
 background-size: fill
+
+---
+
+# Measurements
+
+1. two different extractions
+2. two different machines
+3. eleven time points
+4. 3 locations
+
+---
+# Targeted metabolomics
+
+* 58 original metabolites targeted
+* 56 passed technical quality control
+* mass spectroscopy on two different machines
+
+---
+class: center, middle
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" width="100%" /&gt;
+
+---
+class: center, top
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="80%" /&gt;
+
+---
+class: inverse, middle, center
+
+## Let's look at those with at least 1 observed value...
+
+---
+class: center, middle
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="80%" /&gt;
+
+---
+class: center, middle, inverse
+
+# How do we model these data?
+
+---
+
+# Statistical problems
+
+1. Some metabolites have no observed concentrations
+2. Some balues observed above or below limit
+3. Highly skewed distribution
+4. Lots of missing even in most common metabolites -&gt; MNAR
+5. Only 1 data point for each group we modeled
+
+---
+# Initial try was imputing missings from a uniform and using mixed model
+
+![](prez-pics/original_mixed_model.png)&lt;!-- --&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# So I decided to get fancy...
+
+---
+
+# Second try was at imputing the missing values from a truncated normal distribution
+
+
+---
+background-image: url("https://thumbs.gfycat.com/AbandonedWetArcticseal-max-1mb.gif")
+background-size: cover
+
+---
+
+# Final effort was tobit regression on a log-transformed outcome
+
+---
+
+Bayesian analysis needed pretty highly informative priors; show posterior predictive checks
+
+---
+
+Model fit
+
+---
+Estimated mean concentrations, as well as number of doses per 1,000 using posterior predictive distribution
+
+---
+
+# What else did we learn?
+
+---
+
+# Limitations
+
+---
+
+# Future research
+
+---
+
+# Acknowledgements
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
