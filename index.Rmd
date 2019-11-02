@@ -48,7 +48,9 @@ water_analysis <- read_tsv("data/water_cleaned.txt") %>% mutate_if(is.character,
 library(xaringanthemer)
 solarized_dark(
   code_font_family = "Fira Code",
-  code_font_url    = "https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css"
+  code_font_url    = "https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css",
+  text_font_size = '40px',
+  text_font_google = google_font("Gill Sans")
 )
 ```
 
@@ -125,6 +127,8 @@ water %>%
   cowplot::theme_cowplot() +
   labs(x = "Observed concentration (ng/mL)")
 ```
+
+
 ---
 class: center, middle
 ```{r, fig.width=15, fig.height = 10, out.width = "100%"}
@@ -376,11 +380,50 @@ class: center, middle
 knitr::include_graphics("reports/02_estimate_dosage_censored_grand.png")
 ```
 
+---
+
+# Sources of variation
+
+```{r, fig.width=7, fig.height=4}
+sigma_plots <- results %>%
+  group_by(metabolite) %>%
+  mutate(
+    sd_plots = map2(models, metabolite, ~posterior_samples(.x) %>%
+                                      select(contains("sd"), sigma) %>%
+                                      mutate(iteration = seq(1, n())) %>%
+                                      gather(standard_deviation, draw, -iteration) %>%
+                                      ggplot(aes(x = draw, fill = standard_deviation)) +
+                                      geom_density() +
+                                      scale_fill_viridis_d() +
+                      labs(title = .y)
+                    )
+  )
+
+plot_grid(plotlist = sigma_plots$sd_plots)
+```
+
+---
+
 # Limitations
+
+1. no pooling of metabolites
+2. estimates of consumption are based upon 12-24 hr based characteristics of metabolites
+3. equally spaced times of collection may have caused us to miss quick changes in metabolites concentrations (e.g., around half time)
+4. modeling of noroxycodone is not optimal
+5. assume that all missing values were below the lloq
+6. disregarded 46 of 56 metabolites
+7. modeled outcome on log scale, not identity scale
+8. assumed that values below the lloq followed the same distribution as those above the lloq
 
 ---
 
 # Future research
+
+1. fit a multivariate model for metabolites
+2. use the 46 metabolites we left out -> it's data!
+  a. potential methods work on different ways to incorporate
+3. better model metabolites with very low concentrations (e.g., model the variance, other link functions, likelihood, priors for random effects)
+4. all 0s are not the same. How do we distinguish between true 0s and concentrations below the lloq?
 
 ---
 

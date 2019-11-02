@@ -86,6 +86,8 @@ background-size: fill
 
 class: center, top
 &lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" width="80%" /&gt;
+
+
 ---
 class: center, middle
 &lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
@@ -162,8 +164,8 @@ background-image: url("https://mc-stan.org/images/stan_logo.png")
 ## 
 ## SAMPLING FOR MODEL 'dce7c4c16fa0d1c3e254633842f052a5' NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.000122 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.22 seconds.
+## Chain 1: Gradient evaluation took 9.7e-05 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.97 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -180,9 +182,9 @@ background-image: url("https://mc-stan.org/images/stan_logo.png")
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.316151 seconds (Warm-up)
-## Chain 1:                0.193367 seconds (Sampling)
-## Chain 1:                0.509518 seconds (Total)
+## Chain 1:  Elapsed Time: 0.305394 seconds (Warm-up)
+## Chain 1:                0.177857 seconds (Sampling)
+## Chain 1:                0.483251 seconds (Total)
 ## Chain 1:
 ```
 
@@ -201,8 +203,8 @@ class: center, middle
 ## 
 ## SAMPLING FOR MODEL '91fed12a967f720373bc8d8e13573b92' NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.00012 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.2 seconds.
+## Chain 1: Gradient evaluation took 6.7e-05 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.67 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -219,9 +221,9 @@ class: center, middle
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.300486 seconds (Warm-up)
-## Chain 1:                0.204206 seconds (Sampling)
-## Chain 1:                0.504692 seconds (Total)
+## Chain 1:  Elapsed Time: 0.369188 seconds (Warm-up)
+## Chain 1:                0.179615 seconds (Sampling)
+## Chain 1:                0.548803 seconds (Total)
 ## Chain 1:
 ```
 
@@ -279,11 +281,34 @@ class: center, middle
 
 ![](reports/02_estimate_dosage_censored_grand.png)&lt;!-- --&gt;
 
+---
+
+# Sources of variation
+
+![](index_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+---
+
 # Limitations
+
+1. no pooling of metabolites
+2. estimates of consumption are based upon 12-24 hr based characteristics of metabolites
+3. equally spaced times of collection may have caused us to miss quick changes in metabolites concentrations (e.g., around half time)
+4. modeling of noroxycodone is not optimal
+5. assume that all missing values were below the lloq
+6. disregarded 46 of 56 metabolites
+7. modeled outcome on log scale, not identity scale
+8. assumed that values below the lloq followed the same distribution as those above the lloq
 
 ---
 
 # Future research
+
+1. fit a multivariate model for metabolites
+2. use the 46 metabolites we left out -&gt; it's data!
+  a. potential methods work on different ways to incorporate
+3. better model metabolites with very low concentrations (e.g., model the variance, other link functions, likelihood, priors for random effects)
+4. all 0s are not the same. How do we distinguish between true 0s and concentrations below the lloq?
 
 ---
 

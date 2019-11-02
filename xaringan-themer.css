@@ -16,14 +16,14 @@
  *    - remarkjs wiki: https://github.com/gnab/remark/wiki
  *
  * ------------------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Gill+Sans);
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
 @import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
 
 
 body {
-  font-family: 'Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
-  font-weight: normal;
+  font-family: Gill Sans, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
+  font-weight: ;
   color: #839496;
 }
 h1, h2, h3 {
@@ -33,7 +33,7 @@ h1, h2, h3 {
 }
 .remark-slide-content {
   background-color: #002b36;
-  font-size: 20px;
+  font-size: 40px;
   
   
   
