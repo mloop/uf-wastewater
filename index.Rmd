@@ -305,9 +305,9 @@ class: center, middle, inverse
 
 ---
 # Bayesian model
+
 $$\begin{eqnarray}
-\mu = E[log(y_{ijkl})] = \beta_0 + \textrm{time}_i\mathbf{\beta} + \textrm{location}_{ij}\\ + \textrm{extraction}_{ijk}
-+ \textrm{machine}_{ijkl}
+\mu = E[log(y_{ijkl})] = \beta_0 + \textrm{time}_i\mathbf{\beta} + \textrm{location}_{ij} \\ + \textrm{extraction}_{ijk} + \textrm{machine}_{ijkl}
 \end{eqnarray}$$
 
 $$log(y_{ijkl}) \sim N(\mu, \sigma^2_y)$$
