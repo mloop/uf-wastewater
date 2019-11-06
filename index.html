@@ -4,7 +4,7 @@
     <title>Can we identify metabolites of commonly abused substances during a college football game?</title>
     <meta charset="utf-8" />
     <meta name="author" content="Matthew Loop, PhD" />
-    <meta name="date" content="2019-11-02" />
+    <meta name="date" content="2019-11-06" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 
 # Can we identify metabolites of commonly abused substances during a college football game?
 ### Matthew Loop, PhD
-### 2019-11-02
+### 2019-11-06
 
 ---
 
@@ -22,16 +22,41 @@ class: center, middle, inverse, title-slide
 
 
 
+background-image: url("https://www.ahajournals.org/cms/attachment/33fdf9a1-337f-4b21-9afc-5441b9d9b3c1/e003350fig02.jpg")
+background-size: contain
 
-# Drug use has been a popular topic recently
+---
+background-image: url("https://www.cdc.gov/drugoverdose/images/epidemic/3WavesOfTheRiseInOpioidOverdoseDeaths.png")
+background-size: contain
+
+.foonote[https://www.cdc.gov/drugoverdose/images/epidemic/3WavesOfTheRiseInOpioidOverdoseDeaths.png]
+---
+
+background-image: url("prez-pics/heal_initiative.png")
+background-size: cover
+
+---
+# Difficulties in surveillance
+
+1. the outcome is illegal
+2. the exposure is transient (unlike diabetes)
 
 ---
 
-# One really novel method has been used in monitoring water in sewer systems
+background-image: url("prez-pics/sewage_wastewater.png")
+background-size: cover
+
+
+---
+background-image: url("prez-pics/cary_sampling.png")
+background-size: contain
+
 
 ---
 
-# You don't know the denominator
+class: center, middle, inverse
+
+# It's hard to know the denominator
 
 ---
 
@@ -63,11 +88,36 @@ background-image: url("https://live.staticflickr.com/6161/6167350779_665123c714_
 background-size: cover
 
 ---
+# Ben Hill Griffin Stadium
+
+.center[
+![](https://www.stadia-magazine.com/wp-content/uploads/2018/06/shutterstock_66210307.jpg)
+
+Kentucky vs. Florida, 2018  
+80,651
+]
+
+---
 background-image: url("prez-pics/sampling_locations.png")
 background-size: fill
 
 ---
 
+background-image: url("prez-pics/sampling_1.png")
+
+
+
+---
+
+background-image: url("prez-pics/sampling_2.png")
+
+
+---
+
+background-image: url("prez-pics/sampling_3.png")
+
+
+---
 # Measurements
 
 1. two different extractions
@@ -84,22 +134,21 @@ background-size: fill
 
 ---
 
-class: center, top
-&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" width="80%" /&gt;
+background-image: url("prez-pics/histogram_all_metabolites.png")
+background-size: contain
+
+
+
+---
+background-image: url("prez-pics/longitudinal_all_metabolites.png")
+background-size: contain
 
 
 ---
-class: center, middle
-&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
 
----
-class: center, middle
-![](index_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+background-image: url("prez-pics/missing_data.png")
+background-size: contain
 
----
-class: center, middle
-
-![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 
 
@@ -110,14 +159,13 @@ class: inverse, middle, center
 ## Let's look at those with at least 1 observed value...
 
 ---
-class: center, middle
-&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="80%" /&gt;
+background-image: url("prez-pics/histogram_common_metabolites.png")
+background-size: contain
 
 
 ---
-class: center, middle
-
-![](index_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+background-image: url("prez-pics/matrix_plot.png")
+background-size: contain
 
 ---
 class: center, middle, inverse
@@ -150,6 +198,10 @@ class: center, middle, inverse
 
 ---
 background-image: url("https://mc-stan.org/images/stan_logo.png")
+
+# Fitting the model
+
+---
 # Fitting the model 
 
 * Developed by Andrew Gelman, Bob Carpeneter, and others at Columbia University
@@ -158,37 +210,8 @@ background-image: url("https://mc-stan.org/images/stan_logo.png")
 * we used th R package `brms` as the front end
 
 ---
-# Choosing priors
-
-```
-## 
-## SAMPLING FOR MODEL 'dce7c4c16fa0d1c3e254633842f052a5' NOW (CHAIN 1).
-## Chain 1: 
-## Chain 1: Gradient evaluation took 9.7e-05 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.97 seconds.
-## Chain 1: Adjust your expectations accordingly!
-## Chain 1: 
-## Chain 1: 
-## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 1: 
-## Chain 1:  Elapsed Time: 0.305394 seconds (Warm-up)
-## Chain 1:                0.177857 seconds (Sampling)
-## Chain 1:                0.483251 seconds (Total)
-## Chain 1:
-```
-
-![](index_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+background-image: url("prez-pics/prior_predictive_checks_bad.png")
+background-size: contain
 
 ---
 class: center, middle
@@ -198,45 +221,18 @@ class: center, middle
 `$$\sigma^2 \sim \textrm{Half-Cauchy}(0, 0.5)$$`
 
 ---
-
-```
-## 
-## SAMPLING FOR MODEL '91fed12a967f720373bc8d8e13573b92' NOW (CHAIN 1).
-## Chain 1: 
-## Chain 1: Gradient evaluation took 6.7e-05 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.67 seconds.
-## Chain 1: Adjust your expectations accordingly!
-## Chain 1: 
-## Chain 1: 
-## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 1: 
-## Chain 1:  Elapsed Time: 0.369188 seconds (Warm-up)
-## Chain 1:                0.179615 seconds (Sampling)
-## Chain 1:                0.548803 seconds (Total)
-## Chain 1:
-```
-
-![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
-
+background-image: url("prez-pics/prior_predictive_checks_good.png")
+background-size: contain
 
 ---
-![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+background-image: url("prez-pics/posterior_predictive_checks.png")
+background-size: contain
 
 
 ---
 
-![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+background-image: url("prez-pics/marginal_means.png")
+background-size: contain
 
 
 ---
@@ -267,25 +263,21 @@ Tramadol                  1.00       -11.0        29.0             100.0
 
 
 ---
-class: center, middle
-
-![](reports/02_estimate_dosage_censored.png)&lt;!-- --&gt;
-
----
-class: center, middle
-
-![](reports/02_estimate_dosage_censored_overall.png)&lt;!-- --&gt;
+background-image: url("reports/02_estimate_dosage_censored.png")
+background-size: contain
 
 ---
-class: center, middle
+background-image: url("reports/02_estimate_dosage_censored_overall.png")
+background-size: contain
 
-![](reports/02_estimate_dosage_censored_grand.png)&lt;!-- --&gt;
+---
+background-image: url("reports/02_estimate_dosage_censored_grand.png")
+background-size: contain
 
 ---
 
-# Sources of variation
-
-![](index_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+background-image: url("prez-pics/sd_plots.png")
+background-size: contain
 
 ---
 
@@ -306,13 +298,47 @@ class: center, middle
 
 1. fit a multivariate model for metabolites
 2. use the 46 metabolites we left out -&gt; it's data!
-  a. potential methods work on different ways to incorporate
+    a. potential methods work on different ways to incorporate
 3. better model metabolites with very low concentrations (e.g., model the variance, other link functions, likelihood, priors for random effects)
 4. all 0s are not the same. How do we distinguish between true 0s and concentrations below the lloq?
 
 ---
 
 # Acknowledgements
+
+.pull-left[
+UF
+
+* Dominick Lemas, PhD
+* Andrew Schleffer
+* Michelle Duong
+* Clark Collins
+]
+
+.pull-right[
+Oklahoma State Univeristy
+
+* Jarrad Wagner, PhD
+* Austin Ciesielski
+* Zachary Ridge
+]
+
+
+---
+
+# Acknowledgements
+
+.pull-left[
+* Chris Delcher, PhD (UK)
+* Bikram Subedi, PhD (Murray State)
+]
+
+.pull-right[
+* K01 DK115632 (NIDDK)
+* SECIM P&amp;F
+* CTSI Pilot Award
+* Robin Hood Foundation
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

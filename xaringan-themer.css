@@ -17,23 +17,23 @@
  *
  * ------------------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Gill+Sans);
-@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-@import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
+@import url(https://fonts.googleapis.com/css?family=Gill+Sans);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
 
 
 body {
   font-family: Gill Sans, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
   font-weight: ;
-  color: #839496;
+  color: #000000;
 }
 h1, h2, h3 {
-  font-family: 'Yanone Kaffeesatz';
+  font-family: Gill Sans;
   font-weight: normal;
-  color: #dc322f;
+  color: #006747;
 }
 .remark-slide-content {
-  background-color: #002b36;
-  font-size: 40px;
+  background-color: #FFFFFF;
+  font-size: 30px;
   
   
   
@@ -49,25 +49,25 @@ h1, h2, h3 {
     font-size: 35px;
 }
 .remark-code, .remark-inline-code {
-  font-family: 'Fira Code', 'Lucida Console', Monaco, monospace;
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
 }
 .remark-code {
   font-size: 0.9em;
 }
 .remark-inline-code {
   font-size: 1em;
-  color: #6c71c4;
+  color: #006747;
   
   
 }
 .remark-slide-number {
-  color: #586e75;
+  color: #006747;
   opacity: 1;
   font-size: 0.9em;
 }
-strong{color:#d33682;}
+strong{color:#006747;}
 a, a > code {
-  color: #b58900;
+  color: #006747;
   text-decoration: none;
 }
 .footnote {
@@ -78,21 +78,21 @@ a, a > code {
   font-size: 0.9em;
 }
 .remark-code-line-highlighted {
-  background-color: #268bd240;
+  background-color: rgba(255,255,0,0.5);
 }
 .inverse {
-  background-color: #fdf6e3;
-  color: #002b36;
+  background-color: #CFC493;
+  color: #000000;
   
 }
 .inverse h1, .inverse h2, .inverse h3 {
-  color: #002b36;
+  color: #000000;
 }
 .title-slide, .title-slide h1, .title-slide h2, .title-slide h3 {
-  color: #002b36;
+  color: #FFFFFF;
 }
 .title-slide {
-  background-color: #fdf6e3;
+  background-color: #006747;
   
   
   
@@ -107,10 +107,10 @@ a, a > code {
   float: left;
 }
 .left-column h2, .left-column h3 {
-  color: #586e75;
+  color: #00674799;
 }
 .left-column h2:last-of-type, .left-column h3:last-child {
-  color: #93a1a1;
+  color: #006747;
 }
 .right-column {
   width: 75%;
@@ -132,35 +132,35 @@ img, video, iframe {
   max-width: 100%;
 }
 blockquote {
-  border-left: solid 5px #cb4b16;
+  border-left: solid 5px #CFC49380;
   padding-left: 1em;
 }
 .remark-slide table {
   margin: auto;
-  border-top: 1px solid #657b83;
-  border-bottom: 1px solid #657b83;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
 }
-.remark-slide table thead th { border-bottom: 1px solid #657b83; }
+.remark-slide table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
-.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #073642 }
+.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #DDD5B3 }
 table.dataTable tbody {
-  background-color: #002b36;
-  color: #839496;
+  background-color: #FFFFFF;
+  color: #000000;
 }
 table.dataTable.display tbody tr.odd {
-  background-color: #002b36;
+  background-color: #FFFFFF;
 }
 table.dataTable.display tbody tr.even {
-  background-color: #073642;
+  background-color: #DDD5B3;
 }
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
-  color: #839496;
+  color: #000000;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #839496 !important;
+  color: #000000 !important;
 }
 
 @page { margin: 0; }

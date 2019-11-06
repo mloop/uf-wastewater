@@ -14,7 +14,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(message = FALSE, echo=FALSE, warning=FALSE, dpi = 300, fig.width = 10)
+knitr::opts_chunk$set(message = FALSE, echo=FALSE, warning=FALSE, dpi = 300, fig.width = 10, echo=FALSE)
 library(Hmisc)
 library(tidyverse)
 library(GGally)
@@ -46,24 +46,48 @@ water_analysis <- read_tsv("data/water_cleaned.txt") %>% mutate_if(is.character,
 
 ```{r xaringan-themer, include=FALSE}
 library(xaringanthemer)
-solarized_dark(
-  code_font_family = "Fira Code",
-  code_font_url    = "https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css",
-  text_font_size = '40px',
-  text_font_google = google_font("Gill Sans")
+duo_accent(primary_color = "#006747", secondary_color = "#CFC493",
+  text_font_size = '30px',
+  text_font_google = google_font("Gill Sans"),
+  header_font_google = google_font("Gill Sans")
 )
 ```
 
+background-image: url("https://www.ahajournals.org/cms/attachment/33fdf9a1-337f-4b21-9afc-5441b9d9b3c1/e003350fig02.jpg")
+background-size: contain
 
-# Drug use has been a popular topic recently
+---
+background-image: url("https://www.cdc.gov/drugoverdose/images/epidemic/3WavesOfTheRiseInOpioidOverdoseDeaths.png")
+background-size: contain
+
+.foonote[https://www.cdc.gov/drugoverdose/images/epidemic/3WavesOfTheRiseInOpioidOverdoseDeaths.png]
+---
+
+background-image: url("prez-pics/heal_initiative.png")
+background-size: cover
+
+---
+# Difficulties in surveillance
+
+1. the outcome is illegal
+2. the exposure is transient (unlike diabetes)
 
 ---
 
-# One really novel method has been used in monitoring water in sewer systems
+background-image: url("prez-pics/sewage_wastewater.png")
+background-size: cover
+
+
+---
+background-image: url("prez-pics/cary_sampling.png")
+background-size: contain
+
 
 ---
 
-# You don't know the denominator
+class: center, middle, inverse
+
+# It's hard to know the denominator
 
 ---
 
@@ -95,11 +119,36 @@ background-image: url("https://live.staticflickr.com/6161/6167350779_665123c714_
 background-size: cover
 
 ---
+# Ben Hill Griffin Stadium
+
+.center[
+![](https://www.stadia-magazine.com/wp-content/uploads/2018/06/shutterstock_66210307.jpg)
+
+Kentucky vs. Florida, 2018  
+80,651
+]
+
+---
 background-image: url("prez-pics/sampling_locations.png")
 background-size: fill
 
 ---
 
+background-image: url("prez-pics/sampling_1.png")
+
+
+
+---
+
+background-image: url("prez-pics/sampling_2.png")
+
+
+---
+
+background-image: url("prez-pics/sampling_3.png")
+
+
+---
 # Measurements
 
 1. two different extractions
@@ -116,53 +165,21 @@ background-size: fill
 
 ---
 
-class: center, top
-```{r, fig.width=15, fig.height=15, out.width = "80%"}
-water %>%
-  ggplot(aes(x = value)) +
-  geom_histogram(bins = 100) +
-  geom_vline(aes(xintercept = lloq), linetype = "dashed", color = "red") +
-  geom_vline(aes(xintercept = uloq), linetype = "dashed", color = "red") +
-  facet_wrap(~ metabolite, scales = "free_x") +
-  cowplot::theme_cowplot() +
-  labs(x = "Observed concentration (ng/mL)")
-```
+background-image: url("prez-pics/histogram_all_metabolites.png")
+background-size: contain
+
 
 
 ---
-class: center, middle
-```{r, fig.width=15, fig.height = 10, out.width = "100%"}
-water %>%
-  ggplot(aes(x = time_pretty, y = value, color = metabolite, linetype = extraction, group = interaction(extraction, metabolite))) +
-  geom_path() +
-  facet_grid(machine ~location) +
-  cowplot::theme_cowplot() +
-  theme(
-    legend.position = "bottom",
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-```
+background-image: url("prez-pics/longitudinal_all_metabolites.png")
+background-size: contain
+
 
 ---
-class: center, middle
-```{r}
-water %>%
-  select(metabolite, time_pretty, location, extraction, machine, value) %>%
-  spread(metabolite, value) %>%
-  select(-time_pretty, -location, -extraction, -machine) %>%
-  visdat::vis_miss()
-```
 
----
-class: center, middle
+background-image: url("prez-pics/missing_data.png")
+background-size: contain
 
-```{r}
-water %>%
-  select(metabolite, time_pretty, location, extraction, machine, value) %>%
-  spread(metabolite, value) %>%
-  select(-time_pretty, -location, -extraction, -machine) %>%
-  naniar::gg_miss_upset(nsets = 40)
-```
 
 
 
@@ -173,37 +190,13 @@ class: inverse, middle, center
 ## Let's look at those with at least 1 observed value...
 
 ---
-class: center, middle
-```{r, fig.width=15, fig.height=15, out.width = "80%"}
-water_nomiss <- water %>%
-  group_by(metabolite) %>%
-  mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
-         total_non_missing = sum(non_missing)) %>%
-  filter(total_non_missing > 50)
-
-water_nomiss %>%
-  ggplot(aes(x = value)) +
-  geom_histogram(bins = 100) +
-  geom_vline(aes(xintercept = lloq), linetype = "dashed", color = "red") +
-  geom_vline(aes(xintercept = uloq), linetype = "dashed", color = "red") +
-  facet_wrap(~ metabolite, scales = "free_x") +
-  cowplot::theme_cowplot()+
-  labs(x = "Observed concentration (ng/mL)")
-```
+background-image: url("prez-pics/histogram_common_metabolites.png")
+background-size: contain
 
 
 ---
-class: center, middle
-
-```{r}
-water_nomiss %>%
-  select(time_pretty, location, extraction, machine, metabolite, value) %>%
-spread(metabolite, value) %>%
-  mutate(Noroxycodone = if_else(Noroxycodone == 0, 0.01, Noroxycodone)) %>%
-  select(5:14) %>%
-  mutate_all(~log(.)) %>%
-  ggscatmat(corMethod = "spearman")
-```
+background-image: url("prez-pics/matrix_plot.png")
+background-size: contain
 
 ---
 class: center, middle, inverse
@@ -236,6 +229,10 @@ $$L(\theta | y) = \prod_{i=1}^m f(y | \theta) \prod_{m + 1}^n F(\textrm{lloq} | 
 
 ---
 background-image: url("https://mc-stan.org/images/stan_logo.png")
+
+# Fitting the model
+
+---
 # Fitting the model 
 
 * Developed by Andrew Gelman, Bob Carpeneter, and others at Columbia University
@@ -244,23 +241,8 @@ background-image: url("https://mc-stan.org/images/stan_logo.png")
 * we used th R package `brms` as the front end
 
 ---
-# Choosing priors
-```{r}
-options(mc.cores = parallel::detectCores())
-prior_amphetamine <- c(prior(normal(0, 10), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
-           prior(cauchy(0, 5), class = "sd"),
-           prior(cauchy(0, 5), class = "sigma"),
-           prior(normal(0, 5), class = "b"))
-
-fit_amphetamine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
-           family = gaussian(),
-           data = filter(water_analysis, metabolite == "Amphetamine"),
-           iter = 2000,
-           chains = 1, 
-           sample_prior = "only",
-           prior = prior_amphetamine)
-pp_check(fit_amphetamine_priors, type = "hist", binwidth = 0.1)
-```
+background-image: url("prez-pics/prior_predictive_checks_bad.png")
+background-size: contain
 
 ---
 class: center, middle
@@ -270,72 +252,18 @@ $$\beta \sim N(0, 1)$$
 $$\sigma^2 \sim \textrm{Half-Cauchy}(0, 0.5)$$
 
 ---
-```{r}
-prior_amphetamine <- c(prior(normal(0, 1), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
-           prior(cauchy(0, 0.5), class = "sd"),
-           prior(cauchy(0, 0.5), class = "sigma"),
-           prior(normal(0, 1), class = "b"))
-fit_amphetamine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
-           family = gaussian(),
-           data = filter(water_analysis, metabolite == "Amphetamine"),
-           iter = 2000,
-           chains = 1, 
-           sample_prior = "only",
-           prior = prior_amphetamine)
-pp_check(fit_amphetamine_priors, type = "hist", binwidth = 0.1)
-```
-
+background-image: url("prez-pics/prior_predictive_checks_good.png")
+background-size: contain
 
 ---
-```{r}
-load(file = "reports/02_model_metabolites_censored_amphetamine.RData")
-load(file = "reports/02_model_metabolites_censored_benzoylecgonine.RData")
-load(file = "reports/02_model_metabolites_censored_cocaine.RData")
-load(file = "reports/02_model_metabolites_censored_hydrocodone.RData")
-load(file = "reports/02_model_metabolites_censored_norhydrocodone.RData")
-load(file = "reports/02_model_metabolites_censored_noroxycodone.RData")
-load(file = "reports/02_model_metabolites_censored_oxycodone.RData")
-load(file = "reports/02_model_metabolites_censored_phentermine.RData")
-load(file = "reports/02_model_metabolites_censored_pseudoephedrine.RData")
-load(file = "reports/02_model_metabolites_censored_tramadol.RData")
-
-results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hydrocodone, fit_norhydrocodone, fit_noroxycodone, fit_oxycodone, fit_phentermine, fit_pseudoephedrine, fit_tramadol)) %>%
-  mutate(
-    metabolite = c("Amphetamine", "Benzoylecgonine", "Cocaine", "Hydrocodone", "Norhydrocodone", "Noroxycodone", "Oxycodone", "Phentermine", "Pseudoephedrine", "Tramadol")
-  )
-
-pp_plots <- results %>%
-  group_by(metabolite) %>%
-  mutate(
-    pp = map2(models, metabolite, ~pp_check(.x, type = "hist", nsamples = 3) + labs(title = .y))
-  )
-
-plot_grid(plotlist = pp_plots$pp)
-```
+background-image: url("prez-pics/posterior_predictive_checks.png")
+background-size: contain
 
 
 ---
 
-```{r, fig.width = 10, fig.height = 8}
-marginal_plots <- results %>%
-  group_by(metabolite) %>%
-  mutate(
-    means = map(models, ~marginal_effects(.x, method = "fitted", re_formula = ~NULL)),
-    plots = map2(means, metabolite, ~plot(.x, plot = FALSE)[[1]] +
-  labs(
-    title = .y,
-    x = "Time of day",
-    y = "Mean log concentration [log(ng/mL)]"
-  ) +
-  geom_hline(color = "red", yintercept = log(0.05)) +
-  geom_hline(color = "red", yintercept = log(20)) +
-  cowplot::theme_cowplot() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-    )
-)
-
-plot_grid(plotlist = marginal_plots$plots)
-```
+background-image: url("prez-pics/marginal_means.png")
+background-size: contain
 
 
 ---
@@ -360,47 +288,21 @@ read_tsv("reports/03_metabolism_data.txt") %>%
 
 
 ---
-class: center, middle
-
-```{r}
-knitr::include_graphics("reports/02_estimate_dosage_censored.png")
-```
+background-image: url("reports/02_estimate_dosage_censored.png")
+background-size: contain
 
 ---
-class: center, middle
-
-```{r}
-knitr::include_graphics("reports/02_estimate_dosage_censored_overall.png")
-```
+background-image: url("reports/02_estimate_dosage_censored_overall.png")
+background-size: contain
 
 ---
-class: center, middle
-
-```{r}
-knitr::include_graphics("reports/02_estimate_dosage_censored_grand.png")
-```
+background-image: url("reports/02_estimate_dosage_censored_grand.png")
+background-size: contain
 
 ---
 
-# Sources of variation
-
-```{r, fig.width=7, fig.height=4}
-sigma_plots <- results %>%
-  group_by(metabolite) %>%
-  mutate(
-    sd_plots = map2(models, metabolite, ~posterior_samples(.x) %>%
-                                      select(contains("sd"), sigma) %>%
-                                      mutate(iteration = seq(1, n())) %>%
-                                      gather(standard_deviation, draw, -iteration) %>%
-                                      ggplot(aes(x = draw, fill = standard_deviation)) +
-                                      geom_density() +
-                                      scale_fill_viridis_d() +
-                      labs(title = .y)
-                    )
-  )
-
-plot_grid(plotlist = sigma_plots$sd_plots)
-```
+background-image: url("prez-pics/sd_plots.png")
+background-size: contain
 
 ---
 
@@ -421,7 +323,7 @@ plot_grid(plotlist = sigma_plots$sd_plots)
 
 1. fit a multivariate model for metabolites
 2. use the 46 metabolites we left out -> it's data!
-  a. potential methods work on different ways to incorporate
+    a. potential methods work on different ways to incorporate
 3. better model metabolites with very low concentrations (e.g., model the variance, other link functions, likelihood, priors for random effects)
 4. all 0s are not the same. How do we distinguish between true 0s and concentrations below the lloq?
 
@@ -429,4 +331,36 @@ plot_grid(plotlist = sigma_plots$sd_plots)
 
 # Acknowledgements
 
+.pull-left[
+UF
 
+* Dominick Lemas, PhD
+* Andrew Schleffer
+* Michelle Duong
+* Clark Collins
+]
+
+.pull-right[
+Oklahoma State Univeristy
+
+* Jarrad Wagner, PhD
+* Austin Ciesielski
+* Zachary Ridge
+]
+
+
+---
+
+# Acknowledgements
+
+.pull-left[
+* Chris Delcher, PhD (UK)
+* Bikram Subedi, PhD (Murray State)
+]
+
+.pull-right[
+* K01 DK115632 (NIDDK)
+* SECIM P&F
+* CTSI Pilot Award
+* Robin Hood Foundation
+]
