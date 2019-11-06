@@ -53,7 +53,8 @@ duo_accent(primary_color = "#006747", secondary_color = "#CFC493",
   text_slide_number_font_size = "0.5em",
   footnote_position_bottom = "1em",
   footnote_font_size = "0.5em",
-  padding = "1em 4em 1em 4em"
+  padding = "1em 4em 1em 4em",
+  code_font_size = "0.5em"
 )
 ```
 
@@ -62,11 +63,22 @@ class: inverse, center, middle
 # A little about me...
 
 ---
-# Started with the 'Bio'
+# Started with the 'Bio' at Alabama
 
 .left-column[
 ```{r, out.width='350px'}
 knitr::include_graphics("https://slis.ua.edu/wp-content/uploads/2016/06/Gorgas_Spring-1920x1080.png")
+```
+```{r, out.width='350px'}
+knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsoZi4LuIjlpxLUxg7thumqqXZKCYSaIz5NQfBydOiu-z52e9e")
+```
+
+```{r, out.width='350px'}
+knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRN5TDLyFQSmaaFxWf83klIE1JrLfpj_6Zaf6EddOVgH51kF3Du")
+```
+
+```{r, out.width='350px'}
+knitr::include_graphics("https://images.homedepot-static.com/productImages/10be4917-93d2-46bf-9c58-f85f5450305d/svn/red-fanmats-sports-rugs-18599-64_1000.jpg")
 ```
 ]
 
@@ -80,6 +92,59 @@ knitr::include_graphics("https://bloximages.chicago2.vip.townnews.com/annistonst
 ```
 ]
 
+---
+# Onto UAB for Biostatistics and Epidemiology
+
+.pull-left[
+```{r, out.width='300px'}
+knitr::include_graphics("https://scx1.b-cdn.net/csz/news/800/2015/6-fivelessonsa.jpg")
+```
+
+
+```{r, out.width='300px'}
+knitr::include_graphics("http://media.al.com/alphotos/photo/2015/04/19/-819733f4203bb6d5.JPG")
+```
+]
+
+.pull-right[
+```{r, out.width='250px'}
+knitr::include_graphics("https://www.uab.edu/news/media/k2/items/cache/28b32a6d1a10f7b79a19f11bec606ba7_XL.jpg")
+```
+
+```{r, out.width='250px'}
+knitr::include_graphics("https://ars.els-cdn.com/content/image/1-s2.0-S1071916418311072-gr1.jpg")
+```
+
+]
+
+---
+# And now Biostatistics at UNC Chapel Hill
+.pull-left[
+```{r, out.width='300px'}
+knitr::include_graphics("http://sites.cscc.unc.edu/cscc/sites/default/files/2018-05/aric2.png")
+```
+
+
+```{r, out.width='300px'}
+knitr::include_graphics("http://sites.cscc.unc.edu/cscc/sites/default/files/2017-08/LRDG_ATN_AcronymLogo.png")
+```
+]
+
+.pull-right[
+```{r, out.width='250px'}
+knitr::include_graphics("https://sph.unc.edu/files/2016/09/cscc-logo.gif")
+```
+
+```{r, out.width='250px'}
+knitr::include_graphics("prez-pics/bios_841.png")
+```
+
+]
+
+---
+class: center, middle, inverse
+
+# About every 5 years you get an awesome study to work on...
 
 
 ---
@@ -97,7 +162,7 @@ background-image: url("prez-pics/heal_initiative.png")
 background-size: cover
 
 ---
-# Difficulties in surveillance
+# Surveillance of substance abuse can be difficult
 
 1. the outcome is illegal
 2. the outcome is transient
@@ -117,25 +182,18 @@ background-size: contain
 
 class: center, middle, inverse
 
-# It's hard to know the denominator
+# But...what's the denominator?
 
 ---
 
-# There are some events that are closed systems with approximately known denominators
+# Illicit drug consumption and mass gatherings
 
----
+* WHO defines them as planned or spontaneous event where the number of people present could strain standard municipal response resources
+* Illicit drug use at mass gatherings have been studied in the context of raves and electronic dance parties, rock concernts, and sporting events such as the Olympics
+* **Wastewater epidemiology** can study drug use at mass gatherings by analyzing compounds found in samples of the wastewater system
 
-class: inverse, center, middle
 
-# Sporting events
-
----
-
-# Sport events can involve recreational substance use
-
----
-
-# Are we able to detect levels of drug sue using wastewater metabolites? Can we estimate consumption?
+.footnote[Choi et al.  TrAC Trends in Chem, 2018; World Health Organization, 2019; Indig et al. Addiction 2002, 98]
 
 ---
 
@@ -163,6 +221,14 @@ background-image: url("prez-pics/sampling_locations.png")
 background-size: fill
 
 ---
+# Study design
+
+* Cross-sectional analysis at 11 times points from just before kickoff to right after game ended
+* 3 locations sampled
+* Targeted mass spectrometry of 58 target compounds
+* Samples sent to Oklahoma State University for analysis
+
+---
 
 background-image: url("prez-pics/sampling_1.png")
 
@@ -179,19 +245,17 @@ background-image: url("prez-pics/sampling_3.png")
 
 
 ---
-# Measurements
+# Measurements obtained
 
-1. two different extractions
-2. two different machines
-3. eleven time points
-4. 3 locations
+* Eleven time points
+* 3 locations
+* 2 extractions
+* 2 different machines
 
 ---
-# Targeted metabolomics
+class: inverse, middle, center
 
-* 58 original metabolites targeted
-* 56 passed technical quality control
-* mass spectroscopy on two different machines
+# What did the data look like?
 
 ---
 
@@ -210,14 +274,10 @@ background-size: contain
 background-image: url("prez-pics/missing_data.png")
 background-size: contain
 
-
-
-
-
 ---
 class: inverse, middle, center
 
-## Let's look at those with at least 1 observed value...
+## Let's look at those with at least 50 observed values...
 
 ---
 background-image: url("prez-pics/histogram_common_metabolites.png")
@@ -245,8 +305,11 @@ class: center, middle, inverse
 
 ---
 # Bayesian model
+$$\begin{eqnarray}
+\mu = E[log(y_{ijkl})] = \beta_0 + \textrm{time}_i\mathbf{\beta} + \textrm{location}_{ij}\\ + \textrm{extraction}_{ijk}
++ \textrm{machine}_{ijkl}
+\end{eqnarray}$$
 
-$$\mu = E[log(y_{ijkl})] = \beta_0 + \textrm{time}_i\mathbf{\beta} + \textrm{location}_{ij} + \textrm{extraction}_{ijk} + \textrm{machine}_{ijkl}$$
 $$log(y_{ijkl}) \sim N(\mu, \sigma^2_y)$$
 $$\textrm{location}_{ij} \sim N(0, \sigma^2_{\textrm{loc}})$$
 
@@ -299,19 +362,23 @@ background-size: contain
 ---
 # Estimate *dose*
 
-$$\textrm{Mass load (mg/day)} = \textrm{concentration (ng/L)} * \textrm{wastewater flow rate (L/day)} * \left(\frac{100}{100 + \textrm{Stability}}\right) * 10^{-6}$$
-* Stability represents stability change in \% of metabolite in wastewater for up to 12 hours
+$$\begin{eqnarray}
+\textrm{Mass load (mg/day)} = \textrm{concentration (ng/L)}\\ * \textrm{wastewater flow rate (L/day)}\\ * \left(\frac{100}{100 + \textrm{Stability}}\right) * 10^{-6}
+\end{eqnarray}$$
+
+
+* Stability represents stability change in % of metabolite in wastewater for up to 12 hours
 
 ---
 # Estimate *dose*
 
-$$\textrm{Doses per 1,000} = \textrm{Mass load} * \left(\frac{100}{\textrm{Excretion}}\right) * \frac{\textrm{MW}_{\textrm{pc}}}{\textrm{MW}_{\textrm{met}}} * \frac{1000}{\textrm{Population}}$$
+$$\begin{eqnarray}
+\textrm{Doses per 1,000} = \textrm{Mass load} * \left(\frac{100}{\textrm{Excretion}}\right)\\ * \frac{\textrm{MW}_{\textrm{pc}}}{\textrm{MW}_{\textrm{met}}} * \frac{1000}{\textrm{Population}}
+\end{eqnarray}$$
 ---
 # Metabolite characteristics
-```{r, results='asis'}
-read_tsv("reports/03_metabolism_data.txt") %>%
-  knitr::kable() %>%
-  kableExtra::kable_styling()
+```{r}
+read_tsv("reports/03_metabolism_data.txt")
 ```
 
 
@@ -335,7 +402,7 @@ background-size: contain
 
 ---
 
-# Limitations
+# How could we have gotten things wrong?
 
 1. no pooling of metabolites
 2. estimates of consumption are based upon 12-24 hr based characteristics of metabolites
@@ -351,10 +418,16 @@ background-size: contain
 # Future research
 
 1. fit a multivariate model for metabolites
-2. use the 46 metabolites we left out -> it's data!
-    a. potential methods work on different ways to incorporate
+2. use the 46 metabolites we left out. It's data!
 3. better model metabolites with very low concentrations (e.g., model the variance, other link functions, likelihood, priors for random effects)
 4. all 0s are not the same. How do we distinguish between true 0s and concentrations below the lloq?
+
+---
+# Public health impact
+
+1. understanding drug use at mass gatherings could help prevent overdoses by knowing what to screen more carefully for
+2. exposure to mass gatherings in general (some people attend 6-7 games per year for 60 years)
+3. there's a lot of substance use outside the stadium before, during, and after a game
 
 ---
 
@@ -370,7 +443,7 @@ UF
 ]
 
 .pull-right[
-Oklahoma State Univeristy
+Oklahoma State University
 
 * Jarrad Wagner, PhD
 * Austin Ciesielski
@@ -384,7 +457,7 @@ Oklahoma State Univeristy
 
 .pull-left[
 * Chris Delcher, PhD (UK)
-* Bikram Subedi, PhD (Murray State)
+* Bikram Subedi, PhD (Murray State University)
 ]
 
 .pull-right[
