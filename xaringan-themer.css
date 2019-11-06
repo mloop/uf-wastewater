@@ -73,9 +73,9 @@ a, a > code {
 .footnote {
   
   position: absolute;
-  bottom: 3em;
+  bottom: 1em;
   padding-right: 4em;
-  font-size: 0.9em;
+  font-size: 0.5em;
 }
 .remark-code-line-highlighted {
   background-color: rgba(255,255,0,0.5);

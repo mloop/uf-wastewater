@@ -50,10 +50,39 @@ duo_accent(primary_color = "#006747", secondary_color = "#CFC493",
   text_font_size = '30px',
   text_font_google = google_font("Gill Sans"),
   header_font_google = google_font("Gill Sans"),
-  text_slide_number_font_size = "0.5em"
+  text_slide_number_font_size = "0.5em",
+  footnote_position_bottom = "1em",
+  footnote_font_size = "0.5em",
+  padding = "1em 4em 1em 4em"
 )
 ```
 
+class: inverse, center, middle
+
+# A little about me...
+
+---
+# Started with the 'Bio'
+
+.left-column[
+```{r, out.width='350px'}
+knitr::include_graphics("https://slis.ua.edu/wp-content/uploads/2016/06/Gorgas_Spring-1920x1080.png")
+```
+]
+
+.right-column.center[
+```{r, out.width='300px'}
+knitr::include_graphics("http://www.wildtexas.com/wp-content/uploads/2018/10/3818630739_60c3697540_o.jpg")
+```
+
+```{r, out.width='300px'}
+knitr::include_graphics("https://bloximages.chicago2.vip.townnews.com/annistonstar.com/content/tncms/assets/v3/editorial/0/a3/0a342aac-06dc-11e8-86e7-d7051dd2151f/5a724d14d4b67.image.jpg?resize=1200%2C798")
+```
+]
+
+
+
+---
 background-image: url("https://www.ahajournals.org/cms/attachment/33fdf9a1-337f-4b21-9afc-5441b9d9b3c1/e003350fig02.jpg")
 background-size: contain
 
@@ -71,7 +100,7 @@ background-size: cover
 # Difficulties in surveillance
 
 1. the outcome is illegal
-2. the exposure is transient (unlike diabetes)
+2. the outcome is transient
 
 ---
 
