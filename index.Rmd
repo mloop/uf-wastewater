@@ -49,7 +49,8 @@ library(xaringanthemer)
 duo_accent(primary_color = "#006747", secondary_color = "#CFC493",
   text_font_size = '30px',
   text_font_google = google_font("Gill Sans"),
-  header_font_google = google_font("Gill Sans")
+  header_font_google = google_font("Gill Sans"),
+  text_slide_number_font_size = "0.5em"
 )
 ```
 
@@ -60,7 +61,7 @@ background-size: contain
 background-image: url("https://www.cdc.gov/drugoverdose/images/epidemic/3WavesOfTheRiseInOpioidOverdoseDeaths.png")
 background-size: contain
 
-.foonote[https://www.cdc.gov/drugoverdose/images/epidemic/3WavesOfTheRiseInOpioidOverdoseDeaths.png]
+.footnote[https://www.cdc.gov/drugoverdose/images/epidemic/3WavesOfTheRiseInOpioidOverdoseDeaths.png]
 ---
 
 background-image: url("prez-pics/heal_initiative.png")
@@ -278,11 +279,10 @@ $$\textrm{Mass load (mg/day)} = \textrm{concentration (ng/L)} * \textrm{wastewat
 $$\textrm{Doses per 1,000} = \textrm{Mass load} * \left(\frac{100}{\textrm{Excretion}}\right) * \frac{\textrm{MW}_{\textrm{pc}}}{\textrm{MW}_{\textrm{met}}} * \frac{1000}{\textrm{Population}}$$
 ---
 # Metabolite characteristics
-```{r}
+```{r, results='asis'}
 read_tsv("reports/03_metabolism_data.txt") %>%
   knitr::kable() %>%
   kableExtra::kable_styling()
-
 ```
 
 

@@ -193,3 +193,75 @@ sigma_plots <- results %>%
 
 plot_grid(plotlist = sigma_plots$sd_plots) -> p
 ggsave(filename = "prez-pics/sd_plots.png", p, width = 16, height = 8, units = "in")
+
+metabolite_info <- read_tsv("reports/03_metabolism_data.txt")
+flow <- read_tsv("data/flow_rate.txt") %>%
+  mutate(time_pretty = as.character(time_pretty),
+         flow_rate_gallons_per_day = flow_rate * 1e6,
+         flow_rate_liters_per_day = flow_rate_gallons_per_day * 3.78541)
+
+predicted_consumption_overall <- results %>%
+  group_by(metabolite) %>%
+  mutate(
+    posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = NA) %>%
+                                   t() %>%
+                                   as_tibble() %>%
+                                   bind_cols(filter(water, metabolite == .y), .) %>%
+                                   group_by(time_pretty) %>%
+                                   slice(1) %>%
+                                   ungroup() %>%
+                                   dplyr::select(time_pretty, V1:V12000) %>%
+                                   gather(iteration, mean_log_conc, -time_pretty) %>%
+                                   mutate(
+                                     mean_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass load calculations
+                                     metabolite = .y
+                                   ) %>%
+                                   left_join(., metabolite_info, by = "metabolite") %>%
+                                   left_join(., flow, by = "time_pretty") %>%
+                                   mutate(
+                                     mass_load = mean_concentration * flow_rate_liters_per_day * (100 / (100 + stability)) * 1e-6,
+                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / 80651 / typical_dose_mg, # unit is doses per 1000
+                                     consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0))
+    ),
+    quantiles_predictions = map(posterior_predictions, ~group_by(., time_pretty) %>%
+                                  filter(consumption_missing == 0) %>%
+                                  summarise(
+                                    median_mean_consumption = median(consumption_per_1000),
+                                    low_mean_consumption = quantile(consumption_per_1000, probs = 0.25),
+                                    high_mean_consumption = quantile(consumption_per_1000, probs = 0.75),
+                                  )
+    ),
+    plots = map2(quantiles_predictions, metabolite, ~ggplot(data = .x, aes(x = time_pretty, y = median_mean_consumption)) +
+                   geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption), position = position_dodge(0.8)) +
+                   theme(
+                     axis.text.x = element_text(angle = 45, hjust = 1)
+                   ) +
+                   labs(
+                     y = "Doses per 1,000 attendees",
+                     x = "Time of wastewater collection",
+                     title = .y
+                   ))
+  )
+
+predicted_consumption_overall %>%
+  unnest(posterior_predictions) %>%
+  ungroup() %>%
+  group_by(metabolite) %>%
+  filter(consumption_missing == 0) %>%
+  summarise(median_mean_consumption = median(consumption_per_1000),
+            low_mean_consumption = quantile(consumption_per_1000, probs = 0.25),
+            high_mean_consumption = quantile(consumption_per_1000, probs = 0.75),
+  ) %>%
+  ggplot(aes(x = factor(metabolite) %>% fct_reorder(median_mean_consumption) %>% fct_rev(), y = median_mean_consumption)) +
+  geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption)) +
+  theme_cowplot()+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1) 
+  ) +
+  labs(
+    y = "Doses per 1,000 attendees",
+    x = "Time of wastewater collection",
+    title = "Estimated 25th, 50th, and 75th percentiles of number of\ndoses per 1,000 attendees"
+  ) -> p
+
+ggsave(filename = "prez-pics/dosage_grand.png", p, dpi = 300)
