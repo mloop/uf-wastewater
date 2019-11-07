@@ -271,6 +271,7 @@ predicted_consumption_overall %>%
   unnest(posterior_predictions) %>%
   ungroup() %>%
   group_by(metabolite) %>%
+  mutate(iteration = str_sub(iteration, start = 2) %>% as.numeric()) %>%
   filter(consumption_missing == 0, consumption_per_1000 < 100) %>%
   ggplot(aes(x = consumption_per_1000)) +
   geom_histogram(binwidth = 1) +
@@ -280,8 +281,7 @@ predicted_consumption_overall %>%
     axis.text.x = element_text(angle = 45, hjust = 1) 
   ) +
   labs(
-    y = "Doses per 1,000 attendees",
-    x = "Time of wastewater collection",
+    x = "Doses per 1,000 attendees",
     title = "Estimated 25th, 50th, and 75th percentiles of number of\ndoses per 1,000 attendees"
   ) -> p
 
