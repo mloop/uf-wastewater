@@ -136,7 +136,7 @@ knitr::include_graphics("https://sph.unc.edu/files/2016/09/cscc-logo.gif")
 ```
 
 ```{r, out.width='250px'}
-knitr::include_graphics("prez-pics/bios_841.png")
+knitr::include_graphics("https://www.businessknowhow.com/uploads/consulting-business.jpg?ezimgfmt=rs:350x230/rscb1/ng:webp/ngcb1")
 ```
 
 ]
@@ -367,7 +367,7 @@ $$\begin{eqnarray}
 \end{eqnarray}$$
 
 
-* Stability represents stability change in % of metabolite in wastewater for up to 12 hours
+* Stability represents change in % of metabolite in wastewater for up to 12 hours
 
 ---
 # Estimate *dose*

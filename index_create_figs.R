@@ -248,12 +248,33 @@ predicted_consumption_overall %>%
   ungroup() %>%
   group_by(metabolite) %>%
   filter(consumption_missing == 0) %>%
-  summarise(median_mean_consumption = median(consumption_per_1000),
-            low_mean_consumption = quantile(consumption_per_1000, probs = 0.25),
-            high_mean_consumption = quantile(consumption_per_1000, probs = 0.75),
+  summarise(median_mean_consumption = median(consumption_per_1000) * 80.651,
+            low_mean_consumption = quantile(consumption_per_1000, probs = 0.25) * 80.651,
+            high_mean_consumption = quantile(consumption_per_1000, probs = 0.75) * 80.651,
   ) %>%
   ggplot(aes(x = factor(metabolite) %>% fct_reorder(median_mean_consumption) %>% fct_rev(), y = median_mean_consumption)) +
   geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption)) +
+  theme_cowplot()+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1) 
+  ) +
+  labs(
+    y = "Doses for 80,651 attendees",
+    x = "Metabolite",
+    title = "Estimated 25th, 50th, and 75th percentiles of number of\ndoses per 1,000 attendees"
+  ) -> p
+
+ggsave(filename = "prez-pics/dosage_grand.png", p, dpi = 300, width = 7, height = 7, units = "in")
+
+
+predicted_consumption_overall %>%
+  unnest(posterior_predictions) %>%
+  ungroup() %>%
+  group_by(metabolite) %>%
+  filter(consumption_missing == 0, consumption_per_1000 < 100) %>%
+  ggplot(aes(x = consumption_per_1000)) +
+  geom_histogram(binwidth = 1) +
+  facet_wrap(~ metabolite) +
   theme_cowplot()+
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1) 
@@ -264,4 +285,5 @@ predicted_consumption_overall %>%
     title = "Estimated 25th, 50th, and 75th percentiles of number of\ndoses per 1,000 attendees"
   ) -> p
 
-ggsave(filename = "prez-pics/dosage_grand.png", p, dpi = 300)
+ggsave(filename = "prez-pics/dosage_grand_hist.png", p, width = 9, height = 5, units = "in")
+
