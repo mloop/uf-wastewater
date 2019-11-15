@@ -1,0 +1,4 @@
+location	proportion_of_stadium
+1	0.1866
+2	0.4825
+3	0.3189
