@@ -1,3 +1,5 @@
+index_cache/
+libs/
 .Rproj.user
 *.png
 *.html
