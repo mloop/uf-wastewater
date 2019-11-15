@@ -4,3 +4,5 @@
 *.DS_Store
 *.pptx
 *.rds
+index_cache/
+libs/
