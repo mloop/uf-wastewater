@@ -25,11 +25,15 @@ water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, ~na_i
          censored = if_else(censored_value == lloq, "left",
                       if_else(censored_value == uloq, "right", "none"))
   )
+
 metabolite_info <- read_tsv("03_metabolism_data.txt")
+
 flow <- read_tsv("../data/flow_rate.txt") %>%
   mutate(time_pretty = as.character(time_pretty),
          flow_rate_gallons_per_day = flow_rate * 1e6,
          flow_rate_liters_per_day = flow_rate_gallons_per_day * 3.78541)
+
+statium_info <- read_tsv("../data/stadium_seating.txt")
 ```
 
 
