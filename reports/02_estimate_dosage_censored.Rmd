@@ -33,7 +33,7 @@ flow <- read_tsv("../data/flow_rate.txt") %>%
          flow_rate_gallons_per_day = flow_rate * 1e6,
          flow_rate_liters_per_day = flow_rate_gallons_per_day * 3.78541)
 
-statium_info <- read_tsv("../data/stadium_seating.txt")
+stadium_info <- read_tsv("../data/stadium_seating.txt")
 ```
 
 
@@ -60,26 +60,26 @@ results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hyd
 predicted_consumption <- results %>%
   group_by(metabolite) %>%
   mutate(
-    posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = ~(1 | location)) %>%
+    posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = ~NULL) %>%
                                   t() %>%
                                   as_tibble() %>%
                                   bind_cols(filter(water, metabolite == .y), .) %>%
-                                   group_by(time_pretty, location) %>%
-                                  slice(1) %>%
                                   ungroup() %>%
-                                  dplyr::select(time_pretty, location, V1:V12000) %>%
-                                  gather(iteration, mean_log_conc, -time_pretty, -location) %>%
+                                  dplyr::select(metabolite, time_pretty, location, machine, extraction, V1:V12000) %>%
+                                  gather(iteration, mean_log_conc, -time_pretty, -location, -machine, -extraction, -metabolite) %>%
                                   mutate(
                                     mean_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass load calculations
                                     metabolite = .y
                                   ) %>%
                                   left_join(., metabolite_info, by = "metabolite") %>%
-                                  left_join(., flow, by = "time_pretty") %>%
+                                  left_join(., flow, by = "time_pretty") %>%  # flow rate isn't specific to location, which is a limitation
+                                  left_join(., stadium_info, by = "location") %>%
+                                  mutate(location_weight = 1 / proportion_of_stadium) %>% 
                                   mutate(
                                     mass_load = mean_concentration * flow_rate_liters_per_day * (100 / (100 + stability)) * 1e-6,
                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / 80651 / typical_dose_mg, # unit is doses per 1000
-                                  consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0))
-                                 ),
+                                    consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0))
+    ),
     quantiles_predictions = map(posterior_predictions, ~group_by(., location, time_pretty) %>%
                                   filter(consumption_missing == 0) %>%
                                   summarise(
@@ -88,14 +88,14 @@ predicted_consumption <- results %>%
                                     high_mean_consumption = quantile(consumption_per_1000, probs = 0.75),
                                   )
                                 ),
-    plots = map2(quantiles_predictions, metabolite, ~ggplot(data = .x, aes(x = time_pretty, y = median_mean_consumption, color = factor(location))) +
-  geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption), position = position_dodge(0.8)) +
+    plots = map2(quantiles_predictions, metabolite, ~ggplot(data = .x, aes(x = time_pretty, y = median_mean_consumption * 80.651, color = factor(location))) +
+  geom_pointrange(aes(ymin = low_mean_consumption * 80.651, ymax = high_mean_consumption * 80.651), position = position_dodge(0.8)) +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1)
   ) +
   scale_color_viridis_d(name = "Location") +
   labs(
-    y = "Doses per 1,000 attendees",
+    y = "Doses in stadium",
     x = "Time of wastewater collection",
     title = .y
   ))
@@ -106,7 +106,7 @@ predicted_consumption <- results %>%
 library(cowplot)
 title <- ggdraw() + 
   draw_label(
-    "Estimated 25th, 50th, and 75th percentiles of number of doses 1,000 attendees",
+    "Median and interquartile range of estimated distribution of doses for each compound",
     fontface = 'bold',
     x = 0,
     hjust = 0
@@ -124,44 +124,23 @@ ggsave(filename = "02_estimate_dosage_censored.png", p)
 
 ## Estimate, averaging across all locations
 ```{r}
-predicted_consumption_overall <- results %>%
-  group_by(metabolite) %>%
+predicted_consumption_by_time <- predicted_consumption %>%
   mutate(
-    posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = NA) %>%
-                                  t() %>%
-                                  as_tibble() %>%
-                                  bind_cols(filter(water, metabolite == .y), .) %>%
-                                   group_by(time_pretty) %>%
-                                  slice(1) %>%
-                                  ungroup() %>%
-                                  dplyr::select(time_pretty, V1:V12000) %>%
-                                  gather(iteration, mean_log_conc, -time_pretty) %>%
-                                  mutate(
-                                    mean_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass load calculations
-                                    metabolite = .y
-                                  ) %>%
-                                  left_join(., metabolite_info, by = "metabolite") %>%
-                                  left_join(., flow, by = "time_pretty") %>%
-                                  mutate(
-                                    mass_load = mean_concentration * flow_rate_liters_per_day * (100 / (100 + stability)) * 1e-6,
-                                    consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / 80651 / typical_dose_mg, # unit is doses per 1000
-                                  consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0))
-                                 ),
     quantiles_predictions = map(posterior_predictions, ~group_by(., time_pretty) %>%
                                   filter(consumption_missing == 0) %>%
                                   summarise(
-                                    median_mean_consumption = median(consumption_per_1000),
-                                    low_mean_consumption = quantile(consumption_per_1000, probs = 0.25),
-                                    high_mean_consumption = quantile(consumption_per_1000, probs = 0.75),
+                                    median_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.5),
+                                    low_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.25),
+                                    high_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.75),
                                   )
                                 ),
-    plots = map2(quantiles_predictions, metabolite, ~ggplot(data = .x, aes(x = time_pretty, y = median_mean_consumption)) +
-  geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption), position = position_dodge(0.8)) +
+    plots = map2(quantiles_predictions, metabolite, ~ggplot(data = .x, aes(x = time_pretty, y = median_mean_consumption * 80.651)) +
+  geom_pointrange(aes(ymin = low_mean_consumption * 80.651, ymax = high_mean_consumption * 80.651), position = position_dodge(0.8)) +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1)
   ) +
   labs(
-    y = "Doses per 1,000 attendees",
+    y = "Doses in stadium",
     x = "Time of wastewater collection",
     title = .y
   ))
@@ -169,10 +148,9 @@ predicted_consumption_overall <- results %>%
 ```
 
 ```{r, fig.width=14.2, fig.height=7.4, dpi=300}
-library(cowplot)
 title <- ggdraw() + 
   draw_label(
-    "Estimated 25th, 50th, and 75th percentiles of number of doses 1,000 attendees",
+    "Median and interquartile range of estimated distribution of doses for each compound",
     fontface = 'bold',
     x = 0,
     hjust = 0
@@ -182,29 +160,30 @@ title <- ggdraw() +
     # so title is aligned with left edge of first plot
     plot.margin = margin(0, 0, 0, 7)
   )
-plots <- plot_grid(plotlist = predicted_consumption_overall$plots[c(1, 3, 4, 8, 9)])
+plots <- plot_grid(plotlist = predicted_consumption_by_time$plots[c(1, 3, 4, 8, 9)])
 cowplot::plot_grid(title, plots, ncol = 1, rel_heights = c(1, 9)) -> p
 p
 ggsave(filename = "02_estimate_dosage_censored_overall.png", p)
 ```
 
 ## Estimate overall, averaged across all times
-```{r, fig.width=10, fig.height=5}
-predicted_consumption_overall %>%
+```{r, fig.width=7, fig.height=3}
+predicted_consumption %>%
   unnest(posterior_predictions) %>%
   ungroup() %>%
   group_by(metabolite) %>%
   filter(consumption_missing == 0) %>%
-  summarise(median_mean_consumption = median(consumption_per_1000),
-            low_mean_consumption = quantile(consumption_per_1000, probs = 0.25),
-            high_mean_consumption = quantile(consumption_per_1000, probs = 0.75),
+  summarise(median_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.5, na.rm = FALSE),
+            low_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.25, na.rm = FALSE),
+            high_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.75, na.rm = FALSE),
   ) %>%
-  ggplot(aes(x = metabolite, y = median_mean_consumption)) +
-  geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption)) +
+  ggplot(aes(x = metabolite, y = median_mean_consumption * 80.651)) +
+  geom_pointrange(aes(ymin = low_mean_consumption * 80.651, ymax = high_mean_consumption * 80.651)) +
+  ggrepel::geom_label_repel(aes(x = metabolite, y = median_mean_consumption * 80.651, label = prettyNum(round(median_mean_consumption * 80.651, digits = 0), big.mark = ","))) +
   labs(
-    y = "Doses per 1,000 attendees",
-    x = "Time of wastewater collection",
-    title = "Estimated 25th, 50th, and 75th percentiles of number of doses 1,000 attendees"
+    y = "Doses in stadium",
+    x = "Compound",
+    title = "Median and interquartile range of estimated distribution of doses for each compound"
   ) -> p
 p
 ggsave(filename = "02_estimate_dosage_censored_grand.png", p, dpi = 300)
