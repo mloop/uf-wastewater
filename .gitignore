@@ -6,3 +6,5 @@ libs/
 *.pptx
 *.rds
 *.Rproj*
+index_cache/
+libs/

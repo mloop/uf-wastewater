@@ -23,7 +23,7 @@ water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, ~na_i
   mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
          total_non_missing = sum(non_missing)) %>%
   filter(total_non_missing > 50) %>%
-  mutate(censored_value = if_else(is.na(value) == TRUE, lloq, 
+  mutate(censored_value = if_else(is.na(value) == TRUE, lloq,
                                   if_else(value < lloq, lloq,
                                           if_else(value > uloq, uloq, value)
                                           )
@@ -63,7 +63,7 @@ fit_amphetamine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | ma
            family = gaussian(),
            data = filter(water, metabolite == "Amphetamine"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_amphetamine)
 ```
@@ -78,7 +78,7 @@ Whoa! Looks like way to much variability.
 ```{r}
 ppd <- posterior_predict(fit_amphetamine_priors)
 
-ggplot(filter(water, metabolite == "Amphetamine"), aes(x = log_value)) + geom_histogram(bins = 500) 
+ggplot(filter(water, metabolite == "Amphetamine"), aes(x = log_value)) + geom_histogram(bins = 500)
 hist(ppd[1, ])
 hist(ppd[2, ])
 hist(ppd[3, ])
@@ -90,7 +90,7 @@ fit_amphetamine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) 
            family = gaussian(),
            data = filter(water, metabolite == "Amphetamine"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_amphetamine)
 save(fit_amphetamine, file = "02_model_metabolites_censored_amphetamine.RData")
 ```
@@ -140,7 +140,7 @@ fit_benzo_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine)
            family = gaussian(),
            data = filter(water, metabolite == "Benzoylecgonine"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_benzo)
 ```
@@ -156,7 +156,7 @@ fit_benzo <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 |
            family = gaussian(),
            data = filter(water, metabolite == "Benzoylecgonine"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_benzo)
 save(fit_benzo, file = "02_model_metabolites_censored_benzoylecgonine.RData")
 ```
@@ -205,7 +205,7 @@ fit_cocaine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machin
            family = gaussian(),
            data = filter(water, metabolite == "Cocaine"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_cocaine)
 ```
@@ -221,7 +221,7 @@ fit_cocaine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1
            family = gaussian(),
            data = filter(water, metabolite == "Cocaine"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_cocaine)
 save(fit_cocaine, file = "02_model_metabolites_censored_cocaine.RData")
 ```
@@ -270,7 +270,7 @@ fit_hydrocodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | ma
            family = gaussian(),
            data = filter(water, metabolite == "Hydrocodone"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_hydrocodone)
 ```
@@ -286,7 +286,7 @@ fit_hydrocodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) 
            family = gaussian(),
            data = filter(water, metabolite == "Hydrocodone"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_hydrocodone)
 save(fit_hydrocodone, file = "02_model_metabolites_censored_hydrocodone.RData")
 ```
@@ -335,7 +335,7 @@ fit_norhydrocodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 |
            family = gaussian(),
            data = filter(water, metabolite == "Norhydrocodone"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_norhydrocodone)
 ```
@@ -351,7 +351,7 @@ fit_norhydrocodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machin
            family = gaussian(),
            data = filter(water, metabolite == "Norhydrocodone"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_norhydrocodone)
 save(fit_norhydrocodone, file = "02_model_metabolites_censored_norhydrocodone.RData")
 ```
@@ -392,13 +392,13 @@ Now let's start designing the code. We will sample from the priors only to start
 prior_noroxycodone <- c(prior(normal(0, 0.05), class = "Intercept"),  # These priors were chosen from iteratively doing prior predictive checks
            prior(cauchy(0, 0.25), class = "sd"),
            prior(cauchy(0, 0.25), class = "sigma"),
-           prior(normal(0, 0.5), class = "b"))
+           prior(normal(0, 0.05), class = "b"))
 
 fit_noroxycodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Noroxycodone"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_noroxycodone)
 ```
@@ -414,82 +414,44 @@ water %>% filter(metabolite == "Noroxycodone") %>% ggplot(aes(x = value)) + geom
 
 
 Alright, let's fit the model for real now.
+
 ```{r, eval=F}
 fit_noroxycodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
            family = gaussian(),
            data = filter(water, metabolite == "Noroxycodone"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_noroxycodone)
 save(fit_noroxycodone, file = "02_model_metabolites_censored_noroxycodone.RData")
 ```
 
-Noroxycodone is a pain in the ass.
 
 
-```{r, eval=F}
-summary(fit_hydrocodone)
+
+```{r}
+summary(fit_noroxycodone)
 ```
 
 Posterior predictive checks of distribution
-```{r, eval=F}
-pp_check(fit_hydrocodone)
+```{r}
+pp_check(fit_noroxycodone, type = "hist")
 ```
 
 The distribution is a little wider, but maybe it's OK. It's also down some, but that actually makes sense. We set a lot of the censored values to the lloq, but now we are trying to generate those values.
 
-```{r, eval=F}
-a <- posterior_predict(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
+```{r, fig.width=7, fig.height=2}
+means <- marginal_effects(fit_noroxycodone, method = "fitted", re_formula = ~NULL)  # include random effect variances in uncertainty
 
-a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high))
-```
-
-Summary of expected concentration at each time point
-```{r, fig.width=7, fig.height=2, eval=F}
-b <- posterior_linpred(fit_hydrocodone, newdata = water %>% ungroup() %>% distinct(time_pretty), re_formula = NA) %>%
-  t() %>% 
-  as_tibble() %>% 
-  bind_cols(water %>% ungroup() %>% distinct(time_pretty), .) %>% 
-  gather(iteration, predicted_concentration, -time_pretty) %>% 
-  mutate(predicted_exp = exp(predicted_concentration)) %>% 
-  ungroup()
-
-cowplot::plot_grid(b %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.025),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.975)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
+p_noroxycodone <- plot(means, plot = FALSE)[[1]] +
   labs(
-    title = "Mean concentration (median, 95% credible interval)",
+    title = "Noroxycodone",
     x = "Time of day",
-    y = "Mean concentration (ng/mL)"
-  ),
-  a %>%
-  group_by(time_pretty) %>%
-  summarise(low = quantile(predicted_exp, 0.25),
-            median = quantile(predicted_exp, 0.5),
-            high = quantile(predicted_exp, 0.75)) %>% 
-  ggplot(aes(x = time_pretty, y = median)) +
-  geom_pointrange(aes(ymin = low, ymax = high)) +
-  labs(
-    title = "Predicted distribution of concentrations (median, 50% prediction interval)",
-    x = "Time of day",
-    y = "Predicted concentration (ng/mL)"
-  ))
+    y = "Mean log concentration [log(ng/mL)]"
+  ) +
+  geom_hline(color = "red", yintercept = log(0.05)) +
+  geom_hline(color = "red", yintercept = log(5)) +
+  cowplot::theme_cowplot()
+p_noroxycodone
 ```
 
 ## Oxycodone
@@ -510,7 +472,7 @@ fit_oxycodone_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | mach
            family = gaussian(),
            data = filter(water, metabolite == "Oxycodone"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_oxycodone)
 ```
@@ -526,7 +488,7 @@ fit_oxycodone <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + 
            family = gaussian(),
            data = filter(water, metabolite == "Oxycodone"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_oxycodone)
 save(fit_oxycodone, file = "02_model_metabolites_censored_oxycodone.RData")
 ```
@@ -576,7 +538,7 @@ fit_phentermine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | ma
            family = gaussian(),
            data = filter(water, metabolite == "Phentermine"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_phentermine)
 ```
@@ -592,7 +554,7 @@ fit_phentermine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) 
            family = gaussian(),
            data = filter(water, metabolite == "Phentermine"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_phentermine)
 save(fit_phentermine, file = "02_model_metabolites_censored_phentermine.RData")
 ```
@@ -642,7 +604,7 @@ fit_pseudoephedrine_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 
            family = gaussian(),
            data = filter(water, metabolite == "Pseudoephedrine"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_pseudoephedrine)
 ```
@@ -658,7 +620,7 @@ fit_pseudoephedrine <- brm(log_value | cens(censored) ~ time_pretty + (1 | machi
            family = gaussian(),
            data = filter(water, metabolite == "Pseudoephedrine"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_pseudoephedrine)
 save(fit_pseudoephedrine, file = "02_model_metabolites_censored_pseudoephedrine.RData")
 ```
@@ -708,7 +670,7 @@ fit_tramadol_priors <- brm(log_value | cens(censored) ~ time_pretty + (1 | machi
            family = gaussian(),
            data = filter(water, metabolite == "Tramadol"),
            iter = 2000,
-           chains = 1, 
+           chains = 1,
            sample_prior = "only",
            prior = prior_tramadol)
 ```
@@ -724,7 +686,7 @@ fit_tramadol <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (
            family = gaussian(),
            data = filter(water, metabolite == "Tramadol"),
            iter = 6000,
-           chains = 4, 
+           chains = 4,
            prior = prior_tramadol)
 save(fit_tramadol, file = "02_model_metabolites_censored_tramadol.RData")
 ```
@@ -759,9 +721,7 @@ p_tramadol
 # Make one plot
 
 ```{r, fig.width=10, fig.height=10}
-cowplot::plot_grid(p_amphetamine, p_benzo, p_cocaine, p_hydrocodone, p_norhydrocodone, p_oxycodone, p_phentermine, p_pseudoephedrine, p_tramadol) -> p
+cowplot::plot_grid(p_amphetamine, p_benzo, p_cocaine, p_hydrocodone, p_norhydrocodone, p_noroxycodone, p_oxycodone, p_phentermine, p_pseudoephedrine, p_tramadol) -> p
 p
 ggsave("02_model_metabolites_censored_mean_combined.png", p, width = 20, height = 12)
 ```
-
-

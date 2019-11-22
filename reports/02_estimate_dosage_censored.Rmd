@@ -44,14 +44,15 @@ load(file = "02_model_metabolites_censored_benzoylecgonine.RData")
 load(file = "02_model_metabolites_censored_cocaine.RData")
 load(file = "02_model_metabolites_censored_hydrocodone.RData")
 load(file = "02_model_metabolites_censored_norhydrocodone.RData")
+load(file = "02_model_metabolites_censored_noroxycodone.RData")
 load(file = "02_model_metabolites_censored_oxycodone.RData")
 load(file = "02_model_metabolites_censored_phentermine.RData")
 load(file = "02_model_metabolites_censored_pseudoephedrine.RData")
 load(file = "02_model_metabolites_censored_tramadol.RData")
 
-results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hydrocodone, fit_norhydrocodone, fit_oxycodone, fit_phentermine, fit_pseudoephedrine, fit_tramadol)) %>%
+results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hydrocodone, fit_norhydrocodone, fit_noroxycodone, fit_oxycodone, fit_phentermine, fit_pseudoephedrine, fit_tramadol)) %>%
   mutate(
-    metabolite = c("Amphetamine", "Benzoylecgonine", "Cocaine", "Hydrocodone", "Norhydrocodone", "Oxycodone", "Phentermine", "Pseudoephedrine", "Tramadol")
+    metabolite = c("Amphetamine", "Benzoylecgonine", "Cocaine", "Hydrocodone", "Norhydrocodone", "Noroxycodone", "Oxycodone", "Phentermine", "Pseudoephedrine", "Tramadol")
   )
 ```
 
@@ -116,7 +117,7 @@ title <- ggdraw() +
     # so title is aligned with left edge of first plot
     plot.margin = margin(0, 0, 0, 7)
   )
-plots <- plot_grid(plotlist = predicted_consumption$plots[c(1, 3, 4, 8, 9)])
+plots <- plot_grid(plotlist = predicted_consumption$plots[c(1, 3, 4, 7, 9, 10)])
 cowplot::plot_grid(title, plots, ncol = 1, rel_heights = c(1, 9)) -> p
 p
 ggsave(filename = "02_estimate_dosage_censored.png", p)
@@ -160,7 +161,9 @@ title <- ggdraw() +
     # so title is aligned with left edge of first plot
     plot.margin = margin(0, 0, 0, 7)
   )
-plots <- plot_grid(plotlist = predicted_consumption_by_time$plots[c(1, 3, 4, 8, 9)])
+
+plots <- plot_grid(plotlist = predicted_consumption_overall$plots[c(1, 3, 4, 7, 9, 10)])
+
 cowplot::plot_grid(title, plots, ncol = 1, rel_heights = c(1, 9)) -> p
 p
 ggsave(filename = "02_estimate_dosage_censored_overall.png", p)
