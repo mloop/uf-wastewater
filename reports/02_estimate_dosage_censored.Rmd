@@ -170,7 +170,7 @@ ggsave(filename = "02_estimate_dosage_censored_overall.png", p)
 ```
 
 ## Estimate overall, averaged across all times
-```{r, fig.width=7, fig.height=3}
+```{r, fig.width=8, fig.height=3}
 predicted_consumption %>%
   unnest(posterior_predictions) %>%
   ungroup() %>%
