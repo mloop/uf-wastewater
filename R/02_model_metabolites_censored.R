@@ -38,12 +38,7 @@ fit_metabolites <- function(metabolite_to_model, prior, adapt_delta = 0.99){
              sample_prior = TRUE,
              prior = prior,
              control = list(adapt_delta = adapt_delta))
-  
-  return(fit)
-}
-
-save_fit <- function(fit, metabolite_to_model) {
-  save(fit, file = paste0("../output/02_model_metabolites_censored_", metabolite_to_model, ".RData", sep = ""))
+  saveRDS(fit, file = paste0("../output/02_model_metabolites_censored_", metabolite_to_model, ".rds", sep = ""))
 }
 
 # Fit the models
@@ -65,32 +60,13 @@ prior_pseudoephedrine <- c(prior(normal(0, 5), class = "Intercept"),  # These pr
                            prior(normal(0, 1), class = "b"))
 
 
-fit_amphetamine <- fit_metabolites("Amphetamine", prior_most_metabolites)
-save_fit(fit_amphetamine, "Amphetamine")
-
-fit_benzo <- fit_metabolites("Benzoylecgonine", prior_most_metabolites)
-save_fit(fit_benzo, "Beonzoylecgonine")
-
-fit_cocaine <- fit_metabolites("Cocaine", prior_most_metabolites, adapt_delta = 0.99)
-save_fit(fit_cocaine, "Cocaine")
-
-fit_hydrocodone <- fit_metabolites("Hydrocodone", prior_most_metabolites, adapt_delta = 0.99)
-save_fit(fit_hydrocodone, "Hydrocodone")
-
-fit_norhydrocodone <- fit_metabolites("Norhydrocodone", prior_most_metabolites, adapt_delta = 0.99)
-save_fit(fit_norhydrocodone, "Norhydrocodone")
-
-fit_noroxycodone <- fit_metabolites("Noroxycodone", prior_noroxycodone, adapt_delta = 0.99)
-save_fit(fit_noroxycodone, "Noroxycodone")
-
-fit_oxycodone <- fit_metabolites("Oxycodone", prior_most_metabolites)
-save_fit(fit_oxycodone, "Oxycodone")
-
-fit_phentermine <- fit_metabolites("Phentermine", prior_most_metabolites, adapt_delta = 0.999)
-save_fit(fit_phentermine, "Phentermine")
-
-fit_pseudoephedrine <- fit_metabolites("Pseudoephedrine", prior_pseudoephedrine)
-save_fit(fit_pseudoephedrine, "Pseudoephedrine")
-
-fit_tramadol <- fit_metabolites("Tramadol", prior_most_metabolites)
-save_fit(fit_tramadol, "Tramadol")
+fit_metabolites("Amphetamine", prior_most_metabolites)
+fit_metabolites("Benzoylecgonine", prior_most_metabolites)
+fit_metabolites("Cocaine", prior_most_metabolites)
+fit_metabolites("Hydrocodone", prior_most_metabolites)
+fit_metabolites("Norhydrocodone", prior_most_metabolites)
+fit_metabolites("Noroxycodone", prior_noroxycodone)
+fit_metabolites("Oxycodone", prior_most_metabolites)
+fit_metabolites("Phentermine", prior_most_metabolites, adapt_delta = 0.999)
+fit_metabolites("Pseudoephedrine", prior_pseudoephedrine)
+fit_metabolites("Tramadol", prior_most_metabolites)
