@@ -1,3 +1,6 @@
+*.pdf
+figs/
+output/
 index_cache/
 libs/
 .Rproj.user
