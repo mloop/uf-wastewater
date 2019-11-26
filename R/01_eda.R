@@ -45,6 +45,25 @@ water %>%
   distinct(metabolite) %>%
   nrow()
 
+# Figures
+
+water %>%
+  ggplot(aes(x = time_pretty, y = value, color = metabolite, linetype = factor(extraction) %>% fct_relevel("A"), group = interaction(extraction, metabolite))) +
+  geom_path() +
+  facet_grid(machine ~location) +
+  scale_linetype(name = "Extraction") +
+  scale_color_discrete(name = "Metabolite") +
+  labs(
+    x = "Time of collection",
+    y = "Concentration (ng/mL)",
+    title = "Observed concentration of metabolites with at least 1 nonmissing value, by location and\nmass spectrometer platform"
+  ) +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) -> p
+ggsave(filename = "../figs/01_longitudinal_all_metabolites.png", p)
+
 water %>%
   ggplot(aes(x = value)) +
   geom_histogram(bins = 100) +
