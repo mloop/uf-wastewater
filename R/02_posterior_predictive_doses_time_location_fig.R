@@ -12,7 +12,7 @@ readRDS("../output/02_posterior_predictive_doses.rds") %>%
   ) %>%  
   ggplot(aes(x = time_pretty, y = median_mean_consumption * 80.651, color = factor(location))) +
   geom_pointrange(aes(ymin = low_mean_consumption * 80.651, ymax = high_mean_consumption * 80.651), position = position_dodge(0.8)) +
-  facet_wrap(~ metabolite) +
+  facet_wrap(~ metabolite, scales = "free_y") +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1)
   ) +

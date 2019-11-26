@@ -10,7 +10,7 @@ library(cowplot)
 library(knitr)
 library(kableExtra)
 
-predicted_consumption <- read_tsv("../output/02_posterior_predictive_doses.txt") %>%
+predicted_consumption <- readRDS("../output/02_posterior_predictive_doses.rds") %>%
   ungroup() %>%
   group_by(metabolite, time_pretty, location) %>%
   filter(consumption_missing == 0) %>%
@@ -32,7 +32,7 @@ predicted_consumption %>%
   mutate(metabolite = if_else(group == 1, metabolite, "")) %>%
   rename(Metabolite = metabolite, Time = time_pretty) %>%
   select(-group) %>%
-  kable(booktabs = TRUE, longtable = TRUE, caption = "Table 1. Median and interquartile range of estimated distribution of doses in stadium by metabolite, time, and location.") %>%
+  kable(booktabs = TRUE, longtable = TRUE, caption = "Supplemental Table 1. Median and interquartile range of estimated distribution of doses in stadium by metabolite, time, and location.") %>%
   kable_styling(latex_options = c("repeat_header"))
 ```
 
