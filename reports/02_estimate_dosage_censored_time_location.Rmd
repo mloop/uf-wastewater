@@ -1,0 +1,38 @@
+---
+output: pdf_document
+---
+
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(brms)
+library(cowplot)
+library(knitr)
+library(kableExtra)
+
+predicted_consumption <- read_tsv("../output/02_posterior_predictive_doses.txt") %>%
+  ungroup() %>%
+  group_by(metabolite, time_pretty, location) %>%
+  filter(consumption_missing == 0) %>%
+  summarise(median_mean_consumption = quantile(consumption_per_1000, probs = 0.5, na.rm = FALSE),
+            low_mean_consumption = quantile(consumption_per_1000, probs = 0.25, na.rm = FALSE),
+            high_mean_consumption = quantile(consumption_per_1000, probs = 0.75, na.rm = FALSE),
+  )
+```
+
+```{r}
+predicted_consumption %>% 
+  mutate(statistic = paste0(prettyNum(round(median_mean_consumption * 80.651, digits = 0), big.mark = ","), " (", prettyNum(round(low_mean_consumption * 80.651, digits = 0), big.mark = ","), ", ", prettyNum(round(high_mean_consumption * 80.651, digits = 0), big.mark = ","), ")", sep = "")) %>%
+  select(metabolite, time_pretty, location, statistic) %>%
+  spread(location, statistic) %>%
+  arrange(metabolite, time_pretty) %>%
+  group_by(metabolite) %>%
+  mutate(group = row_number()) %>%
+  ungroup() %>%
+  mutate(metabolite = if_else(group == 1, metabolite, "")) %>%
+  rename(Metabolite = metabolite, Time = time_pretty) %>%
+  select(-group) %>%
+  kable(booktabs = TRUE, longtable = TRUE, caption = "Table 1. Median and interquartile range of estimated distribution of doses in stadium by metabolite, time, and location.") %>%
+  kable_styling(latex_options = c("repeat_header"))
+```
+
