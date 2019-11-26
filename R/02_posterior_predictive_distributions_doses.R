@@ -9,16 +9,16 @@ library(cowplot)
 set.seed(98589534)
 
 # Read in models
-load(file = "../output/02_model_metabolites_censored_Amphetamine.RData")
-load(file = "../output/02_model_metabolites_censored_Benzoylecgonine.RData")
-load(file = "../output/02_model_metabolites_censored_Cocaine.RData")
-load(file = "../output/02_model_metabolites_censored_Hydrocodone.RData")
-load(file = "../output/02_model_metabolites_censored_Norhydrocodone.RData")
-load(file = "../output/02_model_metabolites_censored_Noroxycodone.RData")
-load(file = "../output/02_model_metabolites_censored_Oxycodone.RData")
-load(file = "../output/02_model_metabolites_censored_Phentermine.RData")
-load(file = "../output/02_model_metabolites_censored_Pseudoephedrine.RData")
-load(file = "../output/02_model_metabolites_censored_Tramadol.RData")
+fit_amphetamine <- readRDS(file = "../output/02_model_metabolites_censored_Amphetamine.rds")
+fit_benzo <- readRDS(file = "../output/02_model_metabolites_censored_Benzoylecgonine.rds")
+fit_cocaine <- readRDS(file = "../output/02_model_metabolites_censored_Cocaine.rds")
+fit_hydrocodone <- readRDS(file = "../output/02_model_metabolites_censored_Hydrocodone.rds")
+fit_norhydrocodone <- readRDS(file = "../output/02_model_metabolites_censored_Norhydrocodone.rds")
+fit_noroxycodone <- readRDS(file = "../output/02_model_metabolites_censored_Noroxycodone.rds")
+fit_oxycodone <- readRDS(file = "../output/02_model_metabolites_censored_Oxycodone.rds")
+fit_phentermine <- readRDS(file = "../output/02_model_metabolites_censored_Phentermine.rds")
+fit_pseudoephedrine <- readRDS(file = "../output/02_model_metabolites_censored_Pseudoephedrine.rds")
+fit_tramadol <- readRDS(file = "../output/02_model_metabolites_censored_Tramadol.rds")
 
 results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hydrocodone, fit_norhydrocodone, fit_noroxycodone, fit_oxycodone, fit_phentermine, fit_pseudoephedrine, fit_tramadol)) %>%
   mutate(
@@ -47,7 +47,7 @@ predicted_consumption <- results %>%
                                    dplyr::select(metabolite, time_pretty, location, machine, extraction, V1:V4000) %>%
                                    gather(iteration, mean_log_conc, -time_pretty, -location, -machine, -extraction, -metabolite) %>%
                                    mutate(
-                                     mean_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass load calculations
+                                     mean_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass readRDS calculations
                                      metabolite = .y
                                    ) %>%
                                    left_join(., metabolite_info, by = "metabolite") %>%
@@ -62,4 +62,4 @@ predicted_consumption <- results %>%
   ) %>%
   unnest(posterior_predictions)
 
-write_tsv(path = "../output/02_posterior_predictive_doses.txt", predicted_consumption)
+saveRDS(predicted_consumption, "../output/02_posterior_predictive_doses.rds")
