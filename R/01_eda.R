@@ -7,11 +7,14 @@ library(cowplot)
 
 
 
-water <- read_tsv("data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
+water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
   mutate(time_pretty = as.character(time_pretty),
-         extraction = factor(extraction) %>% fct_recode("A" = "zach", "B" = "austin"))
+         extraction = factor(extraction) %>% fct_recode("A" = "zach", "B" = "austin")) %>%
+  group_by(metabolite) %>%
+  mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
+         total_non_missing = sum(non_missing))
 
-water_analysis <- read_tsv("data/water_cleaned.txt") %>% mutate_if(is.character, ~na_if(., "")) %>%
+water_analysis <- water %>%
   mutate(time_pretty = as.character(time_pretty)) %>%
   group_by(metabolite) %>%
   mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
@@ -27,7 +30,20 @@ water_analysis <- read_tsv("data/water_cleaned.txt") %>% mutate_if(is.character,
                      if_else(censored_value == uloq, "right", "none"))
   )
 
+# Summary statistics for results
 
+## Drugs with no observed values?
+water %>%
+  mutate(prop_nonmissing = total_non_missing / n()) %>%
+  filter(prop_nonmissing < 0.5, total_non_missing > 0) %>%
+  distinct(metabolite) %>%
+  nrow()
+
+## Drugs observed in less than 50% of samples?
+water %>%
+  filter(total_non_missing == 0) %>%
+  distinct(metabolite) %>%
+  nrow()
 
 water %>%
   ggplot(aes(x = value)) +
