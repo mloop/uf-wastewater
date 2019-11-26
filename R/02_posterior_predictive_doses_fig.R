@@ -3,7 +3,7 @@ library(brms)
 library(cowplot)
 
 # Read in models
-read_tsv("../output/02_posterior_predictive_doses.txt") %>%
+readRDS("../output/02_posterior_predictive_doses.rds") %>%
   ungroup() %>%
   group_by(metabolite) %>%
   filter(consumption_missing == 0) %>%
