@@ -1,5 +1,8 @@
 ---
 output: pdf_document
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
 ---
 
 ```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
@@ -32,7 +35,7 @@ predicted_consumption %>%
   mutate(metabolite = if_else(group == 1, metabolite, "")) %>%
   rename(Metabolite = metabolite, Time = time_pretty) %>%
   select(-group) %>%
-  kable(booktabs = TRUE, longtable = TRUE, caption = "Supplemental Table 1. Median and interquartile range of estimated distribution of doses in stadium by metabolite, time, and location.") %>%
+  kable(booktabs = TRUE, longtable = TRUE, caption = "Median and interquartile range of estimated distribution of doses in stadium by metabolite, time, and location.") %>%
   kable_styling(latex_options = c("repeat_header"))
 ```
 
