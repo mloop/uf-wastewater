@@ -32,6 +32,10 @@ water_analysis <- water %>%
 
 # Summary statistics for results
 
+## What drugs were tested for?
+water %>%
+  distinct(metabolite)
+
 ## Drugs with no observed values?
 water %>%
   mutate(prop_nonmissing = total_non_missing / n()) %>%
@@ -42,6 +46,12 @@ water %>%
 ## Drugs observed in less than 50% of samples?
 water %>%
   filter(total_non_missing == 0) %>%
+  distinct(metabolite) %>%
+  nrow()
+
+## Drugs detected in every sample?
+water %>%
+  filter(total_non_missing == 98) %>%
   distinct(metabolite) %>%
   nrow()
 
@@ -60,9 +70,18 @@ water %>%
   ) +
   theme(
     legend.position = "bottom",
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    text = element_text(size = 16)
   ) -> p
 ggsave(filename = "../figs/01_longitudinal_all_metabolites.png", p)
+
+water %>%
+  select(metabolite, time_pretty, location, extraction, machine, value) %>%
+  spread(metabolite, value) %>%
+  select(-time_pretty, -location, -extraction, -machine) %>%
+  visdat::vis_miss() +
+  theme(axis.text.x.top = element_text(angle = 90)) -> p
+ggsave(filename = "../figs/01_missing_data_pattern.png", p)
 
 water %>%
   ggplot(aes(x = value)) +
