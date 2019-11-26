@@ -1,0 +1,65 @@
+# Create posterior predictive distributions of doses per 1,000
+
+# Packages
+library(tidyverse)
+library(brms)
+library(cowplot)
+
+# Options
+set.seed(98589534)
+
+# Read in models
+load(file = "../output/02_model_metabolites_censored_Amphetamine.RData")
+load(file = "../output/02_model_metabolites_censored_Benzoylecgonine.RData")
+load(file = "../output/02_model_metabolites_censored_Cocaine.RData")
+load(file = "../output/02_model_metabolites_censored_Hydrocodone.RData")
+load(file = "../output/02_model_metabolites_censored_Norhydrocodone.RData")
+load(file = "../output/02_model_metabolites_censored_Noroxycodone.RData")
+load(file = "../output/02_model_metabolites_censored_Oxycodone.RData")
+load(file = "../output/02_model_metabolites_censored_Phentermine.RData")
+load(file = "../output/02_model_metabolites_censored_Pseudoephedrine.RData")
+load(file = "../output/02_model_metabolites_censored_Tramadol.RData")
+
+results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hydrocodone, fit_norhydrocodone, fit_noroxycodone, fit_oxycodone, fit_phentermine, fit_pseudoephedrine, fit_tramadol)) %>%
+  mutate(
+    metabolite = c("Amphetamine", "Benzoylecgonine", "Cocaine", "Hydrocodone", "Norhydrocodone", "Noroxycodone", "Oxycodone", "Phentermine", "Pseudoephedrine", "Tramadol")
+  )
+
+# Read in ancillary data from stadium needed to estimate concentrations
+metabolite_info <- read_tsv("../reports/03_metabolism_data.txt")
+
+flow <- read_tsv("../data/flow_rate.txt") %>%
+  mutate(time_pretty = as.character(time_pretty),
+         flow_rate_gallons_per_day = flow_rate * 1e6,
+         flow_rate_liters_per_day = flow_rate_gallons_per_day * 3.78541)
+
+stadium_info <- read_tsv("../data/stadium_seating.txt")
+
+# Posterior predictive distribution, accounting for all random effects
+predicted_consumption <- results %>%
+  group_by(metabolite) %>%
+  mutate(
+    posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = ~NULL) %>%
+                                   t() %>%
+                                   as_tibble() %>%
+                                   bind_cols(filter(water, metabolite == .y), .) %>%
+                                   ungroup() %>%
+                                   dplyr::select(metabolite, time_pretty, location, machine, extraction, V1:V4000) %>%
+                                   gather(iteration, mean_log_conc, -time_pretty, -location, -machine, -extraction, -metabolite) %>%
+                                   mutate(
+                                     mean_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass load calculations
+                                     metabolite = .y
+                                   ) %>%
+                                   left_join(., metabolite_info, by = "metabolite") %>%
+                                   left_join(., flow, by = "time_pretty") %>%  # flow rate isn't specific to location, which is a limitation
+                                   left_join(., stadium_info, by = "location") %>%
+                                   mutate(location_weight = 1 / proportion_of_stadium) %>% 
+                                   mutate(
+                                     mass_load = mean_concentration * flow_rate_liters_per_day * (100 / (100 + stability)) * 1e-6,
+                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / 80651 / typical_dose_mg, # unit is doses per 1000
+                                     consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0))
+    )
+  ) %>%
+  unnest(posterior_predictions)
+
+write_tsv(path = "../output/02_posterior_predictive_doses.txt", predicted_consumption)
