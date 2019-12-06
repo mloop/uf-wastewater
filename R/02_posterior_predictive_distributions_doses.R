@@ -26,12 +26,11 @@ results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hyd
   )
 
 # Read in ancillary data from stadium needed to estimate concentrations
-metabolite_info <- read_tsv("../reports/03_metabolism_data.txt")
+metabolite_info <- read_tsv("../data/03_metabolism_data.txt")
 
 flow <- read_tsv("../data/flow_rate.txt") %>%
   mutate(time_pretty = as.character(time_pretty),
-         flow_rate_gallons_per_day = flow_rate * 1e6,
-         flow_rate_liters_per_day = flow_rate_gallons_per_day * 3.78541)
+         liters_previous_30_minutes = gallons_previous_30_minutes * 3.78541)
 
 stadium_info <- read_tsv("../data/stadium_seating.txt")
 
@@ -55,9 +54,11 @@ predicted_consumption <- results %>%
                                    left_join(., stadium_info, by = "location") %>%
                                    mutate(location_weight = 1 / proportion_of_stadium) %>% 
                                    mutate(
-                                     mass_load = mean_concentration * flow_rate_liters_per_day * (100 / (100 + stability)) * 1e-6,
-                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / 80651 / typical_dose_mg, # unit is doses per 1000
-                                     consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0))
+                                     mass_load_over_locations = mean_concentration * liters_previous_30_minutes * (100 / (100 + stability)) * 1e-6,
+                                     mass_load_per_location = mass_load_over_locations / 3,
+                                     consumption_per_1000_over_locations = mass_load_over_locations * 100 * (1 / excretion) * mwpar_mwmet * 1000 / 80651 / typical_dose_mg, # unit is doses per 1000,
+                                     consumption_per_1000_per_location = consumption_per_1000_over_locations / 3,
+                                     consumption_missing = if_else(is.na(consumption_per_1000_over_locations) == TRUE, 1, 0))
     )
   ) %>%
   unnest(posterior_predictions)

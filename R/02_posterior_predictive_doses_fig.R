@@ -5,11 +5,15 @@ library(cowplot)
 # Read in models
 readRDS("../output/02_posterior_predictive_doses.rds") %>%
   ungroup() %>%
+  group_by(metabolite, iteration, extraction, machine, location) %>%
+  mutate(consumption_per_1000_over_locations_over_game = sum(consumption_per_1000_over_locations)) %>%
+  slice(1) %>%
+  ungroup() %>%
   group_by(metabolite) %>%
   filter(consumption_missing == 0) %>%
-  summarise(median_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.5, na.rm = FALSE),
-            low_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.25, na.rm = FALSE),
-            high_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000, weights = location_weight, probs = 0.75, na.rm = FALSE),
+  summarise(median_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000_over_locations_over_game, weights = location_weight, probs = 0.5, na.rm = FALSE),
+            low_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000_over_locations_over_game, weights = location_weight, probs = 0.25, na.rm = FALSE),
+            high_mean_consumption = Hmisc::wtd.quantile(consumption_per_1000_over_locations_over_game, weights = location_weight, probs = 0.75, na.rm = FALSE),
   ) %>%
   ggplot(aes(x = metabolite, y = median_mean_consumption * 80.651)) +
   geom_pointrange(aes(ymin = low_mean_consumption * 80.651, ymax = high_mean_consumption * 80.651)) +
