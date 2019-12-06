@@ -62,17 +62,14 @@ stacked %>%
 
 ## Now do flow rate
 
-flow <- read_excel("../data/20190508_UFWW_Results_Comparison.xlsx",
-                   sheet = "analysis_data") %>%
-  select(time, FlowRate) %>%
+flow <- read_excel("../data/Copy of WRF_Inf-flows.xls", sheet = "20180908WRF_Inf", skip = 2) %>%
+  rename(millions_gallons_per_day = `09/08/18 MGD`) %>%
+  select(Date, millions_gallons_per_day) %>%
   mutate(
-    time = factor(time)
+    Date = factor(Date)
   ) %>%
-  separate(time, into = c("date", "time_pretty"), sep = " ") %>%
-  select(-date) %>%
-  group_by(time_pretty) %>%
-  slice(1) %>%
-  rename(flow_rate = FlowRate)
+  separate(Date, into = c("date", "time_pretty"), sep = " ") %>%
+  group_by(time_pretty)
 
 flow %>%
   write_tsv("../data/flow_rate.txt")
