@@ -33,7 +33,7 @@ marginal_plots <- results %>%
                    labs(
                      title = .y,
                      x = "Time of day",
-                     y = "Mean log concentration [log(ng/mL)]"
+                     y = "Mean natural log concentration [log(ng/mL)]"
                    ) +
                    geom_hline(color = "red", yintercept = log(0.05)) +
                    geom_hline(color = "red", yintercept = log(20)) +
