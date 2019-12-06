@@ -12,7 +12,16 @@ water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(
          extraction = factor(extraction) %>% fct_recode("A" = "zach", "B" = "austin")) %>%
   group_by(metabolite) %>%
   mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
-         total_non_missing = sum(non_missing))
+         total_non_missing = sum(non_missing)) %>%
+  mutate(censored_value = if_else(is.na(value) == TRUE, lloq, 
+                                  if_else(value < lloq, lloq,
+                                          if_else(value > uloq, uloq, value)
+                                  )
+  ),
+  log_value = log(censored_value),
+  censored = if_else(censored_value == lloq, "left",
+                     if_else(censored_value == uloq, "right", "none"))
+  )
 
 water_analysis <- water %>%
   mutate(time_pretty = as.character(time_pretty)) %>%
@@ -74,6 +83,15 @@ water %>%
     text = element_text(size = 16)
   ) -> p
 ggsave(filename = "../figs/01_longitudinal_all_metabolites.png", p)
+
+water_analysis %>%
+  ggplot(aes(x = censored_value)) +
+  geom_histogram(bins = 100) +
+  geom_vline(aes(xintercept = lloq), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = uloq), linetype = "dashed", color = "red") +
+  facet_wrap(~ metabolite, scales = "free") +
+  labs(x = "Measured concentration (ng/mL)") -> p
+ggsave(filename = "../figs/01_histogram_top_metabolites.png", p)
 
 water %>%
   select(metabolite, time_pretty, location, extraction, machine, value) %>%
