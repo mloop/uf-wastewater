@@ -100,3 +100,4 @@ flow <- read_excel("../data/Copy of WRF_Inf-flows.xls", sheet = "20180908WRF_Inf
 
 flow %>%
   write_tsv("../data/flow_rate.txt")
+
