@@ -37,6 +37,7 @@ marginal_plots <- results %>%
                    ) +
                    geom_hline(color = "red", yintercept = log(0.05)) +
                    geom_hline(color = "red", yintercept = log(20)) +
+                   theme_bw() +
                    theme(axis.text.x = element_text(angle = 45, hjust = 1))
     )
   )

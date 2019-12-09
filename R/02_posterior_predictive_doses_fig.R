@@ -17,11 +17,12 @@ readRDS("../output/02_posterior_predictive_doses.rds") %>%
   ) %>%
   ggplot(aes(x = metabolite, y = median_mean_consumption * 80.651)) +
   geom_pointrange(aes(ymin = low_mean_consumption * 80.651, ymax = high_mean_consumption * 80.651)) +
+  theme_bw() +
   ggrepel::geom_label_repel(aes(x = metabolite, y = median_mean_consumption * 80.651, label = prettyNum(round(median_mean_consumption * 80.651, digits = 0), big.mark = ","))) +
   labs(
-    y = "Doses in stadium",
+    y = "Doses in stadium over entire game",
     x = "Compound",
-    title = "Median and interquartile range of estimated distribution of doses for each compound"
+    title = "Median and interquartile range of estimated doses for each compound over\nentire game"
   ) -> p
 
-ggsave(file = "../figs/02_posterior_predictive_doses.png", p)
+ggsave(file = "../figs/02_posterior_predictive_doses.png", p, width = 7, height = 4, units = "in")

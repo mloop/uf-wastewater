@@ -89,9 +89,10 @@ water_analysis %>%
   geom_histogram(bins = 100) +
   geom_vline(aes(xintercept = lloq), linetype = "dashed", color = "red") +
   geom_vline(aes(xintercept = uloq), linetype = "dashed", color = "red") +
+  theme_bw() +
   facet_wrap(~ metabolite, scales = "free") +
   labs(x = "Measured concentration (ng/mL)") -> p
-ggsave(filename = "../figs/01_histogram_top_metabolites.png", p)
+ggsave(filename = "../figs/01_histogram_top_metabolites.png", p, width = 7, height = 5, units = "in")
 
 water %>%
   select(metabolite, time_pretty, location, extraction, machine, value) %>%
