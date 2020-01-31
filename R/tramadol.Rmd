@@ -1,0 +1,73 @@
+---
+title: "tramadol"
+author: "amanda li"
+date: "1/25/2020"
+output: html_document
+---
+
+```{r}
+data<-read.csv(file="tramadol.csv",header = T,sep = ",")
+
+#data<-read.csv(file="amph.csv",header = T,sep = ",")
+
+show(data)
+
+data_loc1<-data[data$location==1,]
+data_loc2<-data[data$location==2,]
+data_loc3<-data[data$location==3,]
+
+prop_loc1<-1-(nrow(data_loc1[is.na(data_loc1$value),])/nrow(data_loc1))
+show(prop_loc1)
+
+prop_loc2<-1-(nrow(data_loc2[is.na(data_loc2$value),])/nrow(data_loc2))
+show(prop_loc2)
+
+prop_loc3<-1-(nrow(data_loc3[is.na(data_loc3$value),])/nrow(data_loc3))
+show(prop_loc3)
+```
+
+```{r}
+
+data_prior=data.frame()
+
+  data_prior<-data[seq(from = 1, to =(nrow(data)-1), by = 2),]
+
+show(data_prior)
+
+
+
+
+data_loc1_prior<-data_prior[data_prior$location==1,]
+data_loc2_prior<-data_prior[data_prior$location==2,]
+data_loc3_prior<-data_prior[data_prior$location==3,]
+
+prop_loc1_prior<-1-(nrow(data_loc1_prior[is.na(data_loc1_prior$value),])/nrow(data_loc1_prior))
+show(prop_loc1_prior)
+
+prop_loc2_prior<-1-(nrow(data_loc2_prior[is.na(data_loc2_prior$value),])/nrow(data_loc2_prior))
+show(prop_loc2_prior)
+
+prop_loc3_prior<-1-(nrow(data_loc3_prior[is.na(data_loc3_prior$value),])/nrow(data_loc3_prior))
+show(prop_loc3_prior)
+
+
+```
+```{r}
+data_post<-data[seq(from = 2, to =(nrow(data)), by = 2),]
+
+show(data_post)
+
+data_loc1_post<-data_post[data_post$location==1,]
+data_loc2_post<-data_post[data_post$location==2,]
+data_loc3_post<-data_post[data_post$location==3,]
+
+prop_loc1_post<-1-(nrow(data_loc1_post[is.na(data_loc1_post$value),])/nrow(data_loc1_post))
+show(prop_loc1_post)
+
+prop_loc2_post<-1-(nrow(data_loc2_post[is.na(data_loc2_post$value),])/nrow(data_loc2_post))
+show(prop_loc2_post)
+
+prop_loc3_post<-1-(nrow(data_loc3_post[is.na(data_loc3_post$value),])/nrow(data_loc3_post))
+show(prop_loc3_post)
+```
+
