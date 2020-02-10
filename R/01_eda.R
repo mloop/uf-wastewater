@@ -52,6 +52,12 @@ water %>%
   distinct(metabolite) %>%
   nrow()
 
+## Drugs with at least 1 observed value
+water %>%
+  filter(total_non_missing > 0) %>%
+  distinct(metabolite) %>%
+  nrow()
+
 ## Drugs observed in less than 50% of samples?
 water %>%
   filter(total_non_missing == 0) %>%
