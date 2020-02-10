@@ -8,6 +8,23 @@ library(cowplot)
 # Options
 set.seed(98589534)
 
+# Dataset
+water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, ~na_if(., "")) %>%
+  mutate(time_pretty = as.character(time_pretty)) %>%
+  group_by(metabolite) %>%
+  mutate(non_missing = if_else(is.na(value) == FALSE, 1, 0),
+         total_non_missing = sum(non_missing)) %>%
+  filter(total_non_missing > 50) %>%
+  mutate(censored_value = if_else(is.na(value) == TRUE, lloq,
+                                  if_else(value < lloq, lloq,
+                                          if_else(value > uloq, uloq, value)
+                                  )
+  ),
+  log_value = log(censored_value),
+  censored = if_else(censored_value == lloq, "left",
+                     if_else(censored_value == uloq, "right", "none"))
+  )
+
 # Read in models
 fit_amphetamine <- readRDS(file = "../output/02_model_metabolites_censored_Amphetamine.rds")
 fit_benzo <- readRDS(file = "../output/02_model_metabolites_censored_Benzoylecgonine.rds")
@@ -35,7 +52,7 @@ flow <- read_tsv("../data/flow_rate.txt") %>%
 stadium_info <- read_tsv("../data/stadium_seating.txt")
 
 # Posterior predictive distribution, accounting for all random effects
-predicted_consumption <- results %>%
+predicted_consumption_locations <- results %>%
   group_by(metabolite) %>%
   mutate(
     posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = ~NULL) %>%
@@ -46,7 +63,7 @@ predicted_consumption <- results %>%
                                    dplyr::select(metabolite, time_pretty, location, machine, extraction, V1:V4000) %>%
                                    gather(iteration, mean_log_conc, -time_pretty, -location, -machine, -extraction, -metabolite) %>%
                                    mutate(
-                                     mean_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass readRDS calculations
+                                     pred_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass load calculations
                                      metabolite = .y
                                    ) %>%
                                    left_join(., metabolite_info, by = "metabolite") %>%
@@ -54,13 +71,22 @@ predicted_consumption <- results %>%
                                    left_join(., stadium_info, by = "location") %>%
                                    mutate(location_weight = 1 / proportion_of_stadium) %>% 
                                    mutate(
-                                     mass_load_over_locations = mean_concentration * liters_previous_30_minutes * (100 / (100 + stability)) * 1e-6,
-                                     mass_load_per_location = mass_load_over_locations / 3,
-                                     consumption_per_1000_over_locations = mass_load_over_locations * 100 * (1 / excretion) * mwpar_mwmet * 1000 / 80651 / typical_dose_mg, # unit is doses per 1000,
-                                     consumption_per_1000_per_location = consumption_per_1000_over_locations / 3,
-                                     consumption_missing = if_else(is.na(consumption_per_1000_over_locations) == TRUE, 1, 0))
-    )
+                                     mass_load = pred_concentration * (liters_previous_30_minutes / location_weight) * (100 / (100 + stability)) * 1e-6,  # water flow is for the whole stadium, so need to split the flow appropriately across locations. That's why (liters / location_weight) is used
+                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / (80651 / location_weight) / typical_dose_mg, # unit is doses per 1000,
+                                     consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0)
+                                     )
+                                   )
   ) %>%
-  unnest(posterior_predictions)
+  unnest(posterior_predictions) %>%
+  ungroup()
 
-saveRDS(predicted_consumption, "../output/02_posterior_predictive_doses.rds")
+predicted_consumption_stadium <- predicted_consumption_locations %>%
+  group_by(metabolite, time_pretty, machine, extraction, iteration) %>%
+  summarise(mass_load_stadium = sum(mass_load),
+            consumption_per_1000_stadium = sum(consumption_per_1000)) %>%
+  mutate(consumption_missing_stadium = if_else(is.na(consumption_per_1000_stadium) == TRUE, 1, 0)) %>%
+  ungroup()
+
+saveRDS(predicted_consumption_locations, "../output/02_posterior_predictive_doses_locations.rds")
+
+saveRDS(predicted_consumption_stadium, "../output/02_posterior_predictive_doses_stadium.rds")
