@@ -1,0 +1,121 @@
+---
+title: "thesis_simulation"
+author: "amanda li"
+date: "2/1/2020"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rms)
+library(tidyverse)
+library(MASS)
+library(truncnorm)
+```
+
+```{r}
+data<-read.csv(file="tramadol.csv",header = T,sep = ",")
+value<-data.frame(value=data$value)
+
+value
+```
+
+
+```{r}
+
+set.seed(123)
+a <- rnorm(10, 0, 2)      
+                                  
+b<-rnorm(3, 0, 2)
+
+time<-vector(length = 30)
+
+location<-vector(length = 30)
+
+for (j in 1:3) {
+  for (i in 1:10) {
+  
+    time[10*(j-1)+i]=a[i]
+    location[10*(j-1)+i]=b[j]
+  }
+}
+
+time_ind<-rep(1:10,times=3)
+location_ind<-rep(1:3,times=10)
+
+time_ind
+location_ind
+
+mu_ij=tibble(time=time,location=location,mu=rep(2.5),time_ind=time_ind,location_ind=location_ind,mu_ij=location+time+mu)
+
+mu_ij
+
+value
+```
+
+```{r}
+
+for (i in 1:30) {
+  number_of_iterations <- 3
+
+
+  simulated_data = tribble(
+  ~iteration,
+  seq(1, number_of_iterations, 1)
+) %>%
+  unnest(iteration) %>%
+  group_by(iteration) %>%
+  nest() %>%
+  mutate(
+    n = 500,  # The sample size can be uncertain, based upon recruiting or dropout. Choosing sample size randomly can be an interesting way to incorporate your uncertainty about the final study results.
+   
+     
+    
+    
+     fake_data = map(n, ~tibble(  
+                                 
+                                 tramadol = rtruncnorm(., a=0, b=Inf, mean = mu_ij$mu_ij[i], sd = 11.5),
+                                
+                                  
+                                  
+                                
+                                   # How does linear predictor depend upon covariate(s)?
+                                  id = seq(1, ., 1)) %>%
+                              group_by(id) %>%  # Need to group by ID in order to simulate a single random variable for each observation
+                              mutate(y = rbinom(1, size = 1, prob = arm::invlogit(tramadol)))
+    )
+  ) %>%dplyr::select(-data)
+
+   name1<-paste("simulated_data_1",sep ="_",i,".csv")
+
+   write.table(simulated_data$fake_data[[1]],file=name1,sep = ",",col.names = T,row.names = F)
+}
+
+
+```
+
+
+```{r}
+
+sample_total<-c()
+
+for (i in 1:30) {
+  name2<-paste("simulated_data_1",sep ="_",i,".csv")
+  
+  
+  table<-read_csv(file = name2)
+  
+  sample_3<-as.vector(base::sample(table$tramadol,3))
+  
+  sample_total[c(3*(i-1)+1,3*(i-1)+2,3*(i-1)+3)]<-sample_3
+  
+}
+
+
+
+sample_total<-data.frame(tramadol_random=sample_total)
+name3<-paste("simulated_data_1_sub",sep ="",".csv")
+
+  
+write.table(sample_total,file=name3,sep = ",",col.names = T,row.names = F)
+```
+
