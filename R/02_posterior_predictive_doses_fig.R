@@ -20,7 +20,7 @@ readRDS("../output/02_posterior_predictive_doses_stadium.rds") %>%
   labs(
     y = "Substance",
     x = "Doses",
-    title = "Median predicted number of dosese over entire game"
+    title = "Median predicted number of doses over entire game"
   ) -> p
 
 ggsave(file = "../figs/02_posterior_predictive_doses.png", p, width = 7, height = 5, units = "in")
