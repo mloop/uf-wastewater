@@ -72,7 +72,7 @@ predicted_consumption_locations <- results %>%
                                    mutate(location_weight = 1 / proportion_of_stadium) %>% 
                                    mutate(
                                      mass_load = pred_concentration * (liters_previous_30_minutes / location_weight) * (100 / (100 + stability)) * 1e-6,  # water flow is for the whole stadium, so need to split the flow appropriately across locations. That's why (liters / location_weight) is used
-                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / (80651 / location_weight) / typical_dose_mg, # unit is doses per 1000,
+                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / (80651 * proportion_of_stadium) / typical_dose_mg, # unit is doses per 1000,
                                      consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0)
                                      )
                                    )

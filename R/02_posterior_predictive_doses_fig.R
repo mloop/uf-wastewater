@@ -14,7 +14,7 @@ readRDS("../output/02_posterior_predictive_doses_stadium.rds") %>%
             low_consumption = quantile(consumption_per_1000_stadium_over_game, probs = 0.25, na.rm = FALSE),
             high_consumption = quantile(consumption_per_1000_stadium_over_game, probs = 0.75, na.rm = FALSE),
   ) %>%
-  ggplot(aes(y = factor(metabolite) %>% fct_reorder(median_consumption), x = median_consumption)) +
+  ggplot(aes(y = factor(metabolite) %>% fct_reorder(median_consumption), x = median_consumption * 80.651)) +
   geom_point() +
   ggpubr::theme_pubr() +
   labs(
