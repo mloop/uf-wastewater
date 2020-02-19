@@ -326,4 +326,17 @@ qqline(y=impute_kNN_40[,9])
 qqnorm(y=impute_kNN_50[,9])
 qqline(y=impute_kNN_50[,9])
 ```
+```{r}
+library(bnstruct)
+
+
+list_tramadol_bn<-list_tramadol_10_combine[c(1:90),c(14,16,18,20,22)]
+
+impute_BN_10 <- impute(BNDataset(as.matrix(list_tramadol_bn),
+discreteness = F,
+variables = c("a", "b", "c", "d","e"),
+))
+
+
+```
 
