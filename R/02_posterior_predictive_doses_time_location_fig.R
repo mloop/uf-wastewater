@@ -6,13 +6,14 @@ predicted_consumption <- readRDS("../output/02_posterior_predictive_doses_locati
   ungroup() %>%
   filter(consumption_missing == 0) %>%
   group_by(metabolite, time_pretty, location) %>%
-  summarise(median_mass_load = quantile(mass_load, probs = 0.5, na.rm = FALSE),
-            low_mass_load = quantile(mass_load, probs = 0.25, na.rm = FALSE),
-            high_mass_load = quantile(mass_load, probs = 0.75, na.rm = FALSE),
+  summarise(median_mass_load = quantile(pred_concentration, probs = 0.5, na.rm = FALSE),
+            low_mass_load = quantile(pred_concentration, probs = 0.25, na.rm = FALSE),
+            high_mass_load = quantile(pred_concentration, probs = 0.75, na.rm = FALSE),
   )
 
-  ggplot(aes(x = time_pretty, y = median_mean_consumption, color = factor(location))) +
-  geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption), position = position_dodge(0.5), size = 0.3) +
+predicted_consumption %>%
+  ggplot(aes(x = time_pretty, y = median_mass_load, color = factor(location))) +
+  geom_pointrange(aes(ymin = low_mass_load, ymax = high_mass_load), position = position_dodge(0.5), size = 0.3) +
   facet_wrap(~ metabolite, scales = "free_y", ncol = 2) +
   theme_bw() +
   theme(
@@ -21,9 +22,9 @@ predicted_consumption <- readRDS("../output/02_posterior_predictive_doses_locati
   ) +
   scale_color_grey(name = "Location") +
   labs(
-    y = "Doses per 1,000",
+    y = "Predicted concentration (ng/mL)",
     x = "Time of collection",
-    title = "Median and interquartile range of estimated doses for each compound that passed through system\nover previous 30 minutes, by location"
+    title = "Median and interquartile range of estimated concentration (ng/mL) for each substance that passed\nthrough system over previous 30 minutes, by location"
   ) -> p
 
 ggsave(file = "../figs/02_posterior_predictive_doses_time_location.png", p, width = 9, height = 5, units = "in")
