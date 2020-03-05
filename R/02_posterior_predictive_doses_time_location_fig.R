@@ -2,14 +2,15 @@ library(tidyverse)
 library(brms)
 library(cowplot)
 
-readRDS("../output/02_posterior_predictive_doses.rds") %>%
+predicted_consumption <- readRDS("../output/02_posterior_predictive_doses_locations.rds") %>%
   ungroup() %>%
-  group_by(metabolite, time_pretty, location) %>%
   filter(consumption_missing == 0) %>%
-  summarise(median_mean_consumption = quantile(consumption_per_1000_per_location, probs = 0.5, na.rm = FALSE),
-            low_mean_consumption = quantile(consumption_per_1000_per_location, probs = 0.25, na.rm = FALSE),
-            high_mean_consumption = quantile(consumption_per_1000_per_location, probs = 0.75, na.rm = FALSE),
-  ) %>%  
+  group_by(metabolite, time_pretty, location) %>%
+  summarise(median_mass_load = quantile(mass_load, probs = 0.5, na.rm = FALSE),
+            low_mass_load = quantile(mass_load, probs = 0.25, na.rm = FALSE),
+            high_mass_load = quantile(mass_load, probs = 0.75, na.rm = FALSE),
+  )
+
   ggplot(aes(x = time_pretty, y = median_mean_consumption, color = factor(location))) +
   geom_pointrange(aes(ymin = low_mean_consumption, ymax = high_mean_consumption), position = position_dodge(0.5), size = 0.3) +
   facet_wrap(~ metabolite, scales = "free_y", ncol = 2) +
