@@ -34,10 +34,10 @@ Therefore, we will detail below how to generate the data. The steps are:
 2. Generate 3 random effects from $N(0, \sigma^2 = 2)$, as a proxy for "location of collection". These random effects will be kept constant throughout all iterations of the simulation.
 3. Generate $n=60$ observations for each of the 30 groups (10 times and 3 locations) from a truncated normal distribution: $y_{ijk} \sim \textrm{truncN}(\mu = 2.5 + u_i + v_j, \sigma = 3.5, a = 0, b = \inf)$
     * The generated distribution will *not* have a mean of $2.5 + u_i + v_j$, but a more complicated formula for the mean based on the [truncated normal distribution](https://en.wikipedia.org/wiki/Truncated_normal_distribution). 
-    * So I guess the intercept will *not* be 2.5. But will it be the mean of a truncated normal which was *generated* from a mean 2.5 with $a = 0$, on average? Do we still not need to think about the random effects? If not, then the mean would be `etruncnorm(mean = 2.5, sd = 3.5 + 1 + 1, a = 0, b = Inf)` = `r round(etruncnorm(mean = 2.5, sd = 3.5 + 1 + 1, a = 0, b = Inf), digits = 2)`.
+    * So I guess the intercept will *not* be 2.5. But will it be the mean of a truncated normal which was *generated* from a mean 2.5 with $a = 0$, on average? Do we still not need to think about the random effects? If not, then the mean would be `etruncnorm(mean = 2.5, sd = sqrt(3.5^2 + 2 + 2), a = 0, b = Inf)` = `r round(etruncnorm(mean = 2.5, sd = sqrt(3.5^2 + 2 + 2), a = 0, b = Inf), digits = 2)`.
         * A previous version of this calculation used 11.5 as the standard deviation. In those cases, I got a mean of around 12 or 13, which is what Amanda was getting in her simulations for the intercept. That makes complete sense. The data we are generating *doesn't* have a mean of 2.5, since it's generating a truncated normal.
 4. For the given proportion of missing that you want to achieve (e.g., proportion of 0.1 missing), calculate the quantile of the *marginal* generated truncated normal distribution that corresponds to that proportion
-    * `qtruncnorm(mean = 2.5, sd = 3.5 + 1 + 1, a = 0, b = Inf, p = 0.1)` = `r round(qtruncnorm(mean = 2.5, sd = 3.5 + 1 + 1, a = 0, b = Inf, p = 0.1), digits = 2)`
+    * `qtruncnorm(mean = 2.5, sd = sqrt(3.5^2 + 2 + 2), a = 0, b = Inf, p = 0.1)` = `r round(qtruncnorm(mean = 2.5, sd = sqrt(3.5^2 + 2 + 2), a = 0, b = Inf, p = 0.1), digits = 2)`
 5. If a value of $y_{ijk}$ is less than this value, then set it to missing
 6. Repeat steps 3 - 5 1,000 times for the given simulation condition.
 
@@ -84,4 +84,4 @@ sim_data %>%
 * So, we expected the mean to be `r round(etruncnorm(mean = 2.5, sd = 3.5 + 1 + 1, a = 0, b = Inf), digits = 2)`, but the mean looks to be about 4.15. What are we missing?
 * What's the sample estimate of the mean of the random effects for one of these datasets?
     * `r sim_data$data[[1]] %>% ungroup() %>%  summarise(mean_u = mean(u), mean_v = mean(v))`
-    * So what's the expected value for that? `r round(etruncnorm(mean = 2.5 - 1.73 -0.749, sd = 3.5 + 1 + 1, a = 0, b = Inf), digits = 2)` A bit closer.
+    * So what's the expected value for that? `r round(etruncnorm(mean = 2.5 - 1.73 -0.749, sd = sqrt(3.5^2 + 2 + 2), a = 0, b = Inf), digits = 2)` A bit closer.
