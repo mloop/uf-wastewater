@@ -59,6 +59,8 @@ sim_data = expand.grid(
   rename(random_effects = data) %>%
   mutate(
     data = map2(prop_missing, random_effects, ~tibble(u = rep(.y$u, 60), v = rep(.y$v, 60), id = seq(1, 1800, 1)) %>%
+                  mutate(time = rep(seq(1, 10, 1), times = 180) %>% as.character(),
+                         location = rep(seq(1, 3, 1), each = 10, times = 60) %>% as.character()) %>%
                   group_by(u, v) %>%
                   mutate(
                     y = rtruncnorm(n = 1, a = 0, b = Inf, mean = 2.5 + u + v, sd = 3.5)
@@ -81,7 +83,24 @@ sim_data %>%
   facet_wrap(~prop_missing)
 ```
 
-* So, we expected the mean to be `r round(etruncnorm(mean = 2.5, sd = 3.5 + 1 + 1, a = 0, b = Inf), digits = 2)`, but the mean looks to be about 4.15. What are we missing?
-* What's the sample estimate of the mean of the random effects for one of these datasets?
-    * `r sim_data$data[[1]] %>% ungroup() %>%  summarise(mean_u = mean(u), mean_v = mean(v))`
-    * So what's the expected value for that? `r round(etruncnorm(mean = 2.5 - 1.73 -0.749, sd = sqrt(3.5^2 + 2 + 2), a = 0, b = Inf), digits = 2)` A bit closer.
+* So, we expected the mean to be `r round(etruncnorm(mean = 2.5, sd = sqrt(3.5 ^ 2 + 1 + 1), a = 0, b = Inf), digits = 2)`, and it looks right around there.
+
+```{r}
+sim_data %>%
+  unnest(data) %>%
+  ungroup() %>%
+  group_by(prop_missing, iteration) %>%
+  summarise(mean_y = mean(y),
+            sd_y = sd(y)
+  ) %>%
+  ungroup() %>%
+  group_by(prop_missing) %>%
+  summarise(
+    overall_mean = mean(mean_y)
+  )
+```
+
+```{r}
+write_rds(sim_data, path = "../output/05_simulated_data.rds")
+```
+
