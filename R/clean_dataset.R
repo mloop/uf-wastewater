@@ -61,18 +61,43 @@ stacked %>%
    write_tsv(path = "../data/water_cleaned.txt")
 
 ## Now do flow rate
+water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
+  mutate(time_pretty = as.character(time_pretty),
+         extraction = factor(extraction) %>% fct_recode("A" = "zach", "B" = "austin"))
 
-flow <- read_excel("../data/20190508_UFWW_Results_Comparison.xlsx",
-                   sheet = "analysis_data") %>%
-  select(time, FlowRate) %>%
+flow <- read_excel("../data/Copy of WRF_Inf-flows.xls", sheet = "20180908WRF_Inf", skip = 2) %>%
+  rename(millions_gallons_per_day = `09/08/18 MGD`) %>%
+  select(Date, millions_gallons_per_day) %>%
   mutate(
-    time = factor(time)
+    Date = factor(Date)
   ) %>%
-  separate(time, into = c("date", "time_pretty"), sep = " ") %>%
-  select(-date) %>%
-  group_by(time_pretty) %>%
-  slice(1) %>%
-  rename(flow_rate = FlowRate)
+  separate(Date, into = c("date", "time_pretty"), sep = " ") %>%
+  mutate(
+    gallons_per_minute = millions_gallons_per_day / 24 / 60 * 1e6,
+    time = lubridate::hms(time_pretty) %>% as.numeric(),
+    time_interval_minutes = seq(0, 5 * (n() - 1), by = 5),
+  ) %>%
+  filter(time_interval_minutes <= 330) %>%
+  mutate(ahead = lead(gallons_per_minute),
+         area = if_else(gallons_per_minute < ahead, 5 * gallons_per_minute + 0.5 * 5 * (ahead - gallons_per_minute),
+                        5 * ahead + 0.5 * 5 * (gallons_per_minute - ahead))) %>%
+  mutate(
+    group = c(rep(1:11, each = 6), 12)
+  ) %>%
+  group_by(group) %>%
+  mutate(gallons_previous_30_minutes = sum(area)) %>%
+  ungroup() %>%
+  mutate(prev = lag(gallons_previous_30_minutes)) %>%
+  select(time_pretty, prev) %>%
+  mutate(time_pretty = str_replace(time_pretty, "18", "06"),
+         time_pretty = str_replace(time_pretty, "19", "07"),
+         time_pretty = str_replace(time_pretty, "^20", "08"),
+         time_pretty = str_replace(time_pretty, "21", "09"),
+         time_pretty = str_replace(time_pretty, "22", "10"),
+         time_pretty = str_replace(time_pretty, "23", "11")) %>%
+  right_join(., water %>% ungroup() %>% distinct(time_pretty), by = "time_pretty") %>%
+  rename(gallons_previous_30_minutes = prev)
 
 flow %>%
   write_tsv("../data/flow_rate.txt")
+

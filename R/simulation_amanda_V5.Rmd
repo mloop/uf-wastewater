@@ -1,0 +1,785 @@
+
+---
+title: "simulation_new"
+author: "amanda li"
+date: "2/4/2020"
+output: html_document
+---
+# !diagnostics off
+```{r setup, include=FALSE}
+
+
+#library(rms)
+library(tidyverse)
+library(MASS)
+library(truncnorm)
+library(data.table)
+library(tidyverse)
+library(tidystats)
+library(VIM)
+library(randomForestSRC)
+
+
+```
+
+```{r}
+getwd("")
+data<-read.csv(file="tramadol.csv",header = T,sep = ",")
+value<-data.frame(value=data$value)
+
+value
+```
+
+
+```{r}
+set.seed(123)
+a <- rnorm(10, 0, 2)      
+                                  
+b<-rnorm(3, 0, 2)
+
+time<-vector(length = 30)
+
+location<-vector(length = 30)
+
+for (j in 1:3) {
+  for (i in 1:10) {
+  
+    time[10*(j-1)+i]=a[i]
+    location[10*(j-1)+i]=b[j]
+  }
+}
+
+time_ind<-rep(1:10,3)
+location_ind<-c(rep(1,10),rep(2,10),rep(3,10))
+
+
+
+mu_ij=tibble(time=time,location=location,mu=rep(2.5),time_ind=time_ind,location_ind=location_ind,mu_ij=location+time+mu)
+
+
+```
+
+
+```{r}
+simulation_store<-list()
+
+simulation_big_store<-list()
+
+  
+for (j in c(0.1,0.2,0.3,0.4,0.5)){
+
+for (i in 1:30) {
+  set.seed(123)
+  
+  number_of_iterations <- 1000
+
+
+  simulated_data = tribble(
+  ~iteration,
+  seq(1, number_of_iterations, 1)
+) %>%
+  unnest(iteration) %>%
+  group_by(iteration) %>%
+  nest() %>%
+  mutate(
+    n = 3,  
+   
+     
+    
+    
+     fake_data = map(n, ~tibble(  
+                                 
+                                 tramadol = rtruncnorm(., a=0, b=Inf, mean = mu_ij$mu_ij[i], sd = 11.5),
+                                
+                                  
+                                quantile<-rep(qtruncnorm(j,a=0,b=Inf,mean = 2.5,sd=11.5),.),
+                                
+                                  
+                              id = seq(1, ., 1)) %>%
+                              group_by(id) %>% 
+                              mutate(y = rbinom(1, size = 1, prob = arm::invlogit(tramadol)))
+    )
+  ) %>%dplyr::select(-data)
+
+  
+  
+  
+  simulation_store[[(i)]]<-simulated_data[[3]]
+  
+  
+  
+}
+
+
+
+list_tramadol<-data.frame(matrix(NA,nrow = 90,ncol = 2000))
+
+list_name=c()
+for (i in 1:number_of_iterations) {
+  name<-paste("group",sep ="_",i)
+  name2<-paste("quntile",sep ="_",i)
+  list_name[2*i-1]<-name
+  list_name[2*i]<-name2
+  names(list_tramadol)<-list_name
+}
+  
+b<-vector(mode = "list",30)
+
+
+for (h in 1:number_of_iterations) {
+  
+
+ for (i in 1:30) {
+  
+    
+   b[[i]]<-simulation_store[[i]][[h]]
+   
+
+    
+ }
+  
+  
+   list_tramadol[,c((2*h-1),2*h)]<-rbindlist(b)[,c(1,2)]
+
+}
+
+id<-matrix(NA,nrow = 3,ncol=30 )
+for (i in 1:30) {
+  
+  id[1:3,i]<-rep(i,3)
+}
+
+time_index<-rep(c(rep(1,3),rep(2,3),rep(3,3),rep(4,3),rep(5,3),rep(6,3),rep(7,3),rep(8,3),rep(9,3),rep(10,3)),3)
+location_index<-c(rep(1,30),rep(2,30),rep(3,30))
+
+
+
+u_ij<-as.vector(id)
+ list_tramadol<-cbind(u_ij,time_index,location_index,list_tramadol)
+ 
+
+
+
+simulation_big_store[[j*10]]<-list_tramadol
+
+}
+
+```
+
+```{r}
+
+list_tramadol_10_quantile<-as.data.frame(simulation_big_store[[1]])
+list_tramadol_20_quantile<-as.data.frame(simulation_big_store[[2]])
+list_tramadol_30_quantile<-as.data.frame(simulation_big_store[[3]])
+list_tramadol_40_quantile<-as.data.frame(simulation_big_store[[4]])
+list_tramadol_50_quantile<-as.data.frame(simulation_big_store[[5]])
+
+
+list_tramadol_10<-as.data.frame(simulation_big_store[[1]])
+list_tramadol_20<-as.data.frame(simulation_big_store[[1]])
+list_tramadol_30<-as.data.frame(simulation_big_store[[1]])
+list_tramadol_40<-as.data.frame(simulation_big_store[[1]])
+list_tramadol_50<-as.data.frame(simulation_big_store[[1]])
+
+
+
+write_csv(list_tramadol_10_quantile, "simulation_10.csv")
+write_csv(list_tramadol_20_quantile, "simulation_20.csv")
+write_csv(list_tramadol_30_quantile, "simulation_30.csv")
+write_csv(list_tramadol_40_quantile, "simulation_40.csv")
+write_csv(list_tramadol_50_quantile, "simulation_50.csv")
+```
+
+```{r}
+for (row in 1:90){
+for (col in 2:1001){
+  
+  if (list_tramadol_10[row,2*col]<list_tramadol_10_quantile[row,2*col+1]){
+    list_tramadol_10[row,2*col]<-NA
+  }
+  
+  if (list_tramadol_20[row,2*col]<list_tramadol_20_quantile[row,2*col+1]){
+    list_tramadol_20[row,2*col]<-NA
+  }
+  
+  if (list_tramadol_30[row,2*col]<list_tramadol_30_quantile[row,2*col+1]){
+    list_tramadol_30[row,2*col]<-NA
+  }
+  
+  if (list_tramadol_40[row,2*col]<list_tramadol_40_quantile[row,2*col+1]){
+    list_tramadol_40[row,2*col]<-NA
+  }
+  
+  if (list_tramadol_50[row,2*col]<list_tramadol_50_quantile[row,2*col+1]){
+    list_tramadol_50[row,2*col]<-NA
+  }
+}
+}  
+  
+
+
+
+
+
+
+
+```
+
+
+
+
+```{r}
+
+
+
+
+matrixplot(list_tramadol_10, cex.axis = 0.5, interactive = F)
+
+matrixplot(list_tramadol_20, cex.axis = 0.5, interactive = F)
+
+matrixplot(list_tramadol_30, cex.axis = 0.5, interactive = F)
+
+matrixplot(list_tramadol_40, cex.axis = 0.5, interactive = F)
+
+matrixplot(list_tramadol_50, cex.axis = 0.5, interactive = F)
+```
+
+
+```{r}
+
+impute_forest_10_timeindex<-rep(as.vector(list_tramadol_10[,2]),1000)
+
+impute_forest_10_locationindex<-rep(as.vector(list_tramadol_10[,3]),1000)
+
+impute_forest_10_data<-as.vector(as.matrix(list_tramadol_10[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_forest_10_pre<-as.data.frame(cbind(impute_forest_10_timeindex,impute_forest_10_locationindex,impute_forest_10_data))
+
+
+names(impute_forest_10_pre)<-c("time","location","data")
+```
+
+```{r}
+impute_forest_20_timeindex<-rep(as.vector(list_tramadol_20[,2]),1000)
+
+impute_forest_20_locationindex<-rep(as.vector(list_tramadol_20[,3]),1000)
+
+impute_forest_20_data<-as.vector(as.matrix(list_tramadol_20[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_forest_20_pre<-as.data.frame(cbind(impute_forest_20_timeindex,impute_forest_20_locationindex,impute_forest_20_data))
+
+
+names(impute_forest_20_pre)<-c("time","location","data")
+```
+
+
+
+```{r}
+impute_forest_30_timeindex<-rep(as.vector(list_tramadol_30[,2]),1000)
+
+impute_forest_30_locationindex<-rep(as.vector(list_tramadol_30[,3]),1000)
+
+impute_forest_30_data<-as.vector(as.matrix(list_tramadol_30[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_forest_30_pre<-as.data.frame(cbind(impute_forest_30_timeindex,impute_forest_30_locationindex,impute_forest_30_data))
+
+
+names(impute_forest_30_pre)<-c("time","location","data")
+```
+
+
+```{r}
+impute_forest_40_timeindex<-rep(as.vector(list_tramadol_40[,2]),1000)
+
+impute_forest_40_locationindex<-rep(as.vector(list_tramadol_40[,3]),1000)
+
+impute_forest_40_data<-as.vector(as.matrix(list_tramadol_40[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_forest_40_pre<-as.data.frame(cbind(impute_forest_40_timeindex,impute_forest_40_locationindex,impute_forest_40_data))
+
+
+names(impute_forest_40_pre)<-c("time","location","data")
+```
+
+
+
+
+```{r}
+impute_forest_50_timeindex<-rep(as.vector(list_tramadol_50[,2]),1000)
+
+impute_forest_50_locationindex<-rep(as.vector(list_tramadol_50[,3]),1000)
+
+impute_forest_50_data<-as.vector(as.matrix(list_tramadol_50[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_forest_50_pre<-as.data.frame(cbind(impute_forest_50_timeindex,impute_forest_50_locationindex,impute_forest_50_data))
+
+
+names(impute_forest_50_pre)<-c("time","location","data")
+```
+
+
+```{r}
+impute_forest_10_post<-impute.rfsrc(formula = data~time+location,data = impute_forest_10_pre,fast = TRUE,ntree = 100)
+
+#countNA(impute_forest_10_post[,3])
+
+```
+
+```{r}
+impute_forest_10_frame<-as.data.frame(cbind(matrix(impute_forest_10_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_forest_10_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_forest_10_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_forest_10_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+
+
+
+```
+
+
+
+
+```{r}
+impute_forest_20_post<-impute.rfsrc(formula = data~time+location,data = impute_forest_20_pre,fast = TRUE,ntree = 100)
+```
+
+```{r}
+impute_forest_20_frame<-as.data.frame(cbind(matrix(impute_forest_20_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_forest_20_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_forest_20_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_forest_20_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+
+
+
+```
+
+```{r}
+impute_forest_30_post<-impute.rfsrc(formula = data~time+location,data = impute_forest_30_pre,fast = TRUE,ntree = 100)
+
+
+```
+
+```{r}
+impute_forest_30_frame<-as.data.frame(cbind(matrix(impute_forest_30_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_forest_30_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_forest_30_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_forest_30_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+
+
+
+```
+
+
+
+
+```{r}
+impute_forest_40_post<-impute.rfsrc(formula = data~time+location,data = impute_forest_40_pre,fast = TRUE,ntree = 100)
+
+
+```
+
+
+
+```{r}
+impute_forest_40_frame<-as.data.frame(cbind(matrix(impute_forest_40_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_forest_40_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_forest_40_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_forest_40_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+
+
+
+```
+
+
+
+```{r}
+impute_forest_50_post<-impute.rfsrc(formula = data~time+location,data = impute_forest_50_pre,fast = TRUE,ntree = 100)
+
+
+```
+
+
+```{r}
+impute_forest_50_frame<-as.data.frame(cbind(matrix(impute_forest_50_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_forest_50_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_forest_50_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_forest_50_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+```
+
+
+
+```{r}
+
+write_csv(impute_forest_10_post, "impute_forest_10_post.csv")
+write_csv(impute_forest_20_post, "impute_forest_20_post.csv")
+write_csv(impute_forest_30_post, "impute_forest_30_post.csv")
+write_csv(impute_forest_40_post, "impute_forest_40_post.csv")
+write_csv(impute_forest_50_post, "impute_forest_50_post.csv")
+```
+
+
+```{r}
+
+hist(impute_forest_10_pre[,3])
+hist(impute_forest_20_pre[,3])
+hist(impute_forest_30_pre[,3])
+hist(impute_forest_40_pre[,3])
+hist(impute_forest_50_pre[,3])
+
+
+```
+```{r}
+hist(impute_forest_10_post[,3])
+hist(impute_forest_20_post[,3])
+hist(impute_forest_30_post[,3])
+hist(impute_forest_40_post[,3])
+hist(impute_forest_50_post[,3])
+
+```
+
+
+
+```{r}
+
+impute_kNN_10_timeindex<-rep(as.vector(list_tramadol_10[,2]),1000)
+
+impute_kNN_10_locationindex<-rep(as.vector(list_tramadol_10[,3]),1000)
+
+impute_kNN_10_data<-as.vector(as.matrix(list_tramadol_10[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_kNN_10_pre<-as.data.frame(cbind(impute_kNN_10_timeindex,impute_kNN_10_locationindex,impute_kNN_10_data))
+
+
+names(impute_kNN_10_pre)<-c("time","location","data")
+```
+
+```{r}
+
+impute_kNN_20_timeindex<-rep(as.vector(list_tramadol_20[,2]),1000)
+
+impute_kNN_20_locationindex<-rep(as.vector(list_tramadol_20[,3]),1000)
+
+impute_kNN_20_data<-as.vector(as.matrix(list_tramadol_20[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_kNN_20_pre<-as.data.frame(cbind(impute_forest_20_timeindex,impute_forest_20_locationindex,impute_forest_20_data))
+
+
+names(impute_kNN_20_pre)<-c("time","location","data")
+```
+
+
+
+```{r}
+impute_kNN_30_timeindex<-rep(as.vector(list_tramadol_30[,2]),1000)
+
+impute_kNN_30_locationindex<-rep(as.vector(list_tramadol_30[,3]),1000)
+
+impute_kNN_30_data<-as.vector(as.matrix(list_tramadol_30[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_kNN_30_pre<-as.data.frame(cbind(impute_kNN_30_timeindex,impute_kNN_30_locationindex,impute_kNN_30_data))
+
+
+names(impute_kNN_30_pre)<-c("time","location","data")
+```
+
+
+```{r}
+impute_kNN_40_timeindex<-rep(as.vector(list_tramadol_40[,2]),1000)
+
+
+impute_kNN_40_locationindex<-rep(as.vector(list_tramadol_40[,3]),1000)
+
+impute_kNN_40_data<-as.vector(as.matrix(list_tramadol_40[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_kNN_40_pre<-as.data.frame(cbind(impute_kNN_40_timeindex,impute_kNN_40_locationindex,impute_kNN_40_data))
+
+
+names(impute_kNN_40_pre)<-c("time","location","data")
+```
+
+
+
+
+```{r}
+impute_kNN_50_timeindex<-rep(as.vector(list_tramadol_50[,2]),1000)
+
+impute_kNN_50_locationindex<-rep(as.vector(list_tramadol_50[,3]),1000)
+
+impute_kNN_50_data<-as.vector(as.matrix(list_tramadol_50[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+impute_kNN_50_pre<-as.data.frame(cbind(impute_kNN_50_timeindex,impute_kNN_50_locationindex,impute_kNN_50_data))
+
+
+names(impute_kNN_50_pre)<-c("time","location","data")
+```
+
+
+
+
+
+
+```{r}
+impute_kNN_10_post<-kNN(impute_kNN_10_pre,dist_var =c("time","location"),variable ="data",weights = "auto" ,imp_var = F)
+
+```
+
+
+
+
+```{r}
+impute_kNN_10_frame<-as.data.frame(cbind(matrix(impute_kNN_10_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_10_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_10_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_kNN_10_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+
+```
+
+
+
+
+```{r}
+impute_kNN_20_post<-rbind(kNN(impute_kNN_20_pre[1:45000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_20_pre[45001:90000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F))
+```
+
+
+```{r}
+impute_kNN_20_frame<-as.data.frame(cbind(matrix(impute_kNN_20_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_20_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_20_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_kNN_20_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+
+```
+
+
+
+
+```{r}
+impute_kNN_30_post<-rbind(kNN(impute_kNN_30_pre[1:30000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_30_pre[30001:60000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_30_pre[60001:90000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F))
+```
+
+
+```{r}
+
+
+impute_kNN_30_frame<-as.data.frame(cbind(matrix(impute_kNN_30_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_30_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_30_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_kNN_30_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+
+```
+
+
+
+```{r}
+impute_kNN_40_post<-rbind(kNN(impute_kNN_40_pre[1:30000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_40_pre[30001:60000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_40_pre[60001:90000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F))
+```
+
+```{r}
+impute_kNN_40_frame<-as.data.frame(cbind(matrix(impute_kNN_40_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_30_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_40_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_kNN_40_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+```
+
+
+
+
+```{r}
+impute_kNN_50_post<-rbind(kNN(impute_kNN_50_pre[1:25000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_50_pre[25001:50000,],dist_var  =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_50_pre[50001:75000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F),kNN(impute_kNN_50_pre[75001:90000,],dist_var =c("time","location"),variable="data",weights = "auto" ,imp_var = F))
+```
+
+
+
+
+```{r}
+impute_kNN_50_frame<-as.data.frame(cbind(matrix(impute_kNN_50_post[1:90,1],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_50_post[1:90,2],nrow=90,ncol=1,byrow=F),matrix(impute_kNN_50_post[,3],nrow=90,ncol=1000,byrow=F),matrix(impute_kNN_50_post[1:90,2],nrow=90,ncol=1,byrow=F)))
+
+```
+
+
+```{r}
+
+write_csv(impute_kNN_10_post, "impute_kNN_10_post.csv")
+write_csv(impute_kNN_20_post, "impute_kNN_20_post.csv")
+write_csv(impute_kNN_30_post, "impute_kNN_30_post.csv")
+write_csv(impute_kNN_40_post, "impute_kNN_40_post.csv")
+write_csv(impute_kNN_50_post, "impute_kNN_50_post.csv")
+```
+
+```{r}
+
+hist(impute_kNN_10_pre[,3])
+hist(impute_kNN_20_pre[,3])
+hist(impute_kNN_30_pre[,3])
+hist(impute_kNN_40_pre[,3])
+hist(impute_kNN_50_pre[,3])
+
+
+```
+```{r}
+hist(impute_kNN_10_post[,3])
+hist(impute_kNN_20_post[,3])
+hist(impute_kNN_30_post[,3])
+hist(impute_kNN_40_post[,3])
+hist(impute_kNN_50_post[,3])
+
+```
+
+```{r}
+list_tramadol_control<-as.data.frame(simulation_big_store[[1]])
+
+control_timeindex<-rep(as.vector(list_tramadol_control[,2]),1000)
+
+control_locationindex<-rep(as.vector(list_tramadol_control[,3]),1000)
+
+control_data<-as.vector(as.matrix(list_tramadol_control[,seq(4,2002,2)],ncol=1,nrow=9000))
+
+
+control<-as.data.frame(cbind(control_timeindex,control_locationindex,control_data))
+
+
+names(control)<-c("time","location","data")
+hist(control[,3])
+write.csv(control,"control.csv")
+```
+
+```{r}
+control<-read.csv(file="control.csv",header = T,sep = ",")
+```
+
+
+```{r}
+impute_forest_10_post<-read.csv(file="impute_forest_10_post.csv",header = T,sep = ",")
+impute_forest_20_post<-read.csv(file="impute_forest_20_post.csv",header = T,sep = ",")
+impute_forest_30_post<-read.csv(file="impute_forest_30_post.csv",header = T,sep = ",")
+impute_forest_40_post<-read.csv(file="impute_forest_40_post.csv",header = T,sep = ",")
+impute_forest_50_post<-read.csv(file="impute_forest_50_post.csv",header = T,sep = ",")
+```
+
+```{r}
+impute_kNN_10_post<-read.csv(file="impute_kNN_10_post.csv",header = T,sep = ",")
+impute_kNN_20_post<-read.csv(file="impute_kNN_20_post.csv",header = T,sep = ",")
+impute_kNN_30_post<-read.csv(file="impute_kNN_30_post.csv",header = T,sep = ",")
+impute_kNN_40_post<-read.csv(file="impute_kNN_40_post.csv",header = T,sep = ",")
+impute_kNN_50_post<-read.csv(file="impute_kNN_50_post.csv",header = T,sep = ",")
+```
+
+
+```{r}
+#bias
+
+bias_forest_10<-mean(control[,3]-impute_forest_10_post[,3])
+
+
+bias_forest_20<-mean(control[,3]-impute_forest_20_post[,3])
+
+bias_forest_30<-mean(control[,3]-impute_forest_30_post[,3])
+
+bias_forest_40<-mean(control[,3]-impute_forest_40_post[,3])
+
+bias_forest_50<-mean(control[,3]-impute_forest_50_post[,3])
+
+
+
+bias_knn_10<-mean(control[,3]-impute_kNN_10_post[,3])
+
+
+bias_knn_20<-mean(control[,3]-impute_kNN_20_post[,3])
+
+bias_knn_30<-mean(control[,3]-impute_kNN_30_post[,3])
+
+bias_knn_40<-mean(control[,3]-impute_kNN_40_post[,3])
+
+bias_knn_50<-mean(control[,3]-impute_kNN_50_post[,3])
+```
+
+
+```{r}
+#accuracy
+
+accuracy_forest_10<-sqrt(sum((control[,3]-impute_forest_10_post[,3])**2)/90000)
+
+
+accuracy_forest_20<-sqrt(sum((control[,3]-impute_forest_20_post[,3])**2)/90000)
+
+
+accuracy_forest_30<-sqrt(sum((control[,3]-impute_forest_30_post[,3])**2)/90000)
+
+accuracy_forest_40<-sqrt(sum((control[,3]-impute_forest_40_post[,3])**2)/90000)
+
+accuracy_forest_50<-sqrt(sum((control[,3]-impute_forest_50_post[,3])**2)/90000)
+
+
+
+accuracy_knn_10<-sqrt(sum((control[,3]-impute_kNN_10_post[,3])**2)/90000)
+
+
+accuracy_knn_20<-sqrt(sum((control[,3]-impute_kNN_20_post[,3])**2)/90000)
+
+accuracy_knn_30<-sqrt(sum((control[,3]-impute_kNN_30_post[,3])**2)/90000)
+
+accuracy_knn_40<-sqrt(sum((control[,3]-impute_kNN_40_post[,3])**2)/90000)
+
+accuracy_knn_50<-sqrt(sum((control[,3]-impute_kNN_50_post[,3])**2)/90000)
+
+
+```
+
+```{r}
+CI_control<-c(mean(control[,4])-1.96*sd(control[,4]),mean(control[,4])+1.96*sd(control[,4]))
+```
+
+
+```{r}
+CI_forest_10<-c(mean(impute_forest_10_post[,3])-1.96*sd(impute_forest_10_post[,3]),mean(impute_forest_10_post[,3])+1.96*sd(impute_forest_10_post[,3]))
+
+CI_forest_20<-c(mean(impute_forest_20_post[,3])-1.96*sd(impute_forest_20_post[,3]),mean(impute_forest_20_post[,3])+1.96*sd(impute_forest_20_post[,3]))
+
+CI_forest_30<-c(mean(impute_forest_30_post[,3])-1.96*sd(impute_forest_30_post[,3]),mean(impute_forest_30_post[,3])+1.96*sd(impute_forest_30_post[,3]))
+
+CI_forest_40<-c(mean(impute_forest_40_post[,3])-1.96*sd(impute_forest_40_post[,3]),mean(impute_forest_40_post[,3])+1.96*sd(impute_forest_40_post[,3]))
+
+CI_forest_50<-c(mean(impute_forest_50_post[,3])-1.96*sd(impute_forest_50_post[,3]),mean(impute_forest_50_post[,3])+1.96*sd(impute_forest_50_post[,3]))
+```
+
+
+```{r}
+CI_knn_10<-c(mean(impute_kNN_10_post[,3])-1.96*sd(impute_kNN_10_post[,3]),mean(impute_kNN_10_post[,3])+1.96*sd(impute_kNN_10_post[,3]))
+
+CI_knn_20<-c(mean(impute_kNN_20_post[,3])-1.96*sd(impute_kNN_20_post[,3]),mean(impute_kNN_20_post[,3])+1.96*sd(impute_kNN_20_post[,3]))
+
+CI_knn_30<-c(mean(impute_kNN_30_post[,3])-1.96*sd(impute_kNN_30_post[,3]),mean(impute_kNN_30_post[,3])+1.96*sd(impute_kNN_30_post[,3]))
+
+CI_knn_40<-c(mean(impute_kNN_40_post[,3])-1.96*sd(impute_kNN_40_post[,3]),mean(impute_kNN_40_post[,3])+1.96*sd(impute_kNN_40_post[,3]))
+
+CI_knn_50<-c(mean(impute_kNN_50_post[,3])-1.96*sd(impute_kNN_50_post[,3]),mean(impute_kNN_50_post[,3])+1.96*sd(impute_kNN_50_post[,3]))
+```
+```{r}
+
+cover_control<-length(control[,4][control[,4]>=CI_control[1] & control[,4]<=CI_control[2]])/length(control[,4])
+```
+
+```{r}
+coverge_forest_10<-length(control[,4][control[,4]>=CI_forest_10[1] & control[,4]<=CI_forest_10[2]])/length(control[,4])
+
+
+coverge_forest_20<-length(control[,4][control[,4]>=CI_forest_20[1] & control[,4]<=CI_forest_20[2]])/length(control[,4])
+
+coverge_forest_30<-length(control[,4][control[,4]>=CI_forest_30[1] & control[,4]<=CI_forest_10[2]])/length(control[,4])
+
+coverge_forest_40<-length(control[,4][control[,4]>=CI_forest_40[1] & control[,4]<=CI_forest_40[2]])/length(control[,4])
+
+coverge_forest_50<-length(control[,4][control[,4]>=CI_forest_50[1] & control[,4]<=CI_forest_50[2]])/length(control[,4])
+```
+
+
+
+```{r}
+coverge_kNN_10<-length(control[,4][control[,4]>=CI_knn_10[1] & control[,4]<=CI_knn_10[2]])/length(control[,4])
+
+
+coverge_kNN_20<-length(control[,4][control[,4]>=CI_knn_20[1] & control[,4]<=CI_knn_20[2]])/length(control[,4])
+
+coverge_kNN_30<-length(control[,4][control[,4]>=CI_knn_30[1] & control[,4]<=CI_knn_30[2]])/length(control[,4])
+
+coverge_kNN_40<-length(control[,4][control[,4]>=CI_knn_40[1] & control[,4]<=CI_knn_40[2]])/length(control[,4])
+
+coverge_kNN_50<-length(control[,4][control[,4]>=CI_knn_50[1] & control[,4]<=CI_knn_50[2]])/length(control[,4])
+```
+
+
+
+
+
+

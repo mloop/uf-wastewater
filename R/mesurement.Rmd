@@ -1,0 +1,523 @@
+---
+title: "measurement"
+author: "amanda li"
+date: "2/21/2020"
+output: html_document
+---
+
+```{r}
+control<-read.csv(file="control.csv",header = T,sep = ",")
+```
+
+
+```{r}
+impute_forest_10_post<-read.csv(file="impute_forest_10_post.csv",header = T,sep = ",")
+impute_forest_20_post<-read.csv(file="impute_forest_20_post.csv",header = T,sep = ",")
+impute_forest_30_post<-read.csv(file="impute_forest_30_post.csv",header = T,sep = ",")
+impute_forest_40_post<-read.csv(file="impute_forest_40_post.csv",header = T,sep = ",")
+impute_forest_50_post<-read.csv(file="impute_forest_50_post.csv",header = T,sep = ",")
+```
+
+```{r}
+impute_kNN_10_post<-read.csv(file="impute_kNN_10_post.csv",header = T,sep = ",")
+impute_kNN_20_post<-read.csv(file="impute_kNN_20_post.csv",header = T,sep = ",")
+impute_kNN_30_post<-read.csv(file="impute_kNN_30_post.csv",header = T,sep = ",")
+impute_kNN_40_post<-read.csv(file="impute_kNN_40_post.csv",header = T,sep = ",")
+impute_kNN_50_post<-read.csv(file="impute_kNN_50_post.csv",header = T,sep = ",")
+```
+
+
+```{r}
+#bias
+
+bias_forest_10<-mean(control[,4]-impute_forest_10_post[,3])
+
+
+bias_forest_20<-mean(control[,4]-impute_forest_20_post[,3])
+
+bias_forest_30<-mean(control[,4]-impute_forest_30_post[,3])
+
+bias_forest_40<-mean(control[,4]-impute_forest_40_post[,3])
+
+bias_forest_50<-mean(control[,4]-impute_forest_50_post[,3])
+
+
+
+bias_knn_10<-mean(control[,4]-impute_kNN_10_post[,3])
+
+
+bias_knn_20<-mean(control[,4]-impute_kNN_20_post[,3])
+
+bias_knn_30<-mean(control[,4]-impute_kNN_30_post[,3])
+
+bias_knn_40<-mean(control[,4]-impute_kNN_40_post[,3])
+
+bias_knn_50<-mean(control[,4]-impute_kNN_50_post[,3])
+```
+
+
+```{r}
+#accuracy
+
+accuracy_forest_10<-sqrt(sum((control[,4]-impute_forest_10_post[,3])**2)/90000)
+
+
+accuracy_forest_20<-sqrt(sum((control[,4]-impute_forest_20_post[,3])**2)/90000)
+
+
+accuracy_forest_30<-sqrt(sum((control[,4]-impute_forest_30_post[,3])**2)/90000)
+
+accuracy_forest_40<-sqrt(sum((control[,4]-impute_forest_40_post[,3])**2)/90000)
+
+accuracy_forest_50<-sqrt(sum((control[,4]-impute_forest_50_post[,3])**2)/90000)
+
+
+
+accuracy_knn_10<-sqrt(sum((control[,4]-impute_kNN_10_post[,3])**2)/90000)
+
+
+accuracy_knn_20<-sqrt(sum((control[,4]-impute_kNN_20_post[,3])**2)/90000)
+
+accuracy_knn_30<-sqrt(sum((control[,4]-impute_kNN_30_post[,3])**2)/90000)
+
+accuracy_knn_40<-sqrt(sum((control[,4]-impute_kNN_40_post[,3])**2)/90000)
+
+accuracy_knn_50<-sqrt(sum((control[,4]-impute_kNN_50_post[,3])**2)/90000)
+
+
+```
+
+
+```{r}
+
+control_mean<-rep(NA,90)
+
+kNN_10_mean<-rep(NA,90)
+
+kNN_20_mean<-rep(NA,90)
+kNN_30_mean<-rep(NA,90)
+kNN_40_mean<-rep(NA,90)
+kNN_50_mean<-rep(NA,90)
+
+
+forest_10_mean<-rep(NA,90)
+
+forest_20_mean<-rep(NA,90)
+forest_30_mean<-rep(NA,90)
+forest_40_mean<-rep(NA,90)
+forest_50_mean<-rep(NA,90)
+
+
+
+for (i in seq(0,89000,1000)) {
+  
+  
+    control_mean[(i+1000)/1000]<-mean(control$data[seq((i+1000)/1000,i+1000)])
+    kNN_10_mean[(i+1000)/1000]<-mean(impute_kNN_10_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    kNN_20_mean[(i+1000)/1000]<-mean(impute_kNN_20_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    kNN_30_mean[(i+1000)/1000]<-mean(impute_kNN_30_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    kNN_40_mean[(i+1000)/1000]<-mean(impute_kNN_40_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    kNN_50_mean[(i+1000)/1000]<-mean(impute_kNN_50_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    
+    
+    forest_10_mean[(i+1000)/1000]<-mean(impute_forest_10_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    forest_20_mean[(i+1000)/1000]<-mean(impute_forest_20_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    forest_30_mean[(i+1000)/1000]<-mean(impute_forest_30_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    forest_40_mean[(i+1000)/1000]<-mean(impute_forest_40_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+    forest_50_mean[(i+1000)/1000]<-mean(impute_forest_50_post$data[seq((i+1000)/1000,(i+1000)/1000+89910,90)])
+  
+}
+
+
+```
+
+
+```{r}
+
+control_diff<-rep(NA,90000)
+
+kNN_10_diff<-rep(NA,90000)
+
+kNN_20_diff<-rep(NA,90000)
+kNN_30_diff<-rep(NA,90000)
+kNN_40_diff<-rep(NA,90000)
+kNN_50_diff<-rep(NA,90000)
+
+
+forest_10_diff<-rep(NA,90000)
+
+forest_20_diff<-rep(NA,90000)
+forest_30_diff<-rep(NA,90000)
+forest_40_diff<-rep(NA,90000)
+forest_50_diff<-rep(NA,90000)
+
+
+
+for (i in seq(0,89910,90)) {
+  
+  
+    control_diff[seq(i+1,i+90)]<-control$data[seq(i+1,i+90)]-control_mean
+    kNN_10_diff[seq(i+1,i+90)]<-impute_kNN_10_post$data[seq(i+1,i+90)]-kNN_10_mean
+    kNN_20_diff[seq(i+1,i+90)]<-impute_kNN_20_post$data[seq(i+1,i+90)]-kNN_20_mean
+    kNN_30_diff[seq(i+1,i+90)]<-impute_kNN_30_post$data[seq(i+1,i+90)]-kNN_30_mean
+    kNN_40_diff[seq(i+1,i+90)]<-impute_kNN_40_post$data[seq(i+1,i+90)]-kNN_40_mean
+    kNN_50_diff[seq(i+1,i+90)]<-impute_kNN_50_post$data[seq(i+1,i+90)]-kNN_50_mean
+    
+    
+  forest_10_diff[seq(i+1,i+90)]<-impute_forest_10_post$data[seq(i+1,i+90)]-forest_10_mean
+  forest_20_diff[seq(i+1,i+90)]<-impute_forest_20_post$data[seq(i+1,i+90)]-forest_20_mean
+  forest_30_diff[seq(i+1,i+90)]<-impute_forest_30_post$data[seq(i+1,i+90)]-forest_30_mean
+  forest_40_diff[seq(i+1,i+90)]<-impute_forest_40_post$data[seq(i+1,i+90)]-forest_40_mean
+  forest_50_diff[seq(i+1,i+90)]<-impute_forest_50_post$data[seq(i+1,i+90)]-forest_50_mean
+  
+}
+
+
+```
+
+
+
+```{r}
+control_sd<-rep(NA,90)
+
+kNN_10_sd<-rep(NA,90)
+
+kNN_20_sd<-rep(NA,90)
+kNN_30_sd<-rep(NA,90)
+kNN_40_sd<-rep(NA,90)
+kNN_50_sd<-rep(NA,90)
+
+
+forest_10_sd<-rep(NA,90)
+
+forest_20_sd<-rep(NA,90)
+forest_30_sd<-rep(NA,90)
+forest_40_sd<-rep(NA,90)
+forest_50_sd<-rep(NA,90)
+
+
+
+for (i in seq(0,89000,1000)) {
+  
+  
+    control_sd[(i+1000)/1000]<-sqrt(sum((control_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    kNN_20_sd[(i+1000)/1000]<-sqrt(sum((kNN_20_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    kNN_10_sd[(i+1000)/1000]<-sqrt(sum((kNN_10_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    kNN_20_sd[(i+1000)/1000]<-sqrt(sum((kNN_20_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    kNN_30_sd[(i+1000)/1000]<-sqrt(sum((kNN_30_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    kNN_40_sd[(i+1000)/1000]<-sqrt(sum((kNN_40_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    kNN_50_sd[(i+1000)/1000]<-sqrt(sum((kNN_50_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    
+    
+   forest_10_sd[(i+1000)/1000]<-sqrt(sum((forest_10_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    forest_20_sd[(i+1000)/1000]<-sqrt(sum((forest_20_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    forest_30_sd[(i+1000)/1000]<-sqrt(sum((forest_30_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    forest_40_sd[(i+1000)/1000]<-sqrt(sum((forest_40_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    forest_50_sd[(i+1000)/1000]<-sqrt(sum((forest_50_diff[seq((i+1000)/1000,(i+1000)/1000+89000,90)])^2)/1000)
+    
+  
+}
+
+```
+
+
+
+```{r}
+control_mean_muij<-rep(NA,30000)
+
+kNN_10_mean_muij<-rep(NA,30000)
+
+kNN_20_mean_muij<-rep(NA,30000)
+kNN_30_mean_muij<-rep(NA,30000)
+kNN_40_mean_muij<-rep(NA,30000)
+kNN_50_mean_muij<-rep(NA,30000)
+
+
+forest_10_mean_muij<-rep(NA,30000)
+
+forest_20_mean_muij<-rep(NA,30000)
+forest_30_mean_muij<-rep(NA,30000)
+forest_40_mean_muij<-rep(NA,30000)
+forest_50_mean_muij<-rep(NA,30000)
+
+
+
+for (i in seq(0,89997,3)) {
+  
+  
+    control_mean_muij[(i+3)/3]<-mean(control$data[seq(i+1,i+3)])
+    kNN_10_mean_muij[(i+3)/3]<-mean(impute_kNN_10_post$data[seq(i+1,i+3)])
+    kNN_20_mean_muij[(i+3)/3]<-mean(impute_kNN_20_post$data[seq(i+1,i+3)])
+    kNN_30_mean_muij[(i+3)/3]<-mean(impute_kNN_30_post$data[seq(i+1,i+3)])
+    kNN_40_mean_muij[(i+3)/3]<-mean(impute_kNN_40_post$data[seq(i+1,i+3)])
+    kNN_50_mean_muij[(i+3)/3]<-mean(impute_kNN_50_post$data[seq(i+1,i+3)])
+    
+    
+    forest_10_mean_muij[(i+3)/3]<-mean(impute_forest_10_post$data[seq(i+1,i+3)])
+    forest_20_mean_muij[(i+3)/3]<-mean(impute_forest_20_post$data[seq(i+1,i+3)])
+    forest_30_mean_muij[(i+3)/3]<-mean(impute_forest_30_post$data[seq(i+1,i+3)])
+    forest_40_mean_muij[(i+3)/3]<-mean(impute_forest_40_post$data[seq(i+1,i+3)])
+    forest_50_mean_muij[(i+3)/3]<-mean(impute_forest_50_post$data[seq(i+1,i+3)])
+  
+}
+
+
+
+```
+
+
+```{r}
+control_sd_muij<-rep(NA,30)
+
+kNN_10_sd_muij<-rep(NA,30)
+
+kNN_20_sd_muij<-rep(NA,30)
+kNN_30_sd_muij<-rep(NA,30)
+kNN_40_sd_muij<-rep(NA,30)
+kNN_50_sd_muij<-rep(NA,30)
+
+
+forest_10_sd_muij<-rep(NA,30)
+
+forest_20_sd_muij<-rep(NA,30)
+forest_30_sd_muij<-rep(NA,30)
+forest_40_sd_muij<-rep(NA,30)
+forest_50_sd_muij<-rep(NA,30)
+
+
+for (i in seq(0,87,3)) {
+  
+  
+    control_sd_muij[(i+3)/3]<-sqrt(sum((control_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    
+    kNN_10_sd_muij[(i+3)/3]<-sqrt(sum((kNN_10_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    kNN_20_sd_muij[(i+3)/3]<-sqrt(sum((kNN_20_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    kNN_30_sd_muij[(i+3)/3]<-sqrt(sum((kNN_30_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    kNN_40_sd_muij[(i+3)/3]<-sqrt(sum((kNN_40_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    kNN_50_sd_muij[(i+3)/3]<-sqrt(sum((kNN_50_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    
+    
+   forest_20_sd_muij[(i+3)/3]<-sqrt(sum((forest_20_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    forest_10_sd_muij[(i+3)/3]<-sqrt(sum((forest_10_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    forest_20_sd_muij[(i+3)/3]<-sqrt(sum((forest_20_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    forest_30_sd_muij[(i+3)/3]<-sqrt(sum((forest_30_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    forest_40_sd_muij[(i+3)/3]<-sqrt(sum((forest_40_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+   forest_50_sd_muij[(i+3)/3]<-sqrt(sum((forest_50_sd[seq(i+1,i+3)])^2)/3)#/sqrt(3)
+    
+  
+}
+
+
+control_sd_muij=rep(control_sd_muij,1000)
+kNN_10_sd_muij=rep(kNN_10_sd_muij,1000)
+kNN_20_sd_muij=rep(kNN_20_sd_muij,1000)
+kNN_30_sd_muij=rep(kNN_30_sd_muij,1000)
+kNN_40_sd_muij=rep(kNN_40_sd_muij,1000)
+kNN_50_sd_muij=rep(kNN_50_sd_muij,1000)
+
+
+
+forest_10_sd_muij=rep(forest_10_sd_muij,1000)
+forest_20_sd_muij=rep(forest_20_sd_muij,1000)
+forest_30_sd_muij=rep(forest_30_sd_muij,1000)
+forest_40_sd_muij=rep(forest_40_sd_muij,1000)
+forest_50_sd_muij=rep(forest_50_sd_muij,1000)
+
+
+```
+
+
+```{r}
+CI_control<-data.frame(lower=control_mean_muij-1.96*control_sd_muij,upper=control_mean+1.96*control_sd_muij)
+
+
+CI_kNN_10<-data.frame(lower=kNN_10_mean_muij-1.96*kNN_10_sd_muij,upper=kNN_10_mean_muij+1.96*kNN_10_sd_muij)
+
+
+CI_kNN_20<-data.frame(lower=kNN_20_mean_muij-1.96*kNN_20_sd_muij,upper=kNN_20_mean_muij+1.96*kNN_20_sd_muij)
+
+
+CI_kNN_30<-data.frame(lower=kNN_30_mean_muij-1.96*kNN_30_sd_muij,upper=kNN_30_mean_muij+1.96*kNN_30_sd_muij)
+
+CI_kNN_40<-data.frame(lower=kNN_40_mean_muij-1.96*kNN_40_sd_muij,upper=kNN_40_mean_muij+1.96*kNN_40_sd_muij)
+
+
+CI_kNN_50<-data.frame(lower=kNN_50_mean_muij-1.96*kNN_50_sd_muij,upper=kNN_50_mean_muij+1.96*kNN_50_sd_muij)
+
+
+CI_forest_10<-data.frame(lower=forest_10_mean_muij-1.96*forest_10_sd_muij,upper=forest_10_mean_muij+1.96*forest_10_sd_muij)
+
+
+CI_forest_20<-data.frame(lower=forest_20_mean_muij-1.96*forest_20_sd_muij,upper=forest_20_mean_muij+1.96*forest_20_sd_muij)
+
+
+CI_forest_30<-data.frame(lower=forest_30_mean_muij-1.96*forest_30_sd_muij,upper=forest_30_mean_muij+1.96*forest_30_sd_muij)
+
+CI_forest_40<-data.frame(lower=forest_40_mean_muij-1.96*forest_40_sd_muij,upper=forest_40_mean_muij+1.96*forest_40_sd_muij)
+
+
+CI_forest_50<-data.frame(lower=forest_50_mean_muij-1.96*forest_50_sd_muij,upper=forest_50_mean_muij+1.96*forest_50_sd_muij)
+```
+
+```{r}
+
+mu_compare<-rep(mu_ij$mu_ij,1000)
+```
+
+```{r}
+converage_control.frame<-data.frame(CI_control,mu_compare)
+
+converage_control.frame$indicator<-0
+
+
+converage_control.frame$indicator[converage_control.frame$lower<converage_control.frame$mu_compare& converage_control.frame$upper>converage_control.frame$mu_compare ]<-1
+
+converage_forest_10.frame<-data.frame(CI_forest_10,mu_compare)
+
+converage_forest_10.frame$indicator<-0
+
+
+converage_forest_10.frame$indicator[converage_forest_10.frame$lower<converage_forest_10.frame$mu_compare& converage_forest_10.frame$upper>converage_forest_10.frame$mu_compare ]<-1
+
+converage_forest_20.frame<-data.frame(CI_forest_20,mu_compare)
+
+converage_forest_20.frame$indicator<-0
+
+
+converage_forest_20.frame$indicator[converage_forest_20.frame$lower<converage_forest_20.frame$mu_compare& converage_forest_20.frame$upper>converage_forest_20.frame$mu_compare ]<-1
+
+converage_forest_30.frame<-data.frame(CI_forest_30,mu_compare)
+converage_forest_30.frame$indicator<-0
+
+
+converage_forest_30.frame$indicator[converage_forest_30.frame$lower<converage_forest_30.frame$mu_compare& converage_forest_30.frame$upper>converage_forest_30.frame$mu_compare ]<-1
+
+converage_forest_40.frame<-data.frame(CI_forest_40,mu_compare)
+converage_forest_40.frame$indicator<-0
+
+
+converage_forest_40.frame$indicator[converage_forest_40.frame$lower<converage_forest_40.frame$mu_compare& converage_forest_40.frame$upper>converage_forest_40.frame$mu_compare ]<-1
+
+converage_forest_50.frame<-data.frame(CI_forest_50,mu_compare)
+converage_forest_50.frame$indicator<-0
+
+
+converage_forest_50.frame$indicator[converage_forest_50.frame$lower<converage_forest_50.frame$mu_compare& converage_forest_50.frame$upper>converage_forest_50.frame$mu_compare ]<-1
+
+
+converage_kNN_10.frame<-data.frame(CI_kNN_10,mu_compare)
+
+converage_kNN_10.frame$indicator<-0
+
+
+converage_kNN_10.frame$indicator[converage_kNN_10.frame$lower<converage_kNN_10.frame$mu_compare& converage_kNN_10.frame$upper>converage_kNN_10.frame$mu_compare ]<-1
+
+
+converage_kNN_20.frame<-data.frame(CI_kNN_20,mu_compare)
+
+converage_kNN_20.frame$indicator<-0
+
+
+converage_kNN_20.frame$indicator[converage_kNN_20.frame$lower<converage_kNN_20.frame$mu_compare& converage_kNN_20.frame$upper>converage_kNN_20.frame$mu_compare ]<-1
+
+
+
+converage_kNN_30.frame<-data.frame(CI_kNN_30,mu_compare)
+
+converage_kNN_30.frame$indicator<-0
+
+
+converage_kNN_30.frame$indicator[converage_kNN_30.frame$lower<converage_kNN_30.frame$mu_compare& converage_kNN_30.frame$upper>converage_kNN_30.frame$mu_compare ]<-1
+
+
+converage_kNN_40.frame<-data.frame(CI_kNN_40,mu_compare)
+
+converage_kNN_40.frame$indicator<-0
+
+
+converage_kNN_40.frame$indicator[converage_kNN_40.frame$lower<converage_kNN_40.frame$mu_compare& converage_kNN_40.frame$upper>converage_kNN_40.frame$mu_compare ]<-1
+
+converage_kNN_50.frame<-data.frame(CI_kNN_50,mu_compare)
+
+converage_kNN_50.frame$indicator<-0
+
+
+converage_kNN_50.frame$indicator[converage_kNN_50.frame$lower<converage_kNN_50.frame$mu_compare& converage_kNN_50.frame$upper>converage_kNN_50.frame$mu_compare ]<-1
+
+
+
+```
+
+
+```{r}
+
+coverage_control<-round(c(coverage_control=sum(converage_control.frame$indicator)/length(converage_control.frame$indicator),coverage_control=sum(converage_control.frame$indicator)/length(converage_control.frame$indicator),coverage_control=sum(converage_control.frame$indicator)/length(converage_control.frame$indicator),coverage_control=sum(converage_control.frame$indicator)/length(converage_control.frame$indicator),coverage_control=sum(converage_control.frame$indicator)/length(converage_control.frame$indicator)),digits = 3)
+
+coverage_forest<-round(c(sum(converage_forest_10.frame$indicator)/length(converage_forest_10.frame$indicator),
+
+sum(converage_forest_20.frame$indicator)/length(converage_forest_20.frame$indicator),
+
+sum(converage_forest_30.frame$indicator)/length(converage_forest_30.frame$indicator),
+
+sum(converage_forest_40.frame$indicator)/length(converage_forest_40.frame$indicator),
+
+sum(converage_forest_50.frame$indicator)/length(converage_forest_50.frame$indicator)
+
+),digits = 3)
+
+coverage_kNN<-round(c(sum(converage_kNN_10.frame$indicator)/length(converage_kNN_10.frame$indicator),
+
+sum(converage_kNN_20.frame$indicator)/length(converage_kNN_20.frame$indicator),
+
+sum(converage_kNN_30.frame$indicator)/length(converage_kNN_30.frame$indicator),
+
+sum(converage_kNN_40.frame$indicator)/length(converage_kNN_40.frame$indicator),
+
+sum(converage_kNN_50.frame$indicator)/length(converage_kNN_50.frame$indicator)),digits = 3)
+
+missing_rate<-rep(c(0.1,0.2,0.3,0.4,0.5),3)
+
+coverage<-c(coverage_control,coverage_forest,coverage_kNN)
+
+methods<-c(rep("control",5),rep("RF",5),rep("kNN",5))
+
+```
+```{r}
+coverage_frame<-data.frame(coverage,missing_rate,methods)
+coverage_frame
+```
+
+```{r}
+ggplot(coverage_frame,aes(x=missing_rate,y=coverage,colour=methods
+,group=methods
+,fill=methods
+)) +
+			geom_line(size =0.8)+ 
+				geom_point(size=1.5)+
+				    geom_text(aes(label = coverage, vjust = 1.1, hjust = 0.5, angle = 0), show.legend = FALSE)+
+				          scale_x_continuous(breaks=c(0.1,0.2,0.3,0.4,0.5), labels=c("10%", "20%", "30%", "40%", "50%"))+
+  ylim(0,1)
+```
+
+
+```{r}
+require(ggplot2)
+
+  ggplot(coverage_frame, aes(x=missing_rate)) + 
+  geom_point(aes(y = coverage_kNN,colour="kNN"), size=2) +
+  geom_line(aes(y = coverage_kNN, group=1,colour="kNN")) +
+  geom_point(aes(y = coverage_forest,colour="Random Forest"), size=2) +
+  geom_line(aes(y = coverage_forest, group=1,colour="Random Forest")) +
+  geom_point(aes(y = coverage_control,colour="Control"), size=2) +
+  geom_line(aes(y = coverage_control, group=1,colour="Control")) +
+  scale_colour_manual("Imputation Methods", breaks = c("kNN", "Random Forest","Control"), values = c("blue","red","green")) +
+    theme_bw() +
+  theme(axis.line = element_line(color = 'black')) +
+  ylab("coverage") +
+  xlab("missing rate") +
+  ylim(0,1)+
+    geom_text(aes(label = coverage, vjust = 1.1, hjust = 0.5, angle = 0), show.legend = FALSE)+
+  ggtitle("Coverage of 95% CI")
+```
+
+

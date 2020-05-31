@@ -1,7 +1,12 @@
+*.pdf
+output/
+index_cache/
+libs/
 .Rproj.user
-*.png
 *.html
 *.DS_Store
 *.pptx
-*.RData
 *.rds
+*.Rproj*
+index_cache/
+libs/
