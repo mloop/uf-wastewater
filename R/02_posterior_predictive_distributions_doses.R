@@ -52,7 +52,7 @@ flow <- read_tsv("../data/flow_rate.txt") %>%
 stadium_info <- read_tsv("../data/stadium_seating.txt")
 
 # Posterior predictive distribution, accounting for all random effects
-predicted_consumption_locations <- results %>%
+predicted_mass_load_locations <- results %>%
   group_by(metabolite) %>%
   mutate(
     posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = ~NULL) %>%
@@ -72,21 +72,21 @@ predicted_consumption_locations <- results %>%
                                    mutate(location_weight = 1 / proportion_of_stadium) %>% 
                                    mutate(
                                      mass_load = pred_concentration * (liters_previous_30_minutes / location_weight) * (100 / (100 + stability)) * 1e-6,  # water flow is for the whole stadium, so need to split the flow appropriately across locations. That's why (liters / location_weight) is used
-                                     consumption_per_1000 = mass_load * 100 * (1 / excretion) * mwpar_mwmet * 1000 / (80651 * proportion_of_stadium) / typical_dose_mg, # unit is doses per 1000,
-                                     consumption_missing = if_else(is.na(consumption_per_1000) == TRUE, 1, 0)
-                                     )
+                                     mass_load_per_1000 = mass_load / 80651 * 1000, # unit is mg per 1000,
+                                     mass_load_missing = if_else(is.na(mass_load_per_1000) == TRUE, 1, 0)
+                                     ) %>%
+                                   dplyr::select(-metabolite)
                                    )
   ) %>%
   unnest(posterior_predictions) %>%
   ungroup()
 
-predicted_consumption_stadium <- predicted_consumption_locations %>%
+predicted_mass_load_stadium <- predicted_consumption_locations %>%
   group_by(metabolite, time_pretty, machine, extraction, iteration) %>%
-  summarise(mass_load_stadium = sum(mass_load),
-            consumption_per_1000_stadium = sum(consumption_per_1000)) %>%
-  mutate(consumption_missing_stadium = if_else(is.na(consumption_per_1000_stadium) == TRUE, 1, 0)) %>%
+  summarise(mass_load_stadium = sum(mass_load)) %>%
+  mutate(mass_load_missing_stadium = if_else(is.na(mass_load_stadium) == TRUE, 1, 0)) %>%
   ungroup()
 
-saveRDS(predicted_consumption_locations, "../output/02_posterior_predictive_doses_locations.rds")
+saveRDS(predicted_mass_load_locations, "../output/02_posterior_predictive_mass_load_locations.rds")
 
-saveRDS(predicted_consumption_stadium, "../output/02_posterior_predictive_doses_stadium.rds")
+saveRDS(predicted_mass_load_stadium, "../output/02_posterior_predictive_mass_load_stadium.rds")
