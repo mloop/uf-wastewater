@@ -5,7 +5,7 @@ library(GGally)
 library(brms)
 library(cowplot)
 
-
+setwd("/Users/xinsongdu/mnt/projects/uf-wastewater/R")
 
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
   mutate(time_pretty = as.character(time_pretty),
@@ -88,7 +88,7 @@ water %>%
     axis.text.x = element_text(angle = 45, hjust = 1),
     text = element_text(size = 16)
   ) -> p
-ggsave(filename = "../figs/01_longitudinal_all_metabolites.png", p)
+ggsave(filename = "../figs/01_longitudinal_all_metabolites_xd.png", p)
 
 water_analysis %>%
   ggplot(aes(x = censored_value)) +
@@ -105,8 +105,16 @@ water %>%
   spread(metabolite, value) %>%
   select(-time_pretty, -location, -extraction, -machine) %>%
   visdat::vis_miss() +
+  theme_dark() +
   theme(axis.text.x.top = element_text(angle = 90)) -> p
 ggsave(filename = "../figs/01_missing_data_pattern.png", p)
+
+water %>%
+  select(metabolite, time_pretty, location, extraction, machine, value) %>%
+  spread(metabolite, value) %>%
+  select(-time_pretty, -location, -extraction, -machine) %>%
+  mutate(machine <- rep(c("shimadzu", "waters_1", "waters_2"), times=33)) -> p
+ggsave(filename = "../figs/01_missing_data_pattern_2.png", p)
 
 water %>%
   ggplot(aes(x = value)) +
