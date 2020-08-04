@@ -56,32 +56,35 @@ predicted_mass_load_locations <- results %>%
   group_by(metabolite) %>%
   mutate(
     posterior_predictions = map2(models, metabolite, ~posterior_predict(.x, re_formula = ~NULL) %>%
-                                   t() %>%
-                                   as_tibble() %>%
+                                   as_tibble(.name_repair = "unique") %>%  # Not including the .name_repair argument eventually creates an error. It's an odd error, because it only apprears if you have a clean R session.
+                                   mutate(iteration = seq(1, n())) %>% 
+                                   gather(observation, mean_log_conc, -iteration) %>% 
+                                   spread(iteration, mean_log_conc) %>% 
+                                   select(-observation) %>%
                                    bind_cols(filter(water, metabolite == .y), .) %>%
                                    ungroup() %>%
-                                   dplyr::select(metabolite, time_pretty, location, machine, extraction, V1:V4000) %>%
+                                   dplyr::select(metabolite, time_pretty, location, machine, extraction, `1`:`10000`) %>%
                                    gather(iteration, mean_log_conc, -time_pretty, -location, -machine, -extraction, -metabolite) %>%
                                    mutate(
                                      pred_concentration = exp(mean_log_conc) * 1000,  # original data reported as ng/mL; convert to liters for mass load calculations
                                      metabolite = .y
-                                   ) %>%
-                                   left_join(., metabolite_info, by = "metabolite") %>%
-                                   left_join(., flow, by = "time_pretty") %>%  # flow rate isn't specific to location, which is a limitation
-                                   left_join(., stadium_info, by = "location") %>%
-                                   mutate(location_weight = 1 / proportion_of_stadium) %>% 
-                                   mutate(
-                                     mass_load = pred_concentration * (liters_previous_30_minutes / location_weight) * (100 / (100 + stability)) * 1e-6,  # water flow is for the whole stadium, so need to split the flow appropriately across locations. That's why (liters / location_weight) is used
-                                     mass_load_per_1000 = mass_load / 80651 * 1000, # unit is mg per 1000,
-                                     mass_load_missing = if_else(is.na(mass_load_per_1000) == TRUE, 1, 0)
-                                     ) %>%
-                                   dplyr::select(-metabolite)
-                                   )
+                                   ))
   ) %>%
+  ungroup() %>%
+  dplyr::select(-metabolite) %>%
   unnest(posterior_predictions) %>%
-  ungroup()
+  dplyr::select(-models) %>%
+  left_join(., metabolite_info, by = "metabolite") %>%
+ left_join(., flow, by = "time_pretty") %>%  # flow rate isn't specific to location, which is a limitation
+ left_join(., stadium_info, by = "location") %>%
+ mutate(location_weight = 1 / proportion_of_stadium) %>% 
+ mutate(
+   mass_load = pred_concentration * (liters_previous_30_minutes / location_weight) * (100 / (100 + stability)) * 1e-6,  # water flow is for the whole stadium, so need to split the flow appropriately across locations. That's why (liters / location_weight) is used
+   mass_load_per_1000 = mass_load / 80651 * 1000, # unit is mg per 1000,
+   mass_load_missing = if_else(is.na(mass_load_per_1000) == TRUE, 1, 0)
+   )
 
-predicted_mass_load_stadium <- predicted_consumption_locations %>%
+predicted_mass_load_stadium <- predicted_mass_load_locations %>%
   group_by(metabolite, time_pretty, machine, extraction, iteration) %>%
   summarise(mass_load_stadium = sum(mass_load)) %>%
   mutate(mass_load_missing_stadium = if_else(is.na(mass_load_stadium) == TRUE, 1, 0)) %>%
