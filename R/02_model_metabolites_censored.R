@@ -33,7 +33,7 @@ fit_metabolites <- function(metabolite_to_model, prior, adapt_delta = 0.99){
   fit <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
              family = gaussian(),
              data = filter(water, metabolite == metabolite_to_model),
-             iter = 2000,
+             iter = 5000,
              chains = 4,
              sample_prior = TRUE,
              prior = prior,
