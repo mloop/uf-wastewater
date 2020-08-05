@@ -5,8 +5,6 @@ library(GGally)
 library(brms)
 library(cowplot)
 
-setwd("/Users/xinsongdu/mnt/projects/uf-wastewater/R")
-
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
   mutate(time_pretty = as.character(time_pretty),
          extraction = factor(extraction) %>% fct_recode("A" = "zach", "B" = "austin")) %>%
@@ -88,7 +86,7 @@ water %>%
     axis.text.x = element_text(angle = 45, hjust = 1),
     text = element_text(size = 16)
   ) -> p
-ggsave(filename = "../figs/01_longitudinal_all_metabolites_xd.png", p)
+ggsave(filename = "../figs/01_longitudinal_all_metabolites.png", p)
 
 water_analysis %>%
   ggplot(aes(x = censored_value)) +
