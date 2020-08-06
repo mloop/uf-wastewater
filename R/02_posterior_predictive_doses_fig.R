@@ -10,7 +10,7 @@ predicted_mass_loads %>%
   mutate(
     doses = mass_load * 100 / excretion * mwpar_mwmet / typical_dose_parent_mg
   ) %>%
-  filter(mass_load_missing == 0, is.na(doses) == FALSE) %>%
+  filter(metabolite %in% c("Benzoylecgonine", "Norhydrocodone", "Noroxycodone")) %>%
   group_by(metabolite, iteration, extraction, machine) %>%
   summarise(doses_whole_stadium_entire_game = sum(doses)) %>%
   ungroup() %>%
