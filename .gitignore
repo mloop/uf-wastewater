@@ -8,5 +8,8 @@ libs/
 *.pptx
 *.rds
 *.Rproj*
+*.Rhistory
+*.RData
+*.ipynb_checkpoints
 index_cache/
 libs/

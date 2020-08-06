@@ -103,7 +103,6 @@ water %>%
   spread(metabolite, value) %>%
   select(-time_pretty, -location, -extraction, -machine) %>%
   visdat::vis_miss() +
-  theme_dark() +
   theme(axis.text.x.top = element_text(angle = 90)) -> p
 ggsave(filename = "../figs/01_missing_data_pattern.png", p)
 
@@ -111,8 +110,34 @@ water %>%
   select(metabolite, time_pretty, location, extraction, machine, value) %>%
   spread(metabolite, value) %>%
   select(-time_pretty, -location, -extraction, -machine) %>%
-  mutate(machine <- rep(c("shimadzu", "waters_1", "waters_2"), times=33)) -> p
-ggsave(filename = "../figs/01_missing_data_pattern_2.png", p)
+  mutate(machine=rep(c("shimadzu", "waters_1", "waters_2"), times=33)) %>%
+  subset(machine=="shimadzu") %>%
+  select(-machine) %>%
+  visdat::vis_miss() +
+  theme(axis.text.x.top = element_text(angle = 90)) -> p
+ggsave(filename = "../figs/01_missing_data_pattern_shimadzu.png", p)
+
+water %>%
+  select(metabolite, time_pretty, location, extraction, machine, value) %>%
+  spread(metabolite, value) %>%
+  select(-time_pretty, -location, -extraction, -machine) %>%
+  mutate(machine=rep(c("shimadzu", "waters_1", "waters_2"), times=33)) %>%
+  subset(machine=="waters_1") %>%
+  select(-machine) %>%
+  visdat::vis_miss() +
+  theme(axis.text.x.top = element_text(angle = 90)) -> p
+ggsave(filename = "../figs/01_missing_data_pattern_waters_spe1.png", p)
+
+water %>%
+  select(metabolite, time_pretty, location, extraction, machine, value) %>%
+  spread(metabolite, value) %>%
+  select(-time_pretty, -location, -extraction, -machine) %>%
+  mutate(machine=rep(c("shimadzu", "waters_1", "waters_2"), times=33)) %>%
+  subset(machine=="waters_2") %>%
+  select(-machine) %>%
+  visdat::vis_miss() +
+  theme(axis.text.x.top = element_text(angle = 90)) -> p
+ggsave(filename = "../figs/01_missing_data_pattern_waters_spe2.png", p)
 
 water %>%
   ggplot(aes(x = value)) +
