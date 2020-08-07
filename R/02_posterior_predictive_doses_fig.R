@@ -33,4 +33,4 @@ predicted_mass_loads %>%
   ) +
   coord_flip() -> p
 
-ggsave(file = "../figs/02_posterior_predictive_doses.png", p)#, #width = 15, height = 10, units = "in")
+ggsave(file = "../figs/02_posterior_predictive_doses.png", p, width = 15, height = 9, units = "in")
