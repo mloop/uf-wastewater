@@ -3,29 +3,34 @@ library(brms)
 library(cowplot)
 
 # Read in models
-readRDS("../output/02_posterior_predictive_doses_stadium.rds") %>%
+predicted_mass_loads <- readRDS("../output/02_posterior_predictive_mass_load.rds")
+
+predicted_mass_loads %>%
   ungroup() %>%
-  filter(consumption_missing_stadium == 0) %>%
+  mutate(
+    doses = mass_load * 100 / excretion * mwpar_mwmet / typical_dose_parent_mg
+  ) %>%
+  filter(metabolite %in% c("Benzoylecgonine", "Norhydrocodone", "Noroxycodone")) %>%
   group_by(metabolite, iteration, extraction, machine) %>%
-  summarise(consumption_per_1000_stadium_over_game = sum(consumption_per_1000_stadium)) %>%
+  summarise(doses_whole_stadium_entire_game = sum(doses)) %>%
   ungroup() %>%
   group_by(metabolite) %>%
-  summarise(median_consumption = quantile(consumption_per_1000_stadium_over_game, probs = 0.5, na.rm = FALSE),
-            low_consumption = quantile(consumption_per_1000_stadium_over_game, probs = 0.25, na.rm = FALSE),
-            high_consumption = quantile(consumption_per_1000_stadium_over_game, probs = 0.75, na.rm = FALSE),
+  summarise(median_doses = quantile(doses_whole_stadium_entire_game, probs = 0.5, na.rm = FALSE)
   ) %>%
-  ggplot(aes(x = factor(metabolite) %>% fct_reorder(median_consumption), y = median_consumption * 80.651)) +
+  ggplot(aes(x = factor(metabolite) %>% fct_recode("Cocaine" = "Benzoylecgonine", "Oxycodone" = "Noroxycodone", "Hydrocodone" = "Norhydrocodone") %>% fct_reorder(median_doses), y = median_doses)) +
   geom_bar(stat = "identity") +
-  ggrepel::geom_text_repel(aes(label = round(median_consumption * 80.651, digits = 0) %>% prettyNum(., big.mark = ",")), nudge_y = 100) +
+  ggrepel::geom_text_repel(aes(label = round(median_doses, digits = 0) %>% prettyNum(., big.mark = ",")), nudge_y = 100) +
   ggpubr::theme_pubr() +
   labs(
     y = "Doses",
     x = "Substance",
-    title = "Median predicted number of doses over entire game"
+    title = "Estimated median number of doses throughout stadium over entire game",
+    caption = "Number of doses are estimated from concentrations of the metabolites, excretion rate, ratio of molecular weights of\nparent compound and metabolite, and typical dose of the parent compound."
   ) +
   theme(
-    text = element_text(size = 18)
+    text = element_text(size = 18),
+    plot.caption = element_text(size = 10, hjust = 1)
   ) +
   coord_flip() -> p
 
-ggsave(file = "../figs/02_posterior_predictive_doses.png", p, width = 13, height = 10, units = "in")
+ggsave(file = "../figs/02_posterior_predictive_doses.png", p, width = 15, height = 9, units = "in")

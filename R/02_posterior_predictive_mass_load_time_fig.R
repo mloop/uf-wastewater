@@ -2,8 +2,12 @@ library(tidyverse)
 library(brms)
 library(cowplot)
 
-predicted_consumption <- readRDS("../output/02_posterior_predictive_doses_stadium.rds") %>%
-  filter(consumption_missing_stadium == 0) %>%
+predicted_consumption <- readRDS("../output/02_posterior_predictive_mass_load.rds") %>%
+  filter(mass_load_missing == 0) %>%
+  ungroup() %>%
+  group_by(metabolite, time_pretty, machine, extraction, iteration) %>%
+  summarise(mass_load_stadium = sum(mass_load)) %>%
+  ungroup() %>%
   group_by(metabolite, time_pretty) %>%
   summarise(median_mass_load = quantile(mass_load_stadium, probs = 0.5, na.rm = FALSE),
             low_mass_load = quantile(mass_load_stadium, probs = 0.25, na.rm = FALSE),
@@ -23,12 +27,9 @@ ggplot(aes(x = time_pretty, y = median_mass_load)) +
     strip.text = element_text(size = 8)
   ) +
   labs(
-    y = "Predicted mass load (mg)",
+    y = "Estimated mass load (mg)",
     x = "Time of collection",
     title = "Median estimated mass load (mg) for each\nsubstance through system over previous\n30 minutes"
   ) -> p
 
-ggsave(file = "../figs/02_posterior_predictive_doses_time.png", p, width = 5, height = 5, units = "in")
-
-
-# Sum the results over time to get the total number of doses over the course of the game
+ggsave(file = "../figs/02_posterior_predictive_mass_load_time.png", p, width = 5, height = 5, units = "in")
