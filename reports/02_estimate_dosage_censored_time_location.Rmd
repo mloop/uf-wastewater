@@ -13,20 +13,20 @@ library(cowplot)
 library(knitr)
 library(kableExtra)
 
-predicted_consumption <- readRDS("../output/02_posterior_predictive_doses_locations.rds") %>%
+predicted_consumption <- readRDS("../output/02_posterior_predictive_mass_load.rds") %>%
   ungroup() %>%
-  filter(consumption_missing == 0) %>%
+  filter(mass_load_missing == 0) %>%
   group_by(metabolite, time_pretty, location) %>%
-  summarise(median_mass_load = quantile(pred_concentration, probs = 0.5, na.rm = FALSE),
-            low_mass_load = quantile(pred_concentration, probs = 0.25, na.rm = FALSE),
-            high_mass_load = quantile(pred_concentration, probs = 0.75, na.rm = FALSE),
+  summarise(median_mass_load = quantile(mass_load, probs = 0.5, na.rm = FALSE),
+            low_mass_load = quantile(mass_load, probs = 0.25, na.rm = FALSE),
+            high_mass_load = quantile(mass_load, probs = 0.75, na.rm = FALSE),
   )
 ```
 
 ```{r}
 predicted_consumption %>% 
   mutate(statistic = paste0(prettyNum(round(median_mass_load, digits = 2), big.mark = ","), " (", prettyNum(round(low_mass_load , digits = 2), big.mark = ","), ", ", prettyNum(round(high_mass_load, digits = 2), big.mark = ","), ")", sep = "")) %>%
-  select(metabolite, time_pretty, location, statistic) %>%
+  select(metabolite, time_pretty, location, statistic) %>% 
   spread(location, statistic) %>%
   arrange(metabolite, time_pretty) %>%
   group_by(metabolite) %>%
@@ -35,7 +35,7 @@ predicted_consumption %>%
   mutate(metabolite = if_else(group == 1, metabolite, "")) %>%
   rename(Metabolite = metabolite, Time = time_pretty) %>%
   select(-group) %>%
-  kable(booktabs = TRUE, longtable = TRUE, caption = "Supplemental Table 4. Median and interquartile range of estimated concentrations (ng/mL) of substances that passed through given location over previous 30 minutes") %>%
+  kable(booktabs = TRUE, longtable = TRUE, caption = "Supplemental Table 4. Median and interquartile range of estimated mass loads (mg) of substances that passed through given location over previous 30 minutes") %>%
   kable_styling(latex_options = c("repeat_header"))
 ```
 
