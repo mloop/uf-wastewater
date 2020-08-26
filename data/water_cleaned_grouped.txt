@@ -1,0 +1,2278 @@
+metabolite	uloq	lloq	value	date	time_pretty	location	below_lloq	above_uloq	extraction	machine
+Analgesic	20	0.5		FB08SEP18	10:00	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:00	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	10:00	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	10:00	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.547	FB08SEP18	10:00	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.034	FB08SEP18	10:00	1	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Narcotic	20	0.05		FB08SEP18	10:00	1			austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	1			austin	Shimadzu
+Opioid	2.5	0.05	0.421	FB08SEP18	10:00	1	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	10:00	1			austin	Shimadzu
+Stimulant	5	0.05	1.738	FB08SEP18	10:00	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	10:00	2			austin	Shimadzu
+Anesthetic	10	0.05	0.179	FB08SEP18	10:00	2	0	0	austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:00	2			austin	Shimadzu
+Anxiolytic	20	0.5	0.065	FB08SEP18	10:00	2	1	0	austin	Shimadzu
+Benzodiazepine	20	0.05	0.314	FB08SEP18	10:00	2	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	10:00	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05	2.279	FB08SEP18	10:00	2	0	1	austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.407	FB08SEP18	10:00	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.07	FB08SEP18	10:00	2	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	2			austin	Shimadzu
+Narcotic	20	0.05	0.155	FB08SEP18	10:00	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	2			austin	Shimadzu
+Opioid	2.5	0.05	0.498	FB08SEP18	10:00	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	10:00	2			austin	Shimadzu
+Stimulant	5	0.05	3.124	FB08SEP18	10:00	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	10:00	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:00	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	10:00	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	10:00	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.763	FB08SEP18	10:00	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.023	FB08SEP18	10:00	3	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	3			austin	Shimadzu
+Narcotic	20	0.05	0.074	FB08SEP18	10:00	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	3			austin	Shimadzu
+Opioid	2.5	0.05	0.209	FB08SEP18	10:00	3	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	10:00	3			austin	Shimadzu
+Stimulant	5	0.05	0.299	FB08SEP18	10:00	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	10:00	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Anorectic	5	0.05	2.258	FB08SEP18	10:00	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.312	FB08SEP18	10:00	1	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	10:00	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.809	FB08SEP18	10:00	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	1.778	FB08SEP18	10:00	1	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.602	FB08SEP18	10:00	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.067	FB08SEP18	10:00	1	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Narcotic	20	0.05		FB08SEP18	10:00	1			austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	1			austin	Waters_SPE1
+Opioid	2.5	0.05	0.297	FB08SEP18	10:00	1	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	10:00	1			austin	Waters_SPE1
+Stimulant	5	0.05	2.207	FB08SEP18	10:00	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	10:00	2			austin	Waters_SPE1
+Anesthetic	10	0.05	0.274	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Anorectic	5	0.05	3.246	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.336	FB08SEP18	10:00	2	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	10:00	2			austin	Waters_SPE1
+Benzodiazepine	20	0.05	0.169	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.442	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	13.014	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05	1.317	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	10:00	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.446	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	10:00	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.183	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.155	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.266	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	10:00	2			austin	Waters_SPE1
+Stimulant	5	0.05	3.468	FB08SEP18	10:00	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	10:00	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+Anorectic	5	0.05	1.503	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.356	FB08SEP18	10:00	3	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	10:00	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	2.654	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	61.946	FB08SEP18	10:00	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.788	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	0.557	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.052	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.051	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	3			austin	Waters_SPE1
+Opioid	2.5	0.05	0.151	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	10:00	3			austin	Waters_SPE1
+Stimulant	5	0.05	0.334	FB08SEP18	10:00	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	10:00	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Anorectic	5	0.05	1.79	FB08SEP18	10:00	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.05	FB08SEP18	10:00	1	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	10:00	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.62	FB08SEP18	10:00	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	1.42	FB08SEP18	10:00	1	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.49	FB08SEP18	10:00	1	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.09	FB08SEP18	10:00	1	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Narcotic	20	0.05		FB08SEP18	10:00	1			zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	1			zach	Waters_SPE2
+Opioid	2.5	0.05	0.24	FB08SEP18	10:00	1	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	10:00	1			zach	Waters_SPE2
+Stimulant	5	0.05	2.09	FB08SEP18	10:00	1	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	10:00	2			zach	Waters_SPE2
+Anesthetic	10	0.05	0.29	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Anorectic	5	0.05	3.62	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.07	FB08SEP18	10:00	2	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5	0.51	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Benzodiazepine	20	0.05	0.011	FB08SEP18	10:00	2	1	0	zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.52	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	16.47	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05	2.58	FB08SEP18	10:00	2	0	1	zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	10:00	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.49	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	10:00	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.28	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.09	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.25	FB08SEP18	10:00	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	10:00	2			zach	Waters_SPE2
+Stimulant	5	0.05	5.21	FB08SEP18	10:00	2	0	1	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	10:00	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Anorectic	5	0.05	1.37	FB08SEP18	10:00	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.09	FB08SEP18	10:00	3	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	10:00	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	2.29	FB08SEP18	10:00	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	74.08	FB08SEP18	10:00	3	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.91	FB08SEP18	10:00	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:00	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	0.617	FB08SEP18	10:00	3	0	0	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.07	FB08SEP18	10:00	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Narcotic	20	0.05	1.86	FB08SEP18	10:00	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:00	3			zach	Waters_SPE2
+Opioid	2.5	0.05	0.1	FB08SEP18	10:00	3	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	10:00	3			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	10:00	3			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	10:30	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	10:30	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	10:30	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	2.426	FB08SEP18	10:30	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:30	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	1			austin	Shimadzu
+Narcotic	20	0.05	0.157	FB08SEP18	10:30	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	1			austin	Shimadzu
+Opioid	2.5	0.05	0.055	FB08SEP18	10:30	1	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	10:30	1			austin	Shimadzu
+Stimulant	5	0.05	0.267	FB08SEP18	10:30	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	10:30	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	10:30	2			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	10:30	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05	0.09	FB08SEP18	10:30	2	0	0	austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.071	FB08SEP18	10:30	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75	0.608	FB08SEP18	10:30	2	1	0	austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.046	FB08SEP18	10:30	2	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Narcotic	20	0.05		FB08SEP18	10:30	2			austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	2			austin	Shimadzu
+Opioid	2.5	0.05	0.266	FB08SEP18	10:30	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	10:30	2			austin	Shimadzu
+Stimulant	5	0.05	0.777	FB08SEP18	10:30	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	10:30	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	10:30	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	10:30	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	4.764	FB08SEP18	10:30	3	0	1	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:30	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	3			austin	Shimadzu
+Narcotic	20	0.05	0.588	FB08SEP18	10:30	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	3			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	10:30	3			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	10:30	3			austin	Shimadzu
+Stimulant	5	0.05	2.365	FB08SEP18	10:30	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	10:30	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Anorectic	5	0.05	0.06	FB08SEP18	10:30	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	10:30	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	10.933	FB08SEP18	10:30	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	7.603	FB08SEP18	10:30	1	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	2.611	FB08SEP18	10:30	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:30	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	0.884	FB08SEP18	10:30	1	0	0	austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.175	FB08SEP18	10:30	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	1			austin	Waters_SPE1
+Opioid	2.5	0.05	0.034	FB08SEP18	10:30	1	1	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	10:30	1			austin	Waters_SPE1
+Stimulant	5	0.05	0.34	FB08SEP18	10:30	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	10:30	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Anorectic	5	0.05	0.349	FB08SEP18	10:30	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	2			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	10:30	2			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+CNS stimulant	20	0.15		FB08SEP18	10:30	2			austin	Waters_SPE1
+Decongestant	20	0.05	8.088	FB08SEP18	10:30	2	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05	0.058	FB08SEP18	10:30	2	0	0	austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.074	FB08SEP18	10:30	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75	0.706	FB08SEP18	10:30	2	1	0	austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.108	FB08SEP18	10:30	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Narcotic	20	0.05		FB08SEP18	10:30	2			austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.174	FB08SEP18	10:30	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	10:30	2			austin	Waters_SPE1
+Stimulant	5	0.05	0.951	FB08SEP18	10:30	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	10:30	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Anorectic	5	0.05	0.101	FB08SEP18	10:30	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	3			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	10:30	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	4.926	FB08SEP18	10:30	3	0	1	austin	Waters_SPE1
+Decongestant	20	0.05	6.477	FB08SEP18	10:30	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	5.243	FB08SEP18	10:30	3	0	1	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:30	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.431	FB08SEP18	10:30	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	3			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	10:30	3			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	10:30	3			austin	Waters_SPE1
+Stimulant	5	0.05	2.271	FB08SEP18	10:30	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	10:30	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Anorectic	5	0.05	0.07	FB08SEP18	10:30	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	10:30	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	10.39	FB08SEP18	10:30	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	9.02	FB08SEP18	10:30	1	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	3.09	FB08SEP18	10:30	1	0	1	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:30	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	1.38	FB08SEP18	10:30	1	0	0	zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Narcotic	20	0.05	0.19	FB08SEP18	10:30	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	1			zach	Waters_SPE2
+Opioid	2.5	0.05	0.025	FB08SEP18	10:30	1	1	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	10:30	1			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	10:30	1			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	10:30	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Anorectic	5	0.05	0.62	FB08SEP18	10:30	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	2			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	10:30	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.11	FB08SEP18	10:30	2	1	0	zach	Waters_SPE2
+Decongestant	20	0.05	15.39	FB08SEP18	10:30	2	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05	0.12	FB08SEP18	10:30	2	0	0	zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.1	FB08SEP18	10:30	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75	0.11	FB08SEP18	10:30	2	1	0	zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.23	FB08SEP18	10:30	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Narcotic	20	0.05		FB08SEP18	10:30	2			zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.18	FB08SEP18	10:30	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	10:30	2			zach	Waters_SPE2
+Stimulant	5	0.05	1.93	FB08SEP18	10:30	2	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	10:30	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Anorectic	5	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	10:30	3			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	10:30	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+CNS stimulant	20	0.15		FB08SEP18	10:30	3			zach	Waters_SPE2
+Decongestant	20	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	10:30	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Narcotic	20	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	10:30	3			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	10:30	3			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	10:30	3			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	10:30	3			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	11:00	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	11:00	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	11:00	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.118	FB08SEP18	11:00	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	1			austin	Shimadzu
+Narcotic	20	0.05	0.356	FB08SEP18	11:00	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	1			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	11:00	1			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	11:00	1			austin	Shimadzu
+Stimulant	5	0.05	1.997	FB08SEP18	11:00	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	11:00	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	11:00	2			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	11:00	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.534	FB08SEP18	11:00	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.035	FB08SEP18	11:00	2	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	2			austin	Shimadzu
+Narcotic	20	0.05	0.212	FB08SEP18	11:00	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	2			austin	Shimadzu
+Opioid	2.5	0.05	0.196	FB08SEP18	11:00	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	11:00	2			austin	Shimadzu
+Stimulant	5	0.05	0.17	FB08SEP18	11:00	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	11:00	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	11:00	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	11:00	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	9.767	FB08SEP18	11:00	3	0	1	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.31	FB08SEP18	11:00	3	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	3			austin	Shimadzu
+Narcotic	20	0.05	0.257	FB08SEP18	11:00	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	3			austin	Shimadzu
+Opioid	2.5	0.05	0.377	FB08SEP18	11:00	3	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	11:00	3			austin	Shimadzu
+Stimulant	5	0.05	0.308	FB08SEP18	11:00	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	11:00	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Anorectic	5	0.05	2.995	FB08SEP18	11:00	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	11:00	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.159	FB08SEP18	11:00	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	0.844	FB08SEP18	11:00	1	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.126	FB08SEP18	11:00	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.163	FB08SEP18	11:00	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	1			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	11:00	1			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	11:00	1			austin	Waters_SPE1
+Stimulant	5	0.05	2.386	FB08SEP18	11:00	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	11:00	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+Anorectic	5	0.05	1.675	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	2			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	11:00	2			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.191	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	10.216	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.578	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	0.415	FB08SEP18	11:00	2	1	0	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.068	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.202	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.129	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	11:00	2			austin	Waters_SPE1
+Stimulant	5	0.05	0.205	FB08SEP18	11:00	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	11:00	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+Anorectic	5	0.05	0.528	FB08SEP18	11:00	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	3			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	11:00	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	3.469	FB08SEP18	11:00	3	0	1	austin	Waters_SPE1
+Decongestant	20	0.05	5.341	FB08SEP18	11:00	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	10.321	FB08SEP18	11:00	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	1.121	FB08SEP18	11:00	3	0	0	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.089	FB08SEP18	11:00	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.227	FB08SEP18	11:00	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	3			austin	Waters_SPE1
+Opioid	2.5	0.05	0.211	FB08SEP18	11:00	3	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	11:00	3			austin	Waters_SPE1
+Stimulant	5	0.05	0.478	FB08SEP18	11:00	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	11:00	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Anorectic	5	0.05	2.19	FB08SEP18	11:00	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	11:00	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.09	FB08SEP18	11:00	1	1	0	zach	Waters_SPE2
+Decongestant	20	0.05	0.57	FB08SEP18	11:00	1	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.08	FB08SEP18	11:00	1	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	1			zach	Waters_SPE2
+Narcotic	20	0.05	0.08	FB08SEP18	11:00	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	1			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	11:00	1			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	11:00	1			zach	Waters_SPE2
+Stimulant	5	0.05	2.31	FB08SEP18	11:00	1	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	11:00	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Anorectic	5	0.05	1.53	FB08SEP18	11:00	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	2			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	11:00	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.16	FB08SEP18	11:00	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	9.67	FB08SEP18	11:00	2	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.58	FB08SEP18	11:00	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	0.56	FB08SEP18	11:00	2	0	0	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.1	FB08SEP18	11:00	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.21	FB08SEP18	11:00	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.11	FB08SEP18	11:00	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	11:00	2			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	11:00	2			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	11:00	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Anorectic	5	0.05	0.44	FB08SEP18	11:00	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:00	3			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	11:00	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	2.64	FB08SEP18	11:00	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	4.45	FB08SEP18	11:00	3	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	10.21	FB08SEP18	11:00	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:00	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	1.65	FB08SEP18	11:00	3	0	0	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.1	FB08SEP18	11:00	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Narcotic	20	0.05	0.083	FB08SEP18	11:00	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:00	3			zach	Waters_SPE2
+Opioid	2.5	0.05	0.17	FB08SEP18	11:00	3	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	11:00	3			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	11:00	3			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	11:30	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:30	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	11:30	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	11:30	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.06	FB08SEP18	11:30	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.032	FB08SEP18	11:30	1	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	1			austin	Shimadzu
+Narcotic	20	0.05	0.34	FB08SEP18	11:30	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	1			austin	Shimadzu
+Opioid	2.5	0.05	0.223	FB08SEP18	11:30	1	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	11:30	1			austin	Shimadzu
+Stimulant	5	0.05	2.282	FB08SEP18	11:30	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	11:30	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:30	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	11:30	2			austin	Shimadzu
+Benzodiazepine	2.5	0.05	0.279	FB08SEP18	11:30	2	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	11:30	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.283	FB08SEP18	11:30	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.04	FB08SEP18	11:30	2	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	2			austin	Shimadzu
+Narcotic	20	0.05	0.075	FB08SEP18	11:30	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	2			austin	Shimadzu
+Opioid	2.5	0.05	0.405	FB08SEP18	11:30	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	11:30	2			austin	Shimadzu
+Stimulant	5	0.05	1.942	FB08SEP18	11:30	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	11:30	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:30	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	11:30	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	11:30	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.349	FB08SEP18	11:30	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.292	FB08SEP18	11:30	3	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	3			austin	Shimadzu
+Narcotic	20	0.05	0.356	FB08SEP18	11:30	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	3			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	11:30	3			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	11:30	3			austin	Shimadzu
+Stimulant	5	0.05	0.484	FB08SEP18	11:30	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	11:30	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Anorectic	5	0.05	0.307	FB08SEP18	11:30	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:30	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	11:30	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+CNS stimulant	20	0.15		FB08SEP18	11:30	1			austin	Waters_SPE1
+Decongestant	20	0.05	31.111	FB08SEP18	11:30	1	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.055	FB08SEP18	11:30	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.079	FB08SEP18	11:30	1	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.15	FB08SEP18	11:30	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	1			austin	Waters_SPE1
+Opioid	2.5	0.05	0.115	FB08SEP18	11:30	1	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	11:30	1			austin	Waters_SPE1
+Stimulant	5	0.05	2.727	FB08SEP18	11:30	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	11:30	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+Anorectic	5	0.05	0.981	FB08SEP18	11:30	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:30	2			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	11:30	2			austin	Waters_SPE1
+Benzodiazepine	2.5	0.05	0.112	FB08SEP18	11:30	2	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+CNS stimulant	20	0.15		FB08SEP18	11:30	2			austin	Waters_SPE1
+Decongestant	20	0.05	8.591	FB08SEP18	11:30	2	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.309	FB08SEP18	11:30	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.097	FB08SEP18	11:30	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.042	FB08SEP18	11:30	2	1	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.274	FB08SEP18	11:30	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	11:30	2			austin	Waters_SPE1
+Stimulant	5	0.05	2.585	FB08SEP18	11:30	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	11:30	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Anorectic	5	0.05	1.913	FB08SEP18	11:30	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.363	FB08SEP18	11:30	3	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	11:30	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.042	FB08SEP18	11:30	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	12.239	FB08SEP18	11:30	3	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.36	FB08SEP18	11:30	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.554	FB08SEP18	11:30	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.301	FB08SEP18	11:30	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	3			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	11:30	3			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	11:30	3			austin	Waters_SPE1
+Stimulant	5	0.05	0.54	FB08SEP18	11:30	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	11:30	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Anorectic	5	0.05	0.29	FB08SEP18	11:30	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:30	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	11:30	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+CNS stimulant	20	0.15		FB08SEP18	11:30	1			zach	Waters_SPE2
+Decongestant	20	0.05	32.38	FB08SEP18	11:30	1	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.046	FB08SEP18	11:30	1	1	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.08	FB08SEP18	11:30	1	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	1			zach	Waters_SPE2
+Narcotic	20	0.05	0.11	FB08SEP18	11:30	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	1			zach	Waters_SPE2
+Opioid	2.5	0.05	0.07	FB08SEP18	11:30	1	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	11:30	1			zach	Waters_SPE2
+Stimulant	5	0.05	3.68	FB08SEP18	11:30	1	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	11:30	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Anorectic	5	0.05	0.73	FB08SEP18	11:30	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	11:30	2			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	11:30	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.09	FB08SEP18	11:30	2	1	0	zach	Waters_SPE2
+Decongestant	20	0.05	6.25	FB08SEP18	11:30	2	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.21	FB08SEP18	11:30	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.11	FB08SEP18	11:30	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.21	FB08SEP18	11:30	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.24	FB08SEP18	11:30	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	11:30	2			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	11:30	2			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	11:30	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Anorectic	5	0.05	1.24	FB08SEP18	11:30	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.09	FB08SEP18	11:30	3	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	11:30	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.67	FB08SEP18	11:30	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	7.33	FB08SEP18	11:30	3	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.25	FB08SEP18	11:30	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	11:30	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.3	FB08SEP18	11:30	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Narcotic	20	0.05	0.98	FB08SEP18	11:30	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	11:30	3			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	11:30	3			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	11:30	3			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	11:30	3			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	6:30	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	6:30	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	6:30	1			austin	Shimadzu
+Benzodiazepine	5	0.05	0.134	FB08SEP18	6:30	1	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	6:30	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.307	FB08SEP18	6:30	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.231	FB08SEP18	6:30	1	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	6:30	1			austin	Shimadzu
+Narcotic	20	0.05	0.152	FB08SEP18	6:30	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	1			austin	Shimadzu
+Opioid	2.5	0.05	0.368	FB08SEP18	6:30	1	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	6:30	1			austin	Shimadzu
+Stimulant	5	0.05	0.322	FB08SEP18	6:30	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	6:30	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	6:30	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	6:30	2			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	6:30	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.759	FB08SEP18	6:30	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.057	FB08SEP18	6:30	2	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	6:30	2			austin	Shimadzu
+Narcotic	20	0.05	0.348	FB08SEP18	6:30	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	2			austin	Shimadzu
+Opioid	2.5	0.05	0.25	FB08SEP18	6:30	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	6:30	2			austin	Shimadzu
+Stimulant	5	0.05	0.282	FB08SEP18	6:30	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	6:30	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	6:30	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	6:30	3			austin	Shimadzu
+Benzodiazepine	20	0.05	0.583	FB08SEP18	6:30	3	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	6:30	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.817	FB08SEP18	6:30	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.022	FB08SEP18	6:30	3	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	6:30	3			austin	Shimadzu
+Narcotic	20	0.05	0.488	FB08SEP18	6:30	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	3			austin	Shimadzu
+Opioid	2.5	0.05	0.127	FB08SEP18	6:30	3	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	6:30	3			austin	Shimadzu
+Stimulant	5	0.05	0.395	FB08SEP18	6:30	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	6:30	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+Anorectic	5	0.05	0.989	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	6:30	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	6:30	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05	0.05	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.239	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	14.679	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.248	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.432	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	6:30	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.126	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	1			austin	Waters_SPE1
+Opioid	2.5	0.05	0.318	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	6:30	1			austin	Waters_SPE1
+Stimulant	5	0.05	0.357	FB08SEP18	6:30	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	6:30	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Anorectic	5	0.05	0.711	FB08SEP18	6:30	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	6:30	2			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	6:30	2			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.429	FB08SEP18	6:30	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	20.928	FB08SEP18	6:30	2	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.762	FB08SEP18	6:30	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.08	FB08SEP18	6:30	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	6:30	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.346	FB08SEP18	6:30	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.225	FB08SEP18	6:30	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	6:30	2			austin	Waters_SPE1
+Stimulant	5	0.05	0.409	FB08SEP18	6:30	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	6:30	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	6:30	3			austin	Waters_SPE1
+Anorectic	5	0.05	4.68	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.368	FB08SEP18	6:30	3	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	6:30	3			austin	Waters_SPE1
+Benzodiazepine	20	0.05	0.274	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.288	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	7.484	FB08SEP18	6:30	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	6:30	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.978	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	0.581	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.056	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	20	1.25	1.051	FB08SEP18	6:30	3	1	0	austin	Waters_SPE1
+Narcotic	20	0.05	0.431	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	3			austin	Waters_SPE1
+Opioid	2.5	0.05	0.074	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	6:30	3			austin	Waters_SPE1
+Stimulant	5	0.05	0.499	FB08SEP18	6:30	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	6:30	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Anorectic	5	0.05	0.52	FB08SEP18	6:30	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	6:30	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	6:30	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05	0.027	FB08SEP18	6:30	1	1	0	zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.31	FB08SEP18	6:30	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	10.05	FB08SEP18	6:30	1	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.75	FB08SEP18	6:30	1	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.31	FB08SEP18	6:30	1	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Narcotic	20	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	1			zach	Waters_SPE2
+Opioid	2.5	0.05	0.2	FB08SEP18	6:30	1	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	6:30	1			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	6:30	1			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	6:30	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Anorectic	5	0.05	0.67	FB08SEP18	6:30	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	6:30	2			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	6:30	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.41	FB08SEP18	6:30	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	24.02	FB08SEP18	6:30	2	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	1.91	FB08SEP18	6:30	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.12	FB08SEP18	6:30	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.234	FB08SEP18	6:30	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.24	FB08SEP18	6:30	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	6:30	2			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	6:30	2			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	6:30	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	6:30	3			zach	Waters_SPE2
+Anorectic	5	0.05	4.81	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.14	FB08SEP18	6:30	3	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	6:30	3			zach	Waters_SPE2
+Benzodiazepine	20	0.05	0.2	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	6:30	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.89	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	9.64	FB08SEP18	6:30	3	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	6:30	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	6:30	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	6:30	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	1.95	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	6:30	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	6:30	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	0.91	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.09	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	20	1.25	0.59	FB08SEP18	6:30	3	1	0	zach	Waters_SPE2
+Narcotic	20	0.05	0.31	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	6:30	3			zach	Waters_SPE2
+Opioid	2.5	0.05	0.07	FB08SEP18	6:30	3	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	6:30	3			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	6:30	3			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	7:00	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:00	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	7:00	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	7:00	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.522	FB08SEP18	7:00	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Narcotic	20	0.05		FB08SEP18	7:00	1			austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	1			austin	Shimadzu
+Opioid	2.5	0.05	0.077	FB08SEP18	7:00	1	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	7:00	1			austin	Shimadzu
+Stimulant	5	0.05	0.376	FB08SEP18	7:00	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	7:00	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:00	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	7:00	2			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	7:00	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	6.074	FB08SEP18	7:00	2	0	1	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.066	FB08SEP18	7:00	2	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	2			austin	Shimadzu
+Narcotic	20	0.05	0.02	FB08SEP18	7:00	2	1	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	2			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	7:00	2			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	7:00	2			austin	Shimadzu
+Stimulant	5	0.05	1.006	FB08SEP18	7:00	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	7:00	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:00	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	7:00	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	7:00	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	0.937	FB08SEP18	7:00	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.057	FB08SEP18	7:00	3	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	3			austin	Shimadzu
+Narcotic	20	0.05	0.144	FB08SEP18	7:00	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	3			austin	Shimadzu
+Opioid	2.5	0.05	0.273	FB08SEP18	7:00	3	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	7:00	3			austin	Shimadzu
+Stimulant	5	0.05	0.935	FB08SEP18	7:00	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	7:00	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Anorectic	5	0.05	0.257	FB08SEP18	7:00	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:00	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	7:00	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.596	FB08SEP18	7:00	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	1.607	FB08SEP18	7:00	1	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.556	FB08SEP18	7:00	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Metabolite of opioid	10	0.05	0.05	FB08SEP18	7:00	1	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Narcotic	20	0.05		FB08SEP18	7:00	1			austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	1			austin	Waters_SPE1
+Opioid	2.5	0.05	0.05	FB08SEP18	7:00	1	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	7:00	1			austin	Waters_SPE1
+Stimulant	5	0.05	0.509	FB08SEP18	7:00	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	7:00	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Anorectic	5	0.05	2.346	FB08SEP18	7:00	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.406	FB08SEP18	7:00	2	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	7:00	2			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.848	FB08SEP18	7:00	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	2.083	FB08SEP18	7:00	2	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	6.218	FB08SEP18	7:00	2	0	1	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.102	FB08SEP18	7:00	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.052	FB08SEP18	7:00	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	2			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	7:00	2			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	7:00	2			austin	Waters_SPE1
+Stimulant	5	0.05	1.228	FB08SEP18	7:00	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	7:00	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+Anorectic	5	0.05	0.458	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:00	3			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	7:00	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.575	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	5.419	FB08SEP18	7:00	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	0.973	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	0.736	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.121	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.133	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	3			austin	Waters_SPE1
+Opioid	2.5	0.05	0.179	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	7:00	3			austin	Waters_SPE1
+Stimulant	5	0.05	1.019	FB08SEP18	7:00	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	7:00	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Anorectic	5	0.05	0.34	FB08SEP18	7:00	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:00	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	7:00	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.71	FB08SEP18	7:00	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	2.39	FB08SEP18	7:00	1	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.78	FB08SEP18	7:00	1	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Narcotic	20	0.05		FB08SEP18	7:00	1			zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	1			zach	Waters_SPE2
+Opioid	2.5	0.05	0.048	FB08SEP18	7:00	1	1	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	7:00	1			zach	Waters_SPE2
+Stimulant	5	0.05	0.67	FB08SEP18	7:00	1	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	7:00	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Anorectic	5	0.05	2.2	FB08SEP18	7:00	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.16	FB08SEP18	7:00	2	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	7:00	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.75	FB08SEP18	7:00	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	2.46	FB08SEP18	7:00	2	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	6.25	FB08SEP18	7:00	2	0	1	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.12	FB08SEP18	7:00	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.02	FB08SEP18	7:00	2	1	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	2			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	7:00	2			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	7:00	2			zach	Waters_SPE2
+Stimulant	20	0.15	0.122	FB08SEP18	7:00	2	1	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	7:00	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+Anorectic	5	0.05	0.3	FB08SEP18	7:00	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:00	3			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	7:00	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.44	FB08SEP18	7:00	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	4.45	FB08SEP18	7:00	3	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.79	FB08SEP18	7:00	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:00	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	0.69	FB08SEP18	7:00	3	0	0	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.13	FB08SEP18	7:00	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	7:00	3			zach	Waters_SPE2
+Narcotic	20	0.05	3.45	FB08SEP18	7:00	3	0	1	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:00	3			zach	Waters_SPE2
+Opioid	2.5	0.05	0.13	FB08SEP18	7:00	3	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	7:00	3			zach	Waters_SPE2
+Stimulant	5	0.05	1.03	FB08SEP18	7:00	3	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	7:30	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	7:30	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	7:30	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	2.124	FB08SEP18	7:30	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:30	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	1			austin	Shimadzu
+Narcotic	20	0.05	0.052	FB08SEP18	7:30	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	1			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	7:30	1			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	7:30	1			austin	Shimadzu
+Stimulant	5	0.05	0.577	FB08SEP18	7:30	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	7:30	2			austin	Shimadzu
+Anesthetic	10	0.05	0.351	FB08SEP18	7:30	2	0	0	austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	7:30	2			austin	Shimadzu
+Benzodiazepine	20	0.05	0.086	FB08SEP18	7:30	2	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	7:30	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.94	FB08SEP18	7:30	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75	1.323	FB08SEP18	7:30	2	0	0	austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.026	FB08SEP18	7:30	2	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	2			austin	Shimadzu
+Narcotic	20	0.05	0.056	FB08SEP18	7:30	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	2			austin	Shimadzu
+Opioid	2.5	0.05	0.237	FB08SEP18	7:30	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	7:30	2			austin	Shimadzu
+Stimulant	5	0.05	0.81	FB08SEP18	7:30	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	7:30	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	7:30	3			austin	Shimadzu
+Benzodiazepine	20	0.05	0.06	FB08SEP18	7:30	3	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	7:30	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.424	FB08SEP18	7:30	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:30	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	3			austin	Shimadzu
+Narcotic	20	0.05	0.431	FB08SEP18	7:30	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	3			austin	Shimadzu
+Opioid	2.5	0.05	0.235	FB08SEP18	7:30	3	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	7:30	3			austin	Shimadzu
+Stimulant	5	0.05	6.507	FB08SEP18	7:30	3	0	1	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	7:30	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Anorectic	5	0.05	1.366	FB08SEP18	7:30	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	7:30	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.829	FB08SEP18	7:30	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	6.066	FB08SEP18	7:30	1	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	2.156	FB08SEP18	7:30	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:30	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	0.304	FB08SEP18	7:30	1	1	0	austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.028	FB08SEP18	7:30	1	1	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	1			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	7:30	1			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	7:30	1			austin	Waters_SPE1
+Stimulant	5	0.05	0.682	FB08SEP18	7:30	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	7:30	2			austin	Waters_SPE1
+Anesthetic	10	0.05	0.356	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Anorectic	5	0.05	0.117	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	2			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	7:30	2			austin	Waters_SPE1
+Benzodiazepine	20	0.05	0.08	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.325	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	2.905	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	7:30	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.957	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75	1.454	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	7:30	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.058	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.057	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.164	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	7:30	2			austin	Waters_SPE1
+Stimulant	5	0.05	1.039	FB08SEP18	7:30	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	7:30	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Anorectic	5	0.05	4.068	FB08SEP18	7:30	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	3			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	7:30	3			austin	Waters_SPE1
+Benzodiazepine	20	0.05	0.049	FB08SEP18	7:30	3	1	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	2.007	FB08SEP18	7:30	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	27.231	FB08SEP18	7:30	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.574	FB08SEP18	7:30	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:30	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.383	FB08SEP18	7:30	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	3			austin	Waters_SPE1
+Opioid	2.5	0.05	0.172	FB08SEP18	7:30	3	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	7:30	3			austin	Waters_SPE1
+Stimulant	5	0.05	4.822	FB08SEP18	7:30	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	7:30	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Anorectic	5	0.05	1.26	FB08SEP18	7:30	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	7:30	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.26	FB08SEP18	7:30	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	5.95	FB08SEP18	7:30	1	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	2.1	FB08SEP18	7:30	1	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:30	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	0.3	FB08SEP18	7:30	1	1	0	zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Narcotic	20	0.05	1.49	FB08SEP18	7:30	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	1			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	7:30	1			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	7:30	1			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	7:30	1			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	7:30	2			zach	Waters_SPE2
+Anesthetic	10	0.05	0.294	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Anorectic	5	0.05	0.1	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	2			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	7:30	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.44	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	3.12	FB08SEP18	7:30	2	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	1.97	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75	0.32	FB08SEP18	7:30	2	1	0	zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.078	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.21	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.13	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	7:30	2			zach	Waters_SPE2
+Stimulant	5	0.05	1.03	FB08SEP18	7:30	2	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	7:30	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Anorectic	5	0.05	2.47	FB08SEP18	7:30	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	7:30	3			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	7:30	3			zach	Waters_SPE2
+Benzodiazepine	20	0.05	0.017	FB08SEP18	7:30	3	1	0	zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.15	FB08SEP18	7:30	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	18.65	FB08SEP18	7:30	3	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	0.98	FB08SEP18	7:30	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	7:30	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	7:30	3			zach	Waters_SPE2
+Narcotic	20	0.05	0.26	FB08SEP18	7:30	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	7:30	3			zach	Waters_SPE2
+Opioid	2.5	0.05	0.11	FB08SEP18	7:30	3	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	7:30	3			zach	Waters_SPE2
+Stimulant	5	0.05	5.16	FB08SEP18	7:30	3	0	1	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	8:00	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:00	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	8:00	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	8:00	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	3.529	FB08SEP18	8:00	1	0	1	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	1			austin	Shimadzu
+Narcotic	20	0.05	2.213	FB08SEP18	8:00	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	1			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	8:00	1			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	8:00	1			austin	Shimadzu
+Stimulant	5	0.05	0.191	FB08SEP18	8:00	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	8:00	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:00	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	8:00	2			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	8:00	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	2.599	FB08SEP18	8:00	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.034	FB08SEP18	8:00	2	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	2			austin	Shimadzu
+Narcotic	20	0.05	3.746	FB08SEP18	8:00	2	0	1	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	2			austin	Shimadzu
+Opioid	2.5	0.05	0.15	FB08SEP18	8:00	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	8:00	2			austin	Shimadzu
+Stimulant	5	0.05	1.315	FB08SEP18	8:00	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	8:00	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:00	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	8:00	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	8:00	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.222	FB08SEP18	8:00	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.066	FB08SEP18	8:00	3	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	3			austin	Shimadzu
+Narcotic	20	0.05	0.095	FB08SEP18	8:00	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	3			austin	Shimadzu
+Opioid	2.5	0.05	0.066	FB08SEP18	8:00	3	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	8:00	3			austin	Shimadzu
+Stimulant	5	0.05	0.951	FB08SEP18	8:00	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	8:00	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Anorectic	5	0.05	0.899	FB08SEP18	8:00	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.424	FB08SEP18	8:00	1	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	8:00	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	4.984	FB08SEP18	8:00	1	0	1	austin	Waters_SPE1
+Decongestant	20	0.05	6.718	FB08SEP18	8:00	1	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	3.263	FB08SEP18	8:00	1	0	1	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	1			austin	Waters_SPE1
+Narcotic	20	0.05	2.36	FB08SEP18	8:00	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	1			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	8:00	1			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	8:00	1			austin	Waters_SPE1
+Stimulant	5	0.05	0.224	FB08SEP18	8:00	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	8:00	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Anorectic	5	0.05	0.051	FB08SEP18	8:00	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.336	FB08SEP18	8:00	2	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	8:00	2			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.413	FB08SEP18	8:00	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	12.543	FB08SEP18	8:00	2	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	2.624	FB08SEP18	8:00	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.059	FB08SEP18	8:00	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	2			austin	Waters_SPE1
+Narcotic	20	0.05	3.428	FB08SEP18	8:00	2	0	1	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.098	FB08SEP18	8:00	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	8:00	2			austin	Waters_SPE1
+Stimulant	5	0.05	1.368	FB08SEP18	8:00	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	8:00	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Anorectic	5	0.05	0.125	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.506	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	8:00	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.553	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	6.248	FB08SEP18	8:00	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.168	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.145	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.1	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	3			austin	Waters_SPE1
+Opioid	2.5	0.05	0.063	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	8:00	3			austin	Waters_SPE1
+Stimulant	5	0.05	1.119	FB08SEP18	8:00	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	8:00	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Anorectic	5	0.05	0.9	FB08SEP18	8:00	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.24	FB08SEP18	8:00	1	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	8:00	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	5.03	FB08SEP18	8:00	1	0	1	zach	Waters_SPE2
+Decongestant	20	0.05	7.99	FB08SEP18	8:00	1	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	3.9	FB08SEP18	8:00	1	0	1	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	1			zach	Waters_SPE2
+Narcotic	20	0.05	2.49	FB08SEP18	8:00	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	1			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	8:00	1			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	8:00	1			zach	Waters_SPE2
+Stimulant	5	0.05	0.047	FB08SEP18	8:00	1	1	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	8:00	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Anorectic	5	0.05	0.024	FB08SEP18	8:00	2	1	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.06	FB08SEP18	8:00	2	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	8:00	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.11	FB08SEP18	8:00	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	9.13	FB08SEP18	8:00	2	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	1.9	FB08SEP18	8:00	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.058	FB08SEP18	8:00	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	2			zach	Waters_SPE2
+Narcotic	20	0.05	2.07	FB08SEP18	8:00	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.07	FB08SEP18	8:00	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	8:00	2			zach	Waters_SPE2
+Stimulant	5	0.05	1.14	FB08SEP18	8:00	2	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	8:00	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Anorectic	5	0.05	0.23	FB08SEP18	8:00	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.28	FB08SEP18	8:00	3	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	8:00	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	2.2	FB08SEP18	8:00	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	13.99	FB08SEP18	8:00	3	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	2.47	FB08SEP18	8:00	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:00	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.192	FB08SEP18	8:00	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Narcotic	20	0.05	0.11	FB08SEP18	8:00	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:00	3			zach	Waters_SPE2
+Opioid	2.5	0.05	0.027	FB08SEP18	8:00	3	1	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	8:00	3			zach	Waters_SPE2
+Stimulant	5	0.05		FB08SEP18	8:00	3			zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	8:30	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:30	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	8:30	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	8:30	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.05	FB08SEP18	8:30	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75	0.646	FB08SEP18	8:30	1	1	0	austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Metabolite of opioid	10	0.05	0.05	FB08SEP18	8:30	1	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	1			austin	Shimadzu
+Narcotic	20	0.05	0.244	FB08SEP18	8:30	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	1			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	8:30	1			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	8:30	1			austin	Shimadzu
+Stimulant	5	0.05	0.523	FB08SEP18	8:30	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	8:30	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:30	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	8:30	2			austin	Shimadzu
+Benzodiazepine	20	0.05	0.099	FB08SEP18	8:30	2	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	8:30	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05	0.077	FB08SEP18	8:30	2	0	0	austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	2.582	FB08SEP18	8:30	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:30	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.05	FB08SEP18	8:30	2	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	2			austin	Shimadzu
+Narcotic	20	0.05	0.057	FB08SEP18	8:30	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	2			austin	Shimadzu
+Opioid	2.5	0.05	0.132	FB08SEP18	8:30	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	8:30	2			austin	Shimadzu
+Stimulant	5	0.05	3.09	FB08SEP18	8:30	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	8:30	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:30	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	8:30	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	8:30	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	2.826	FB08SEP18	8:30	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:30	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.157	FB08SEP18	8:30	3	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	3			austin	Shimadzu
+Narcotic	20	0.05	0.301	FB08SEP18	8:30	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	3			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	8:30	3			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	8:30	3			austin	Shimadzu
+Stimulant	5	0.05	1.463	FB08SEP18	8:30	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	8:30	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Anorectic	5	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:30	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	8:30	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.521	FB08SEP18	8:30	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	5.714	FB08SEP18	8:30	1	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.077	FB08SEP18	8:30	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:30	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	2.709	FB08SEP18	8:30	1	0	1	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	2.518	FB08SEP18	8:30	1	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.204	FB08SEP18	8:30	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	1			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	8:30	1			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	8:30	1			austin	Waters_SPE1
+Stimulant	5	0.05	0.678	FB08SEP18	8:30	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	8:30	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	8:30	2			austin	Waters_SPE1
+Anorectic	5	0.05	1.545	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:30	2			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	8:30	2			austin	Waters_SPE1
+Benzodiazepine	20	0.05	0.083	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.851	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	10.784	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05	0.057	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	8:30	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	2.637	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:30	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	2.828	FB08SEP18	8:30	2	0	1	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.164	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.05	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.239	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	8:30	2			austin	Waters_SPE1
+Stimulant	5	0.05	2.832	FB08SEP18	8:30	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	8:30	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+Anorectic	5	0.05	1.487	FB08SEP18	8:30	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.337	FB08SEP18	8:30	3	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	8:30	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	2.925	FB08SEP18	8:30	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	7.154	FB08SEP18	8:30	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	2.904	FB08SEP18	8:30	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:30	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.5	0.249	FB08SEP18	8:30	3	1	0	austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.326	FB08SEP18	8:30	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.262	FB08SEP18	8:30	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	3			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	8:30	3			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	8:30	3			austin	Waters_SPE1
+Stimulant	5	0.05	1.682	FB08SEP18	8:30	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	8:30	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Anorectic	5	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:30	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	8:30	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.15	FB08SEP18	8:30	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	7.16	FB08SEP18	8:30	1	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	1.31	FB08SEP18	8:30	1	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75	0.08	FB08SEP18	8:30	1	1	0	zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	4.49	FB08SEP18	8:30	1	0	1	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	2.63	FB08SEP18	8:30	1	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	1			zach	Waters_SPE2
+Narcotic	20	0.05	0.068	FB08SEP18	8:30	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	1			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	8:30	1			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	8:30	1			zach	Waters_SPE2
+Stimulant	5	0.05	0.69	FB08SEP18	8:30	1	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	8:30	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	8:30	2			zach	Waters_SPE2
+Anorectic	5	0.05	1.12	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	8:30	2			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	8:30	2			zach	Waters_SPE2
+Benzodiazepine	20	0.05	0.018	FB08SEP18	8:30	2	1	0	zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.99	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	9.26	FB08SEP18	8:30	2	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05	0.06	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	8:30	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	2.01	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:30	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	1.66	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.18	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.112	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.07	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	8:30	2			zach	Waters_SPE2
+Stimulant	5	0.05	3.53	FB08SEP18	8:30	2	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	8:30	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+Anorectic	5	0.05	3.46	FB08SEP18	8:30	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.1	FB08SEP18	8:30	3	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	8:30	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	5.08	FB08SEP18	8:30	3	0	1	zach	Waters_SPE2
+Decongestant	20	0.05	18.5	FB08SEP18	8:30	3	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	7.16	FB08SEP18	8:30	3	0	1	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	8:30	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.5	0.63	FB08SEP18	8:30	3	0	0	zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.53	FB08SEP18	8:30	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	8:30	3			zach	Waters_SPE2
+Narcotic	20	0.05	0.365	FB08SEP18	8:30	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	8:30	3			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	8:30	3			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	8:30	3			zach	Waters_SPE2
+Stimulant	5	0.05	4.57	FB08SEP18	8:30	3	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	9:00	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	9:00	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	9:00	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	13.597	FB08SEP18	9:00	1	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	1			austin	Shimadzu
+Narcotic	20	0.05	0.52	FB08SEP18	9:00	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	1			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	9:00	1			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	9:00	1			austin	Shimadzu
+Stimulant	5	0.05	2.339	FB08SEP18	9:00	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	9:00	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	9:00	2			austin	Shimadzu
+Benzodiazepine	20	0.05	0.592	FB08SEP18	9:00	2	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	9:00	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.685	FB08SEP18	9:00	2	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.031	FB08SEP18	9:00	2	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	2			austin	Shimadzu
+Narcotic	20	0.05	0.472	FB08SEP18	9:00	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	2			austin	Shimadzu
+Opioid	2.5	0.05	0.132	FB08SEP18	9:00	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	9:00	2			austin	Shimadzu
+Stimulant	5	0.05	0.618	FB08SEP18	9:00	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	9:00	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	9:00	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	9:00	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	1.488	FB08SEP18	9:00	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.043	FB08SEP18	9:00	3	1	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	3			austin	Shimadzu
+Narcotic	20	0.05	0.573	FB08SEP18	9:00	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	3			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	9:00	3			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	9:00	3			austin	Shimadzu
+Stimulant	5	0.05	0.876	FB08SEP18	9:00	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	9:00	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Anorectic	5	0.05	3.726	FB08SEP18	9:00	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	9:00	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.796	FB08SEP18	9:00	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	7.191	FB08SEP18	9:00	1	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	13.908	FB08SEP18	9:00	1	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.337	FB08SEP18	9:00	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	1			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	9:00	1			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	9:00	1			austin	Waters_SPE1
+Stimulant	5	0.05	2.673	FB08SEP18	9:00	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	9:00	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Anorectic	5	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	2			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	9:00	2			austin	Waters_SPE1
+Benzodiazepine	20	0.05	0.438	FB08SEP18	9:00	2	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.057	FB08SEP18	9:00	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	7.98	FB08SEP18	9:00	2	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.729	FB08SEP18	9:00	2	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.078	FB08SEP18	9:00	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.395	FB08SEP18	9:00	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.08	FB08SEP18	9:00	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	9:00	2			austin	Waters_SPE1
+Stimulant	5	0.05	0.795	FB08SEP18	9:00	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	9:00	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Anorectic	5	0.05	4.2	FB08SEP18	9:00	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	3			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	9:00	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.923	FB08SEP18	9:00	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	3.742	FB08SEP18	9:00	3	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	1.655	FB08SEP18	9:00	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.167	FB08SEP18	9:00	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.541	FB08SEP18	9:00	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	3			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	9:00	3			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	9:00	3			austin	Waters_SPE1
+Stimulant	5	0.05	0.973	FB08SEP18	9:00	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	9:00	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Anorectic	5	0.05	4.85	FB08SEP18	9:00	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	9:00	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.85	FB08SEP18	9:00	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	10.24	FB08SEP18	9:00	1	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	19.76	FB08SEP18	9:00	1	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	1			zach	Waters_SPE2
+Narcotic	20	0.05	0.38	FB08SEP18	9:00	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	1			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	9:00	1			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	9:00	1			zach	Waters_SPE2
+Stimulant	5	0.05	4.18	FB08SEP18	9:00	1	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	9:00	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Anorectic	5	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	2			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	9:00	2			zach	Waters_SPE2
+Benzodiazepine	20	0.05	0.021	FB08SEP18	9:00	2	1	0	zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.17	FB08SEP18	9:00	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	8.75	FB08SEP18	9:00	2	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	1.81	FB08SEP18	9:00	2	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.1	FB08SEP18	9:00	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.275	FB08SEP18	9:00	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.06	FB08SEP18	9:00	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	9:00	2			zach	Waters_SPE2
+Stimulant	5	0.05	0.81	FB08SEP18	9:00	2	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	9:00	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Anorectic	5	0.05	4.6	FB08SEP18	9:00	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:00	3			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	9:00	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.86	FB08SEP18	9:00	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	4.48	FB08SEP18	9:00	3	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	2.06	FB08SEP18	9:00	3	0	0	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:00	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.132	FB08SEP18	9:00	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	9:00	3			zach	Waters_SPE2
+Narcotic	20	0.05	0.404	FB08SEP18	9:00	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:00	3			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	9:00	3			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	9:00	3			zach	Waters_SPE2
+Stimulant	5	0.05	1.52	FB08SEP18	9:00	3	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	9:30	1			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:30	1			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	9:30	1			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	9:30	1			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	3.962	FB08SEP18	9:30	1	0	1	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	1			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Metabolite of opioid	10	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	1			austin	Shimadzu
+Narcotic	20	0.05	0.063	FB08SEP18	9:30	1	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	1			austin	Shimadzu
+Opioid	20	0.75		FB08SEP18	9:30	1			austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	9:30	1			austin	Shimadzu
+Stimulant	5	0.05	0.766	FB08SEP18	9:30	1	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	9:30	2			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:30	2			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	9:30	2			austin	Shimadzu
+Benzodiazepine	20	0.05	0.21	FB08SEP18	9:30	2	0	0	austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	9:30	2			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	4.644	FB08SEP18	9:30	2	0	1	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	2			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.135	FB08SEP18	9:30	2	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	2			austin	Shimadzu
+Narcotic	20	0.05	0.099	FB08SEP18	9:30	2	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	2			austin	Shimadzu
+Opioid	2.5	0.05	0.842	FB08SEP18	9:30	2	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	9:30	2			austin	Shimadzu
+Stimulant	5	0.05	2.214	FB08SEP18	9:30	2	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	9:30	3			austin	Shimadzu
+Anesthetic	10	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Anorectic	5	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:30	3			austin	Shimadzu
+Anxiolytic	20	0.5		FB08SEP18	9:30	3			austin	Shimadzu
+Benzodiazepine	5	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+CNS stimulant	20	0.15		FB08SEP18	9:30	3			austin	Shimadzu
+Decongestant	20	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Hynotics	5	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Metabolite of CNS stimulant	20	0.05	2.178	FB08SEP18	9:30	3	0	0	austin	Shimadzu
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	3			austin	Shimadzu
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Metabolite of opioid	5	0.05	0.067	FB08SEP18	9:30	3	0	0	austin	Shimadzu
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	3			austin	Shimadzu
+Narcotic	20	0.05	0.198	FB08SEP18	9:30	3	0	0	austin	Shimadzu
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	3			austin	Shimadzu
+Opioid	2.5	0.05	0.994	FB08SEP18	9:30	3	0	0	austin	Shimadzu
+Sedative	20	0.5		FB08SEP18	9:30	3			austin	Shimadzu
+Stimulant	5	0.05	1.135	FB08SEP18	9:30	3	0	0	austin	Shimadzu
+Analgesic	20	0.5		FB08SEP18	9:30	1			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Anorectic	5	0.05	1.568	FB08SEP18	9:30	1	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:30	1			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	9:30	1			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.341	FB08SEP18	9:30	1	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	34.535	FB08SEP18	9:30	1	0	1	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	4.025	FB08SEP18	9:30	1	0	1	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	1			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Metabolite of opioid	10	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	1			austin	Waters_SPE1
+Narcotic	20	0.05	0.061	FB08SEP18	9:30	1	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	1			austin	Waters_SPE1
+Opioid	20	0.75		FB08SEP18	9:30	1			austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	9:30	1			austin	Waters_SPE1
+Stimulant	5	0.05	0.932	FB08SEP18	9:30	1	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	9:30	2			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+Anorectic	5	0.05	1.587	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5	0.361	FB08SEP18	9:30	2	1	0	austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	9:30	2			austin	Waters_SPE1
+Benzodiazepine	20	0.05	0.129	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+CNS stimulant	20	0.15	0.745	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	11.571	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	4.889	FB08SEP18	9:30	2	0	1	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	2			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.353	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	2			austin	Waters_SPE1
+Narcotic	20	0.05	0.102	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	2			austin	Waters_SPE1
+Opioid	2.5	0.05	0.669	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	9:30	2			austin	Waters_SPE1
+Stimulant	5	0.05	2.61	FB08SEP18	9:30	2	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	9:30	3			austin	Waters_SPE1
+Anesthetic	10	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Anorectic	5	0.05	0.055	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:30	3			austin	Waters_SPE1
+Anxiolytic	20	0.5		FB08SEP18	9:30	3			austin	Waters_SPE1
+Benzodiazepine	5	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+CNS stimulant	20	0.15	1.919	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Decongestant	20	0.05	16.418	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Hynotics	5	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Metabolite of CNS stimulant	20	0.05	2.337	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	3			austin	Waters_SPE1
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Metabolite of opioid	5	0.05	0.175	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	3			austin	Waters_SPE1
+Narcotic	20	0.05	0.175	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	3			austin	Waters_SPE1
+Opioid	2.5	0.05	0.656	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Sedative	20	0.5		FB08SEP18	9:30	3			austin	Waters_SPE1
+Stimulant	5	0.05	1.241	FB08SEP18	9:30	3	0	0	austin	Waters_SPE1
+Analgesic	20	0.5		FB08SEP18	9:30	1			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Anorectic	5	0.05	1.45	FB08SEP18	9:30	1	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:30	1			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	9:30	1			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+CNS stimulant	20	0.15	1.08	FB08SEP18	9:30	1	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	35.51	FB08SEP18	9:30	1	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	3.97	FB08SEP18	9:30	1	0	1	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	1			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Metabolite of opioid	10	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	1			zach	Waters_SPE2
+Narcotic	20	0.05	0.25	FB08SEP18	9:30	1	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	1			zach	Waters_SPE2
+Opioid	20	0.75		FB08SEP18	9:30	1			zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	9:30	1			zach	Waters_SPE2
+Stimulant	5	0.05	0.82	FB08SEP18	9:30	1	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	9:30	2			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Anorectic	5	0.05	1.81	FB08SEP18	9:30	2	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5	0.09	FB08SEP18	9:30	2	1	0	zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	9:30	2			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+CNS stimulant	20	0.15	0.8	FB08SEP18	9:30	2	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	14.43	FB08SEP18	9:30	2	0	0	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	5.91	FB08SEP18	9:30	2	0	1	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	2			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.47	FB08SEP18	9:30	2	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	2			zach	Waters_SPE2
+Narcotic	20	0.05	0.12	FB08SEP18	9:30	2	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	2			zach	Waters_SPE2
+Opioid	2.5	0.05	0.64	FB08SEP18	9:30	2	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	9:30	2			zach	Waters_SPE2
+Stimulant	5	0.05	3.98	FB08SEP18	9:30	2	0	0	zach	Waters_SPE2
+Analgesic	20	0.5		FB08SEP18	9:30	3			zach	Waters_SPE2
+Anesthetic	10	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Anorectic	5	0.05	0.09	FB08SEP18	9:30	3	0	0	zach	Waters_SPE2
+Antidepressant and Sedative	20	0.5		FB08SEP18	9:30	3			zach	Waters_SPE2
+Anxiolytic	20	0.5		FB08SEP18	9:30	3			zach	Waters_SPE2
+Benzodiazepine	5	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Benzodiazepine or metabolite of Benzodiazepines	2.5	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+CNS stimulant	20	0.15	2.18	FB08SEP18	9:30	3	0	0	zach	Waters_SPE2
+Decongestant	20	0.05	26.69	FB08SEP18	9:30	3	0	1	zach	Waters_SPE2
+Hallucinogen/Stimulant	10	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Hynotics	5	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Metabolite of Benzodiazepam	20	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Metabolite of CNS stimulant	20	0.05	3.71	FB08SEP18	9:30	3	0	1	zach	Waters_SPE2
+Metabolite of Narcotic	10	0.75		FB08SEP18	9:30	3			zach	Waters_SPE2
+Metabolite of a Narcotic	5	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Metabolite of narcotic	10	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Metabolite of opioid	5	0.05	0.29	FB08SEP18	9:30	3	0	0	zach	Waters_SPE2
+Muscle Relaxant	10	0.05		FB08SEP18	9:30	3			zach	Waters_SPE2
+Narcotic	20	0.05	0.093	FB08SEP18	9:30	3	0	0	zach	Waters_SPE2
+Narcotic (New Psychoactive Susbstance)	10	0.75		FB08SEP18	9:30	3			zach	Waters_SPE2
+Opioid	2.5	0.05	0.61	FB08SEP18	9:30	3	0	0	zach	Waters_SPE2
+Sedative	20	0.5		FB08SEP18	9:30	3			zach	Waters_SPE2
+Stimulant	5	0.05	2.37	FB08SEP18	9:30	3	0	0	zach	Waters_SPE2
