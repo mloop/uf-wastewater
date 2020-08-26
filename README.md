@@ -4,7 +4,7 @@ The purpose of this project is to estimate the concentrations of substances near
 
 ## Summary of scripts
 
-In order to run the `R` scripts required for the primary paper, you will need the following packages installed: `tidyverse`, `brms`, `Hmisc`, `GGally`, `cowplot`, and `visdat`.
+In order to run the `R` scripts required for the primary paper, you will need the following packages installed: `tidyverse`, `brms`, `Hmisc`, `GGally`, `cowplot`, `kableExtra`, and `visdat`.
 
 * `scripts/`
     * `01.eda`: creates some of the figures for the paper
