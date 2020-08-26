@@ -26,7 +26,7 @@ predicted_consumption <- readRDS("../output/02_posterior_predictive_mass_load.rd
 ```{r}
 predicted_consumption %>% 
   mutate(statistic = paste0(prettyNum(round(median_mass_load, digits = 2), big.mark = ","), " (", prettyNum(round(low_mass_load , digits = 2), big.mark = ","), ", ", prettyNum(round(high_mass_load, digits = 2), big.mark = ","), ")", sep = "")) %>%
-  select(metabolite, time_pretty, location, statistic) %>%
+  select(metabolite, time_pretty, location, statistic) %>% 
   spread(location, statistic) %>%
   arrange(metabolite, time_pretty) %>%
   group_by(metabolite) %>%

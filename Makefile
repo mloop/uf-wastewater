@@ -1,3 +1,6 @@
+reports/02_estimate_dosage_censored_time_location.pdf: reports/02_estimate_dosage_censored_time_location.Rmd output/02_posterior_predictive_mass_load.rds
+	cd reports/ && Rscript -e "Sys.setenv(RSTUDIO_PANDOC='/Applications/RStudio.app/Contents/MacOS/pandoc');library(rmarkdown);render('02_estimate_dosage_censored_time_location.Rmd')"
+
 figs/02_posterior_predictive_doses_fig.png: R/02_posterior_predictive_doses_fig.R output/02_posterior_predictive_mass_load.rds
 	cd R/ && Rscript 02_posterior_predictive_doses_fig.R
 
@@ -11,5 +14,5 @@ output/02_posterior_predictive_mass_load.rds: R/02_posterior_predictive_distribu
 	cd R/ && Rscript 02_posterior_predictive_distributions_doses.R
 
 output/02_model_metabolites_censored_Amphetamine.rds: R/02_model_metabolites_censored.R
-	mkdir output/
+	mkdir -p output/
 	cd R/ && Rscript 02_model_metabolites_censored.R
