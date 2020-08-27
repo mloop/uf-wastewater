@@ -4,6 +4,10 @@ library(tidyverse)
 library(GGally)
 library(brms)
 library(cowplot)
+library(ComplexHeatmap)
+library(circlize)
+library(colorspace)
+library(GetoptLong)
 
 water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
   mutate(time_pretty = as.character(time_pretty),
@@ -153,10 +157,24 @@ water_metabolites_group_sorted_spread <- water_metabolites_group_sorted %>%
   spread(metabolite, value) %>%
   select(-time_pretty, -location, -extraction, -machine) 
 
+water_metabolites_group_sorted_spread <- water_metabolites_group_sorted_spread[,col_order]
+
 water_metabolites_group_sorted_spread %>%
   visdat::vis_miss() +
   theme(axis.text.x.top = element_text(angle = 90, size = 10)) -> p
 ggsave(filename = "../figs/01_missing_data_pattern_group_sorted.png", p)
+
+water_metabolites_group_sorted_spread_rounded <- water_metabolites_group_sorted_spread
+water_metabolites_group_sorted_spread_rounded[!is.na(water_metabolites_group_sorted_spread_rounded)] <- 1
+water_metabolites_group_sorted_spread_rounded[is.na(water_metabolites_group_sorted_spread_rounded)] <- 0
+heatmap_matrix <- data.matrix(water_metabolites_group_sorted_spread_rounded)
+split_group <- water_metabolites_group_sorted$metabolite_group[0:56]
+p <- Heatmap(heatmap_matrix, cluster_columns = FALSE, cluster_rows = FALSE, name = "missing pattern", 
+             col = colorRamp2(c(0, 1), c("gray", "black")), column_split = split_group, 
+             column_gap = unit(1.5, "mm"), width = unit(300, "mm"))
+png(filename="../figs/01_missing_data_pattern_splitted.png", width = unit(1000, "mm"))
+p
+dev.off()
 
 water %>%
   select(metabolite, time_pretty, location, extraction, machine, value) %>%
