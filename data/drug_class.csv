@@ -1,10 +1,8 @@
 ﻿drug,group
-6-MAM,Metabolite of Narcotic
 Propoxyphene,Analgesic
 Ketamine,Anesthetic
 PCP,Anesthetic
 Phentermine,Anorectic
-Trazodone,Antidepressant and Sedative
 Meprobamate,Anxiolytic
 7-Aminoclonazepam,Benzodiazepine
 7-Aminoflunitrazepam,Benzodiazepine
@@ -15,25 +13,23 @@ Lorazepam,Benzodiazepine
 Midazolam,Benzodiazepine
 Oxazepam,Benzodiazepine
 Temazepam,Benzodiazepine
-Desalkylflurazepam,Benzodiazepine or metabolite of Benzodiazepines
-Cocaine,CNS stimulant
+Desalkylflurazepam,Benzodiazepine
+α-Hydroxyalprazolam,Benzodiazepine
+α-Hydroxytriazolam,Benzodiazepine
+Nordiazepam,Benzodiazepine
 Pseudoephedrine,Decongestant
-MDMA,Hallucinogen/Stimulant
 Flunitrazepam,Hynotics
-α-Hydroxyalprazolam,Metabolite of Benzodiazepam
-α-Hydroxytriazolam,Metabolite of Benzodiazepam
-Nordiazepam,Metabolite of Benzodiazepam
-Benzoylecgonine,Metabolite of CNS stimulant
-EDDP,Metabolite of Narcotic
-Norcarfentanil,Metabolite of Narcotic
-Norfentanyl,Metabolite of Narcotic
-O-Desmethyltramadol,Metabolite of Narcotic
-Norbuprenorphine,Metabolite of Opioid
-Norhydrocodone,Metabolite of Opioid
-Normeperidine,Metabolite of Opioid
-Noroxycodone,Metabolite of Opioid
 Carisoprodol,Muscle Relaxant
 Cyclobenzaprine,Muscle Relaxant
+6-MAM,Narcotic
+EDDP,Narcotic
+Norcarfentanil,Narcotic
+Norfentanyl,Narcotic
+O-Desmethyltramadol,Narcotic
+Norbuprenorphine,Narcotic
+Norhydrocodone,Narcotic
+Normeperidine,Narcotic
+Noroxycodone,Narcotic
 Carfentanil,Narcotic
 Codeine,Narcotic
 Fentanyl,Narcotic
@@ -50,8 +46,12 @@ Hydromorphone,Opioid
 Meperidine,Opioid
 Methadone,Opioid
 Naltrexone,Opioid
+Trazodone,Sedative
 Triazolam,Sedative
 Zolpidem,Sedative
+Cocaine,Stimulant
+MDMA,Stimulant
+Benzoylecgonine,Stimulant
 Amphetamine,Stimulant
 Methamphetamine,Stimulant
 Methylphenidate,Stimulant

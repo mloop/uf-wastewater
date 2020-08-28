@@ -6,6 +6,7 @@ library(cowplot)
 
 # Read in models
 load(file = "../output/02_model_metabolites_censored_Amphetamine.RData")
+load(file = "../output/02_model_metabolites_censored_Amphetamine.RData")
 load(file = "../output/02_model_metabolites_censored_Benzoylecgonine.RData")
 load(file = "../output/02_model_metabolites_censored_Cocaine.RData")
 load(file = "../output/02_model_metabolites_censored_Hydrocodone.RData")
