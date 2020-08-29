@@ -3,19 +3,20 @@ library(tidyverse)
 library(GGally)
 library(brms)
 library(cowplot)
+#library(ggplot2)
 
 # Read in models
-load(file = "../output/02_model_metabolites_censored_Amphetamine.RData")
-load(file = "../output/02_model_metabolites_censored_Amphetamine.RData")
-load(file = "../output/02_model_metabolites_censored_Benzoylecgonine.RData")
-load(file = "../output/02_model_metabolites_censored_Cocaine.RData")
-load(file = "../output/02_model_metabolites_censored_Hydrocodone.RData")
-load(file = "../output/02_model_metabolites_censored_Norhydrocodone.RData")
-load(file = "../output/02_model_metabolites_censored_Noroxycodone.RData")
-load(file = "../output/02_model_metabolites_censored_Oxycodone.RData")
-load(file = "../output/02_model_metabolites_censored_Phentermine.RData")
-load(file = "../output/02_model_metabolites_censored_Pseudoephedrine.RData")
-load(file = "../output/02_model_metabolites_censored_Tramadol.RData")
+
+fit_amphetamine <- readRDS(file = "../output/02_model_metabolites_censored_Amphetamine.rds")
+fit_benzo <- readRDS(file = "../output/02_model_metabolites_censored_Benzoylecgonine.rds")
+fit_cocaine <- readRDS(file = "../output/02_model_metabolites_censored_Cocaine.rds")
+fit_hydrocodone <- readRDS(file = "../output/02_model_metabolites_censored_Hydrocodone.rds")
+fit_norhydrocodone <- readRDS(file = "../output/02_model_metabolites_censored_Norhydrocodone.rds")
+fit_noroxycodone <- readRDS(file = "../output/02_model_metabolites_censored_Noroxycodone.rds")
+fit_oxycodone <- readRDS(file = "../output/02_model_metabolites_censored_Oxycodone.rds")
+fit_phentermine <- readRDS(file = "../output/02_model_metabolites_censored_Phentermine.rds")
+fit_pseudoephedrine <- readRDS(file = "../output/02_model_metabolites_censored_Pseudoephedrine.rds")
+fit_tramadol <- readRDS(file = "../output/02_model_metabolites_censored_Tramadol.rds")
 
 results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hydrocodone, fit_norhydrocodone, fit_noroxycodone, fit_oxycodone, fit_phentermine, fit_pseudoephedrine, fit_tramadol)) %>%
   mutate(
@@ -31,7 +32,7 @@ results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hyd
 ppc_p <- results %>%
   group_by(metabolite) %>%
   mutate(
-    pp = map2(models, metabolite, ~pp_check(.x, type = "hist", nsamples = 5) + labs(title = .y) + ggthemes::theme_tufte() + theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none", strip.background = element_blank()) + labs(title = .y))
+    pp = map2(models, metabolite, ~pp_check(.x, type = "hist", nsamples = 5) + labs(title = .y) + ggthemes::theme_tufte() + theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.title = element_text(size = 20), legend.position = "none", strip.background = element_blank()) + labs(title = .y))
   )
 
 title <- ggdraw() + 
@@ -47,8 +48,13 @@ title <- ggdraw() +
     plot.margin = margin(0, 0, 0, 7)
   )
 
-plots <- plot_grid(plotlist = ppc_p$pp, ncol = 5)
+# Define order of subplots
+p_list <- c(ppc_p$pp[7], ppc_p$pp[6], ppc_p$pp[4], ppc_p$pp[5],
+            ppc_p$pp[8], ' ', ppc_p$pp[3], ppc_p$pp[2],
+            ppc_p$pp[1], '  ', ppc_p$pp[10], '   ', ppc_p$pp[9], '    ')
+# Plot
+plots <- plot_grid(plotlist = p_list, ncol = 2, label_size = 10)
 cowplot::plot_grid(title, plots, ncol = 1, rel_heights = c(1, 9)) -> p
 
 p
-ggsave(filename = "../figs/02_posterior_predictive_checks.png", p, width = 10)
+ggsave(filename = "../figs/02_posterior_predictive_checks_2cols.png", p, width = 15, height = 18)

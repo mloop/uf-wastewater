@@ -11,10 +11,16 @@ predicted_consumption <- readRDS("../output/02_posterior_predictive_mass_load.rd
             high_mass_load = quantile(mass_load, probs = 0.75, na.rm = FALSE),
   )
 
+# The following line can adjust the order of analytes appearing on the figure.
+predicted_consumption$metabolite <- factor(predicted_consumption$metabolite, levels=c("Oxycodone", "Norhydrocodone", "Hydrocodone", "Noroxycodone", 
+                                                                        "Phentermine", " ", "Cocaine", "Benzoylecgonine", "Amphetamine", "  ",
+                                                                        "Tramadol", "   ", "Pseudoephedrine", "    "))
+
+
 predicted_consumption %>%
   ggplot(aes(x = time_pretty, y = median_mass_load, color = factor(location))) +
   geom_pointrange(aes(ymin = low_mass_load, ymax = high_mass_load), position = position_dodge(0.5), size = 0.3) +
-  facet_wrap(~ metabolite, scales = "free_y", ncol = 2) +
+  facet_wrap(~ metabolite, scales = "free_y", ncol = 2, drop = FALSE) +
   theme_bw() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
