@@ -5,16 +5,16 @@ library(brms)
 library(cowplot)
 
 # Read in models
-load(file = "../output/02_model_metabolites_censored_Amphetamine.RData")
-load(file = "../output/02_model_metabolites_censored_Benzoylecgonine.RData")
-load(file = "../output/02_model_metabolites_censored_Cocaine.RData")
-load(file = "../output/02_model_metabolites_censored_Hydrocodone.RData")
-load(file = "../output/02_model_metabolites_censored_Norhydrocodone.RData")
-load(file = "../output/02_model_metabolites_censored_Noroxycodone.RData")
-load(file = "../output/02_model_metabolites_censored_Oxycodone.RData")
-load(file = "../output/02_model_metabolites_censored_Phentermine.RData")
-load(file = "../output/02_model_metabolites_censored_Pseudoephedrine.RData")
-load(file = "../output/02_model_metabolites_censored_Tramadol.RData")
+fit_amphetamine <- readRDS(file = "../output/02_model_metabolites_censored_Amphetamine.rds")
+fit_benzo <- readRDS(file = "../output/02_model_metabolites_censored_Benzoylecgonine.rds")
+fit_cocaine <- readRDS(file = "../output/02_model_metabolites_censored_Cocaine.rds")
+fit_hydrocodone <- readRDS(file = "../output/02_model_metabolites_censored_Hydrocodone.rds")
+fit_norhydrocodone <- readRDS(file = "../output/02_model_metabolites_censored_Norhydrocodone.rds")
+fit_noroxycodone <- readRDS(file = "../output/02_model_metabolites_censored_Noroxycodone.rds")
+fit_oxycodone <- readRDS(file = "../output/02_model_metabolites_censored_Oxycodone.rds")
+fit_phentermine <- readRDS(file = "../output/02_model_metabolites_censored_Phentermine.rds")
+fit_pseudoephedrine <- readRDS(file = "../output/02_model_metabolites_censored_Pseudoephedrine.rds")
+fit_tramadol <- readRDS(file = "../output/02_model_metabolites_censored_Tramadol.rds")
 
 results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hydrocodone, fit_norhydrocodone, fit_noroxycodone, fit_oxycodone, fit_phentermine, fit_pseudoephedrine, fit_tramadol)) %>%
   mutate(
