@@ -23,7 +23,8 @@ water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, funs(
   log_value = log(censored_value),
   censored = if_else(censored_value == lloq, "left",
                      if_else(censored_value == uloq, "right", "none"))
-  )
+  )%>%
+  filter(!((metabolite == "Cocaine" | metabolite == "Phentermine" | metabolite == "Pseudoephedrine") & machine == "shimadzu"))  # Must remove these since they were never actually run.
 
 water_metabolites_grouped <- read_tsv("../data/water_cleaned_grouped.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
   mutate(time_pretty = as.character(time_pretty),
@@ -39,7 +40,8 @@ water_metabolites_grouped <- read_tsv("../data/water_cleaned_grouped.txt") %>% m
   log_value = log(censored_value),
   censored = if_else(censored_value == lloq, "left",
                      if_else(censored_value == uloq, "right", "none"))
-  )
+  )%>%
+  filter(!((metabolite == "Cocaine" | metabolite == "Phentermine" | metabolite == "Pseudoephedrine") & machine == "shimadzu"))  # Must remove these since they were never actually run.
 
 water_metabolites_group_sorted <- read_tsv("../data/water_cleaned_group_sorted.txt") %>% mutate_if(is.character, funs(na_if(., ""))) %>%
   mutate(time_pretty = as.character(time_pretty),
@@ -55,7 +57,8 @@ water_metabolites_group_sorted <- read_tsv("../data/water_cleaned_group_sorted.t
   log_value = log(censored_value),
   censored = if_else(censored_value == lloq, "left",
                      if_else(censored_value == uloq, "right", "none"))
-  )
+  )%>%
+  filter(!((metabolite == "Cocaine" | metabolite == "Phentermine" | metabolite == "Pseudoephedrine") & machine == "shimadzu"))  # Must remove these since they were never actually run.
 
 water_analysis <- water_metabolites_group_sorted %>%
   mutate(time_pretty = as.character(time_pretty)) %>%
@@ -71,7 +74,8 @@ water_analysis <- water_metabolites_group_sorted %>%
   log_value = log(censored_value),
   censored = if_else(censored_value == lloq, "left",
                      if_else(censored_value == uloq, "right", "none"))
-  )
+  ) %>%
+  filter(!((metabolite == "Cocaine" | metabolite == "Phentermine" | metabolite == "Pseudoephedrine") & machine == "shimadzu"))  # Must remove these since they were never actually run.
 
 # Summary statistics for results
 
@@ -134,7 +138,7 @@ water_analysis %>%
   geom_histogram(bins = 100) +
   geom_vline(aes(xintercept = lloq, color = "lower"), linetype = "dashed") +
   geom_vline(aes(xintercept = uloq, color = "higher"), linetype = "dashed") +
-  scale_colour_manual(name = "limits", values = c(lower="green", higher="red")) +
+  scale_colour_manual(name = "limits", values = c(lower="blue", higher="orange")) +
   theme_bw() +
   facet_wrap(~ metabolite, scales = "free", ncol = 2, drop=FALSE) +
   labs(x = "Measured concentration (ng/mL)") -> p
