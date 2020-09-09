@@ -23,7 +23,8 @@ water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, ~na_i
   log_value = log(censored_value),
   censored = if_else(censored_value == lloq, "left",
                      if_else(censored_value == uloq, "right", "none"))
-  )
+  ) %>%
+  filter(!((metabolite  == "Cocaine" | metabolite == "Phentermine" | metabolite == "Pseudoephedrine") & machine == "shimadzu"))
 
 # Read in models
 fit_amphetamine <- readRDS(file = "../output/02_model_metabolites_censored_Amphetamine.rds")

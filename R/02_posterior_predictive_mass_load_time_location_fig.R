@@ -13,9 +13,9 @@ predicted_consumption <- readRDS("../output/02_posterior_predictive_mass_load.rd
 
 predicted_consumption %>%
   ggplot(aes(x = time_pretty, y = median_mass_load, color = factor(location))) +
-  geom_pointrange(aes(ymin = low_mass_load, ymax = high_mass_load), position = position_dodge(0.5), size = 0.3) +
+  geom_pointrange(aes(ymin = low_mass_load, ymax = high_mass_load), position = position_dodge(0.5), size = 0.15) +
   facet_wrap(~ metabolite, scales = "free_y", ncol = 2) +
-  theme_bw() +
+  ggpubr::theme_pubr() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     legend.position = "bottom"
@@ -27,4 +27,4 @@ predicted_consumption %>%
     title = "Median and interquartile range of estimated mass load (mg) for each substance that passed\nthrough system over previous 30 minutes, by location"
   ) -> p
 
-ggsave(file = "../figs/02_posterior_predictive_mass_load_time_location.png", p, width = 9, height = 5, units = "in")
+ggsave(file = "../figs/02_posterior_predictive_mass_load_time_location.png", p, width = 9, height = 6, units = "in")

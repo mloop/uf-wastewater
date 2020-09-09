@@ -18,7 +18,7 @@ predicted_consumption %>%
 ggplot(aes(x = time_pretty, y = median_mass_load)) +
   geom_point(size = 0.3) +
   geom_path(aes(group = metabolite), size = 0.3) +
-  facet_wrap(~ metabolite, ncol = 2) +
+  facet_wrap(~ metabolite, ncol = 2, scales = "free_y") +
   ggpubr::theme_pubr() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
@@ -29,7 +29,8 @@ ggplot(aes(x = time_pretty, y = median_mass_load)) +
   labs(
     y = "Estimated mass load (mg)",
     x = "Time of collection",
-    title = "Median estimated mass load (mg) for each\nsubstance through system over previous\n30 minutes"
+    title = "Median estimated mass load (mg) for each\nsubstance through system over previous\n30 minutes",
+    caption = "Y axes are different scales in order to accomodate the orders of\nmagnitude differences in concentrations among some substances."
   ) -> p
 
 ggsave(file = "../figs/02_posterior_predictive_mass_load_time.png", p, width = 5, height = 5, units = "in")

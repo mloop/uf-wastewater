@@ -25,12 +25,26 @@ water <- read_tsv("../data/water_cleaned.txt") %>% mutate_if(is.character, ~na_i
   log_value = log(censored_value),
   censored = if_else(censored_value == lloq, "left",
                      if_else(censored_value == uloq, "right", "none"))
-  )
+  ) %>%
+  filter(!((metabolite  == "Cocaine" | metabolite == "Phentermine" | metabolite == "Pseudoephedrine") & machine == "shimadzu"))
 
 # Create model fitting functions
 fit_metabolites <- function(metabolite_to_model, prior, adapt_delta = 0.99){
   
   fit <- brm(log_value | cens(censored) ~ time_pretty + (1 | machine) + (1 | extraction) + (1 | location),
+             family = gaussian(),
+             data = filter(water, metabolite == metabolite_to_model),
+             iter = 5000,
+             chains = 4,
+             sample_prior = TRUE,
+             prior = prior,
+             control = list(adapt_delta = adapt_delta))
+  saveRDS(fit, file = paste0("../output/02_model_metabolites_censored_", metabolite_to_model, ".rds", sep = ""))
+}
+
+fit_metabolites_no_shimadzu <- function(metabolite_to_model, prior, adapt_delta = 0.99){
+  
+  fit <- brm(log_value | cens(censored) ~ time_pretty + (1 | extraction) + (1 | location),
              family = gaussian(),
              data = filter(water, metabolite == metabolite_to_model),
              iter = 5000,
@@ -62,11 +76,11 @@ prior_pseudoephedrine <- c(prior(normal(0, 5), class = "Intercept"),  # These pr
 
 fit_metabolites("Amphetamine", prior_most_metabolites)
 fit_metabolites("Benzoylecgonine", prior_most_metabolites)
-fit_metabolites("Cocaine", prior_most_metabolites)
+fit_metabolites_no_shimadzu("Cocaine", prior_most_metabolites)
 fit_metabolites("Hydrocodone", prior_most_metabolites)
 fit_metabolites("Norhydrocodone", prior_most_metabolites)
 fit_metabolites("Noroxycodone", prior_noroxycodone)
 fit_metabolites("Oxycodone", prior_most_metabolites)
-fit_metabolites("Phentermine", prior_most_metabolites, adapt_delta = 0.999)
-fit_metabolites("Pseudoephedrine", prior_pseudoephedrine)
+fit_metabolites_no_shimadzu("Phentermine", prior_most_metabolites, adapt_delta = 0.999)
+fit_metabolites_no_shimadzu("Pseudoephedrine", prior_pseudoephedrine)
 fit_metabolites("Tramadol", prior_most_metabolites)
