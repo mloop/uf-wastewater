@@ -14,6 +14,11 @@ predicted_consumption <- readRDS("../output/02_posterior_predictive_mass_load.rd
             high_mass_load = quantile(mass_load_stadium, probs = 0.75, na.rm = FALSE),
   )
 
+# Order adjustment
+predicted_consumption$metabolite <- factor(predicted_consumption$metabolite, levels=c("Oxycodone", "Norhydrocodone", "Hydrocodone", "Noroxycodone", 
+                                                                        "Phentermine", " ", "Cocaine", "Benzoylecgonine", "Amphetamine", "  ",
+                                                                        "Tramadol", "   ", "Pseudoephedrine", "    "))
+
 predicted_consumption %>%
 ggplot(aes(x = time_pretty, y = median_mass_load)) +
   geom_point(size = 0.3) +
