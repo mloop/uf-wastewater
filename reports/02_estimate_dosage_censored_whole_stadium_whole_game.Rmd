@@ -30,9 +30,10 @@ predicted_consumption %>%
   mutate(statistic = paste0(prettyNum(round(median_mass_load, digits = 2), big.mark = ","), " (", prettyNum(round(low_mass_load , digits = 2), big.mark = ","), ", ", prettyNum(round(high_mass_load, digits = 2), big.mark = ","), ")", sep = ""),
          statistic_per_1000 = paste0(prettyNum(round(median_mass_load / 80.651, digits = 2), big.mark = ","), " (", prettyNum(round(low_mass_load / 80.651, digits = 2), big.mark = ","), ", ", prettyNum(round(high_mass_load / 80.651, digits = 2), big.mark = ","), ")", sep = "")) %>%
   select(metabolite, statistic, statistic_per_1000) %>% 
+  mutate(metabolite = factor(metabolite) %>% fct_relevel("Oxycodone", "Norhydrocodone", "Hydrocodone", "Noroxycodone", "Phentermine", "Cocaine", "Benzoylecgonine", "Amphetamine", "Tramadol", "Pseudoephedrine")) %>%
   arrange(metabolite) %>%
   rename(Metabolite = metabolite, `Mass load (mg)` = statistic, `Mass load per 1,000 attendees (mg)` = statistic_per_1000) %>%
-  kable(booktabs = TRUE, longtable = TRUE, caption = "Supplemental Table 5. Median and interquartile range of estimated mass loads (mg) of substances that passed through the entire stadium over the course of the game") %>%
+  kable(booktabs = TRUE, longtable = TRUE, caption = "Table 1. Median and interquartile range of estimated mass loads (mg) of substances that passed through the entire stadium over the course of the game") %>%
   kable_styling(latex_options = c("repeat_header"))
 ```
 
