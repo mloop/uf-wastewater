@@ -3,7 +3,6 @@ library(tidyverse)
 library(GGally)
 library(brms)
 library(cowplot)
-#library(ggplot2)
 
 # Read in models
 fit_amphetamine <- readRDS(file = "../output/02_model_metabolites_censored_Amphetamine.rds")
@@ -27,6 +26,8 @@ results <- tibble(models = list(fit_amphetamine, fit_benzo, fit_cocaine, fit_hyd
 ## It would take some serious thought to figure out prior predictive checks within the brms framework. Posterior predictive checks look fine.
 
 # Posterior predictive checks
+
+set.seed(8276343)
 
 ppc_p <- results %>%
   group_by(metabolite) %>%
@@ -57,4 +58,4 @@ plots <- plot_grid(plotlist = p_list, ncol = 2, label_size = 10)
 cowplot::plot_grid(plots, ncol = 1, rel_heights = c(1, 9)) + geom_hline(yintercept = h_lines) -> p
 
 p
-ggsave(filename = "../figs/02_posterior_predictive_checks_2cols.png", p, width = 15, height = 18)
+ggsave(filename = "../figs/02_posterior_predictive_checks.png", p, width = 15, height = 18)
