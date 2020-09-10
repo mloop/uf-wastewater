@@ -35,23 +35,10 @@ ppc_p <- results %>%
     pp = map2(models, metabolite, ~pp_check(.x, type = "hist", nsamples = 5) + labs(title = .y) + ggthemes::theme_tufte() + theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.title = element_text(size = 20), legend.position = "none", strip.background = element_blank()) + labs(title = .y))
   )
 
-# title <- ggdraw() + 
-#  draw_label(
-#    "Posterior predictive distributions",
-#    fontface = 'bold',
-#    x = 0.25,
-#    hjust = 0
-#  ) +
-#  theme(
-#    # add margin on the left of the drawing canvas,
-#    # so title is aligned with left edge of first plot
-#    plot.margin = margin(0, 0, 0, 7)
-#  )
-
 # Define order of subplots
-p_list <- c(ppc_p$pp[7], ppc_p$pp[6], ppc_p$pp[4], ppc_p$pp[5],
-            ppc_p$pp[8], ' ', ppc_p$pp[3], ppc_p$pp[2],
-            ppc_p$pp[1], '  ', ppc_p$pp[10], '   ', ppc_p$pp[9], '    ')
+p_list <- list(ppc_p$pp[[7]], ppc_p$pp[[6]], ppc_p$pp[[4]], ppc_p$pp[[5]],
+            ppc_p$pp[[8]], NULL, ppc_p$pp[[3]], ppc_p$pp[[2]],
+            ppc_p$pp[[1]], NULL, ppc_p$pp[[10]], NULL, ppc_p$pp[[9]], NULL)
 # Plot
 h_lines <- (1:6)/7
 plots <- plot_grid(plotlist = p_list, ncol = 2, label_size = 10)
