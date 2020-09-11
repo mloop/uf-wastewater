@@ -28,14 +28,16 @@ predicted_consumption %>%
   mutate(statistic = paste0(prettyNum(round(median_mass_load, digits = 2), big.mark = ","), " (", prettyNum(round(low_mass_load , digits = 2), big.mark = ","), ", ", prettyNum(round(high_mass_load, digits = 2), big.mark = ","), ")", sep = "")) %>%
   select(metabolite, time_pretty, location, statistic) %>% 
   spread(location, statistic) %>%
-  arrange(metabolite, time_pretty) %>%
   group_by(metabolite) %>%
   mutate(group = row_number()) %>%
   ungroup() %>%
+  mutate(metabolite = factor(metabolite) %>% fct_relevel("Oxycodone", "Norhydrocodone", "Hydrocodone", "Noroxycodone", "Phentermine", "Cocaine", "Benzoylecgonine", "Amphetamine", "Tramadol", "Pseudoephedrine")) %>%
+  arrange(metabolite, time_pretty) %>%
+  mutate(metabolite = as.character(metabolite)) %>%
   mutate(metabolite = if_else(group == 1, metabolite, "")) %>%
   rename(Metabolite = metabolite, Time = time_pretty) %>%
   select(-group) %>%
-  kable(booktabs = TRUE, longtable = TRUE, caption = "Supplemental Table 4. Median and interquartile range of estimated mass loads (mg) of substances that passed through given location over previous 30 minutes") %>%
+  kable(booktabs = TRUE, longtable = TRUE, caption = "Table S3. Median and interquartile range of estimated mass loads (mg) of substances that passed through given location over previous 30 minutes") %>%
   kable_styling(latex_options = c("repeat_header"))
 ```
 
