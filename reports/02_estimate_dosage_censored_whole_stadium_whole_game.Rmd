@@ -1,5 +1,7 @@
 ---
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
@@ -23,8 +25,8 @@ predicted_consumption <- readRDS("../output/02_posterior_predictive_mass_load.rd
 
 ```{r}
 predicted_consumption %>% 
-  mutate(statistic = paste0(prettyNum(round(median_mass_load, digits = 2), big.mark = ","), " (", prettyNum(round(low_mass_load , digits = 2), big.mark = ","), ", ", prettyNum(round(high_mass_load, digits = 2), big.mark = ","), ")", sep = ""),
-         statistic_per_1000 = paste0(prettyNum(round(median_mass_load / 80.651, digits = 2), big.mark = ","), " (", prettyNum(round(low_mass_load / 80.651, digits = 2), big.mark = ","), ", ", prettyNum(round(high_mass_load / 80.651, digits = 2), big.mark = ","), ")", sep = "")) %>%
+  mutate(statistic = paste0(prettyNum(round(median_mass_load, digits = 1), big.mark = ","), " (", prettyNum(round(low_mass_load , digits = 1), big.mark = ","), ", ", prettyNum(round(high_mass_load, digits = 1), big.mark = ","), ")", sep = ""),
+         statistic_per_1000 = paste0(prettyNum(round(median_mass_load / 80.651, digits = 1), big.mark = ","), " (", prettyNum(round(low_mass_load / 80.651, digits = 1), big.mark = ","), ", ", prettyNum(round(high_mass_load / 80.651, digits = 1), big.mark = ","), ")", sep = "")) %>%
   select(metabolite, statistic, statistic_per_1000) %>% 
   mutate(metabolite = factor(metabolite) %>% fct_relevel("Oxycodone", "Norhydrocodone", "Hydrocodone", "Noroxycodone", "Phentermine", "Cocaine", "Benzoylecgonine", "Amphetamine", "Tramadol", "Pseudoephedrine")) %>%
   arrange(metabolite) %>%
